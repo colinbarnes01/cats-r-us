@@ -9,91 +9,31 @@ and open the template in the editor.
         <title>CATS-R-US</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <style>
-            body {
-                background-color: #F5F0D0
-            }
-            #title {
-                font-family: "Arial Black", sans-serif;
-                font-weight: bold;
-                font-size: 500%;
-                color: pink;
-                width: 100%;
-                text-align: center;
-                padding-top: 50px;
-                padding-bottom: 20px;
-            }
-            #nav {
-                font-size: 200%;
-                width: 97%;
-                text-align: right;
-                padding-bottom: 90px;
-            }
-            #nav a {
-                color: hotpink;
-            }
-            #nav a:hover {
-                color: pink;
-            }
-            #nav a:visited {
-                color: purple;
-            }
-            #content {
-                
-                text-align: center;
-            }
-            #home-picture-div{
-                /*border: red solid;
-                position: absolute;
-                bottom: 10px;
-                right: 10px;*/
-            }
-            #home-picture {
-                border-style: solid;
-                border-color: greenyellow;
-                border-width: 10px;
-                border-radius: 200px;
-                max-width:100%;
-                max-height:100%;
-                float: right;
-                z-index: 1;
-
-            }
-            #footer {
-                position: absolute;
-                bottom: 0px;
-                width: 100%;
-                text-align: center;
-                z-index: -1;
-            }
-            .navLink {
-                text-decoration: none;
-            }
-            
-        </style>
+        <link rel="stylesheet" type="text/css" href="style.css">
     </head>
     <body>
         <div id="title">Cats-R-Us</div>
         <div id="nav">
-                <a class="navLink" href="index.html">Home</a>
-                <a class="navLink" href="labs.html">Labs</a>
+            <a class="navLink" href="index.html">Home</a>
+            <a class="navLink" href="labs.html">Labs</a>
         </div>
-        <div id="content">
-            <p>Welcome to Cats-R-Us!  We are a one stop shop for all of your
-            cat's needs.  We carry only the finest cat essentials.  From
-            cat food to squeaky toys, you are sure to find something that
-            your cat will enjoy!</p>
-            
-            <p>This page is currently under construction.  In the meantime,
-                please enjoy this fun game called find the cat!<p>
-            
-            <p><a href='http://www.addictinggames.com/action-games/where-is-cat-game.jsp'>
-                http://www.addictinggames.com/action-games/where-is-cat-game.jsp
-            </a></p>
-        </div>
-        <div id='home-picture-div'>
+        <div id="container">
+            <div id="content">
+                <p>Welcome to Cats-R-Us!  We are a one stop shop for all of your
+                    cat's needs.  We carry only the finest cat essentials.  From
+                    cat food to squeaky toys, you are sure to find something that
+                    your cat will enjoy!</p>
+
+                <p>This page is currently under construction.  In the meantime,
+                    please enjoy this fun game called find the cat!<p>
+
+                <p><a href='http://www.addictinggames.com/action-games/where-is-cat-game.jsp'>
+                        http://www.addictinggames.com/action-games/where-is-cat-game.jsp
+                    </a></p>
+            </div>
             <img id='home-picture' src='pictures/sitting-cat-small.jpg'>
+
         </div>
-        <div id='footer'>Colin Barnes</div>
     </body>
+    <div id='footer'>Colin Barnes</div>
 </html>

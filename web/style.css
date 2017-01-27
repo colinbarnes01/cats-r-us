@@ -1,10 +1,66 @@
-/*
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
-*/
 /* 
     Created on : Jan 25, 2017, 4:52:11 PM
-    Author     : Colin
+    Author     : Colin Barnes
+    Description : the external style sheet for my website for CIS 4530 Client
+                    Side Scripting.
 */
 
+body {
+    background-color: #F5F0D0;
+    width: 100%;
+    min-height: 100%;
+}
+#title {
+    font-family: "Arial Black", sans-serif;
+    font-weight: bold;
+    font-size: 500%;
+    color: pink;
+    width: 100%;
+    text-align: center;
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+#nav {
+    font-size: 200%;
+    width: 97%;
+    text-align: right;
+    padding-bottom: 30px;
+}
+#nav a {
+    color: hotpink;
+}
+#nav a:hover {
+    color: pink;
+}
+#nav a:visited {
+    color: purple;
+}
+#content {
+    border: red solid;
+    padding-left: 28%;
+    padding-right: 28%;
+    text-align: center;
+    font-size: 120%;
+}
+#home-picture {
+    border-style: solid;
+    border-color: greenyellow;
+    border-width: 10px;
+    border-radius: 200px;
+    max-width:100%;
+    max-height:100%;
+    float: right;
+    z-index: 1;
+
+}
+#footer {
+    clear: both;
+    position: relative;
+    height: 3em;
+    margin-top: -3em;
+    text-align: center;
+
+}
+.navLink {
+    text-decoration: none;
+}
