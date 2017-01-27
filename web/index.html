@@ -10,13 +10,15 @@ and open the template in the editor.
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" type="text/css" href="style.css">
+        <!-- Reference angular js library, so we can use the ng-include directive -->
+        <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
     </head>
     <body>
         <div id="title">Cats-R-Us</div>
-        <div id="nav">
-            <a class="navLink" href="index.html">Home</a>
-            <a class="navLink" href="labs.html">Labs</a>
-        </div>
+        <div ng-app="">
+            <div ng-include src="'navbar.html'"></div>
+        </div><!-- ng-app -->
+
         <div id="container">
             <div id="content">
                 <p>Welcome to Cats-R-Us!  We are a one stop shop for all of your
