@@ -9,14 +9,74 @@ and open the template in the editor.
         <title>CATS-R-US</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            body {
+                background-color: #F5F0D0
+            }
+            #title {
+                font-family: "Arial Black", sans-serif;
+                font-weight: bold;
+                font-size: 500%;
+                color: pink;
+                width: 100%;
+                text-align: center;
+                padding-top: 50px;
+                padding-bottom: 20px;
+            }
+            #nav {
+                font-size: 200%;
+                width: 97%;
+                text-align: right;
+                padding-bottom: 90px;
+            }
+            #nav a {
+                color: hotpink;
+            }
+            #nav a:hover {
+                color: pink;
+            }
+            #nav a:visited {
+                color: purple;
+            }
+            #content {
+                
+                text-align: center;
+            }
+            #home-picture-div{
+                /*border: red solid;
+                position: absolute;
+                bottom: 10px;
+                right: 10px;*/
+            }
+            #home-picture {
+                border-style: solid;
+                border-color: greenyellow;
+                border-width: 10px;
+                border-radius: 200px;
+                max-width:100%;
+                max-height:100%;
+                float: right;
+                z-index: 1;
+
+            }
+            #footer {
+                position: absolute;
+                bottom: 0px;
+                width: 100%;
+                text-align: center;
+                z-index: -1;
+            }
+            .navLink {
+                text-decoration: none;
+            }
+            
+        </style>
     </head>
     <body>
         <div id="title">Cats-R-Us</div>
         <div id="nav">
-            <div id='navLink'>
-                <a href="index.html">Home</a>
-                <a href="labs.html">Labs</a>
-            </div>
+                <a class="navLink" href="index.html">Home</a>
+                <a class="navLink" href="labs.html">Labs</a>
         </div>
         <div id="content">
             <p>Welcome to Cats-R-Us!  We are a one stop shop for all of your
@@ -31,8 +91,8 @@ and open the template in the editor.
                 http://www.addictinggames.com/action-games/where-is-cat-game.jsp
             </a></p>
         </div>
-        <div id='home-page-picture'>
-            <img src='pictures/sitting-cat.jpg'>
+        <div id='home-picture-div'>
+            <img id='home-picture' src='pictures/sitting-cat-small.jpg'>
         </div>
         <div id='footer'>Colin Barnes</div>
     </body>
