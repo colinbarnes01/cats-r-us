@@ -4,7 +4,6 @@
     Description : the external style sheet for my website for CIS 4530 Client
                     Side Scripting.
 */
-
 html {
     margin:0;
     padding:0;
@@ -67,7 +66,9 @@ body {
     height: 3em;
     bottom: 0px;
     text-align: center;
-
+}
+#lab-content{
+    padding-left: 10px;
 }
 .navLink {
     text-decoration: none;
