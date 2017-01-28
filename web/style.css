@@ -5,10 +5,14 @@
                     Side Scripting.
 */
 
+html {
+    margin:0;
+    padding:0;
+}
 body {
     background-color: #F5F0D0;
-    width: 100%;
-    min-height: 100%;
+    margin:0;
+    padding:0;
 }
 #title {
     font-family: "Arial Black", sans-serif;
@@ -22,9 +26,9 @@ body {
 }
 #nav {
     font-size: 200%;
-    width: 97%;
+    width: 90%;
     text-align: right;
-    padding-bottom: 30px;
+    padding-bottom: 50px;
 }
 #nav a {
     color: hotpink;
@@ -36,11 +40,11 @@ body {
     color: purple;
 }
 #content {
-    border: red solid;
-    padding-left: 28%;
-    padding-right: 28%;
+    width: 40%;
     text-align: center;
     font-size: 120%;
+    float: left;
+    margin-left: 5%;
 }
 #home-picture {
     border-style: solid;
@@ -49,15 +53,19 @@ body {
     border-radius: 200px;
     max-width:100%;
     max-height:100%;
-    float: right;
-    z-index: 1;
 
 }
+#home-picture-div{
+    width: 30%;
+    float: right;
+    margin-right: 5%;
+}
 #footer {
-    clear: both;
-    position: relative;
+    background-color: lightblue;
+    width: 100%;
+    position: absolute;
     height: 3em;
-    margin-top: -3em;
+    bottom: 0px;
     text-align: center;
 
 }
