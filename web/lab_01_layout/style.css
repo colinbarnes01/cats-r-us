@@ -1,0 +1,75 @@
+/* 
+    Created on : Jan 25, 2017, 4:52:11 PM
+    Author     : Colin Barnes
+    Description : the external style sheet for my website for CIS 4530 Client
+                    Side Scripting.
+*/
+html {
+    margin:0;
+    padding:0;
+}
+body {
+    background-color: #F5F0D0;
+    margin:0;
+    padding:0;
+}
+#title {
+    font-family: "Arial Black", sans-serif;
+    font-weight: bold;
+    font-size: 500%;
+    color: pink;
+    width: 100%;
+    text-align: center;
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+#nav {
+    font-size: 200%;
+    width: 90%;
+    text-align: right;
+    padding-bottom: 50px;
+}
+#nav a {
+    color: hotpink;
+}
+#nav a:hover {
+    color: pink;
+}
+#nav a:visited {
+    color: purple;
+}
+#content {
+    width: 40%;
+    text-align: center;
+    font-size: 120%;
+    float: left;
+    margin-left: 5%;
+}
+#home-picture {
+    border-style: solid;
+    border-color: greenyellow;
+    border-width: 10px;
+    border-radius: 200px;
+    max-width:100%;
+    max-height:100%;
+
+}
+#home-picture-div{
+    width: 30%;
+    float: right;
+    margin-right: 5%;
+}
+#footer {
+    background-color: lightblue;
+    width: 100%;
+    position: absolute;
+    height: 3em;
+    bottom: 0px;
+    text-align: center;
+}
+#lab-content{
+    padding-left: 10px;
+}
+.navLink {
+    text-decoration: none;
+}

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>CATS-R-US</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="style.css">
+        <!-- Reference angular js library, so we can use the ng-include directive -->
+        <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+    </head>
+    <body>
+        <div id="title">Cats-R-Us</div>
+        <div ng-app="">
+            <div ng-include src="'navbar.html'"></div>
+            <div id="content">
+                <p>Welcome to Cats-R-Us!  We are a one stop shop for all of your
+                    cat's needs.  We carry only the finest cat essentials.  From
+                    cat food to squeaky toys, you are sure to find something that
+                    your cat will enjoy!</p>
+
+                <p>This page is currently under construction.  In the meantime,
+                    please enjoy this fun game called find the cat!<p>
+
+                <p><a href='http://www.addictinggames.com/action-games/where-is-cat-game.jsp'>
+                        http://www.addictinggames.com/action-games/where-is-cat-game.jsp
+                    </a></p>
+            </div>
+            <div id="home-picture-div">
+                <img id='home-picture' src='pictures/sitting-cat-small.jpg'>
+            </div>
+
+            <div ng-include src="'footer.html'"></div>
+        </div><!-- ng-app -->
+    </body>
+
+
+</html>
