@@ -53,7 +53,7 @@ and open the template in the editor.
                 padding-left: 24px;
             }
             #title-page {
-                background-image: url("../pictures/background-cat.jpg");
+                background-image: url("../pictures/background-cat-mobile.jpg");
                 background-size: cover;
                 background-repeat: no-repeat;
             }
@@ -64,11 +64,9 @@ and open the template in the editor.
                 background: none;
             }
             #info-page {
-                border: red solid;
                 background-color: lightblue;
             }
             .imageContainer {
-                border: red solid;
                 width: 100%;
                 text-align: center;
             }
@@ -95,10 +93,16 @@ and open the template in the editor.
                 font-weight: bold;
                 padding: 12px;
             }
+            #footer:hover {
+                opacity:0; 
+                filter:alpha(opacity=0);
+            }
 
             @media screen and (min-width: 600px) {
+                #title-page {
+                    background-image: url("../pictures/background-cat.jpg");
+                }
                 .imageContainer {
-                    border: red solid;
                     width: 30%;
                     float: left;
                     margin-left: 4px;
@@ -190,7 +194,7 @@ and open the template in the editor.
             <h1>Take a Survey!</h1>
             <form name="myForm" method="post" action="http://www.temple.edu/cgi-bin/mail?tuf84887@temple.edu">
                 Enter your name:<br>
-                <input type="text" name="firstname" value="Mickey Mouse" required><br>
+                <input type="text" name="name" value="Mickey Mouse" required><br>
                 Enter your age:<br>
                 <input type="number" name="age" value=""><br>
                 <input type="checkbox" name="like" value="Like" required>Do you like cats?<br>

@@ -66,12 +66,16 @@ body {
 }
 #footer {
     background-color: lightblue;
+    position: fixed;
+    bottom: 0;
+    left: 0;
     width: 100%;
-    position: absolute;
-    height: 3em;
-    bottom: 0px;
     text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 12px;
 }
+
 #lab-content{
     padding-left: 10px;
     margin-left: 1%;
