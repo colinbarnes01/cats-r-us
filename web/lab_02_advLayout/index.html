@@ -12,6 +12,10 @@ and open the template in the editor.
         <!-- Reference angular js library, so we can use the ng-include directive -->
         <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
         <style>
+            body {
+                margin:0;
+                padding:0;
+            }
             #nav {
                 position: fixed;
                 background-color: pink;
@@ -21,13 +25,37 @@ and open the template in the editor.
                 font-weight: bold;
                 padding: 10px;
                 box-shadow: 2px 2px 2px grey;
-
+                border-radius: 0px 0px 0px 20px;
+                z-index: 2px;
+            }
+            .navLink {
+                text-decoration: none;
+                font-family: sans-serif;
+                display: block
+            }
+            #nav a {
+                color: #FFF630;
+            }
+            #nav a:hover {
+                color: pink;
+            }
+            #nav a:visited {
+                color: purple;
+            }
+            #navGroup {
+                display: none; 
             }
             .single-page {
                 min-height: 100vh;
             }
+            #info-page, #form-page {
+                padding-top: 24px;
+                padding-left: 24px;
+            }
             #title-page {
                 background-image: url("../pictures/background-cat.jpg");
+                background-size: cover;
+                background-repeat: no-repeat;
             }
             #title-logo {
                 display: block;
@@ -37,79 +65,156 @@ and open the template in the editor.
             }
             #info-page {
                 border: red solid;
+                background-color: lightblue;
             }
-            #info-page div {
-                float: left;
-                width: 32.3%;
-                margin: 3px;
-                width: 27%;
-            }
-            info-page p {
-                max-width:100%;
-                max-height:100%;
-            }
-            #content {
-                width: 30%;
-                display: inline-block;
+            .imageContainer {
                 border: red solid;
+                width: 100%;
+                text-align: center;
             }
-            #under-construction {
-                display: inline-block;
-                width: 30%;
-                border: red solid;
+            #info-page img {
+                max-width:75%;
+                max-height:75%;
+                border-style: solid;
+                border-color: greenyellow;
+                border-width: 10px;
+                border-radius: 200px;
+                margin-bottom: 24px;
             }
-            #home-picture-div {
-                display: inline-block;
-                border: red solid;
+            #form-page {
+                background-color: #92EFA4;
             }
-            img {
-                max-width:100%;
-                max-height:100%;
+            #footer {
+                background-color: lightblue;
+                position: fixed;
+                bottom: 0;
+                left: 0;
+                width: 100%;
+                text-align: center;
+                font-size: 18px;
+                font-weight: bold;
+                padding: 12px;
             }
 
+            @media screen and (min-width: 600px) {
+                .imageContainer {
+                    border: red solid;
+                    width: 30%;
+                    float: left;
+                    margin-left: 4px;
+                    text-align: center;
+                }
+                .navLink {
+                    display: inline;
+                }
+                #navIcon {
+                    display: none;
+                }
+                #navGroup {
+                    display: block;
+                }
+            }
         </style>
+
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+
+        <script>
+            $(document).ready(function () {
+
+                // when user clicks the navIcon, it toggles (makes visible/invisible)
+                // the element after that (navGroup).
+                $("#navIcon").click(function () {
+                    $(this).next().toggle(); // hide if showing, show if hiding. 
+                });
+
+                // make the navGroup is visible when resizing to >= 580 px (desktop).
+                // make the navGroup is invisible when resizing to < 580 px (mobile).
+                // there seems to be a 20 pixel discrepancy between width of titleNav
+                // and width of browser viewing area (that's why testing 560 not 580)
+                $(window).resize(function () {
+                    var wide = $('#title-page').css("width");
+                    wide = parseInt(wide);
+                    //console.log("width " + wide);
+                    if (wide >= 560) {
+                        jQuery('#navGroup').css("display", "block");
+                        //console.log("show navGroup");
+                    } else {
+                        jQuery('#navGroup').css("display", "none");
+                    }
+                });
+            });
+        </script>
+
     </head>
     <body>
-        <div ng-app="">
-            <!--<div ng-include src="'../navbar.html'"></div>-->
-            <div id="nav">
+
+        <div id="nav">
+            <div id="navIcon">
+                <img src="../pictures/navbars.png" alt="" width="43"/>
+            </div>
+            <div id='navGroup'>
                 <a class="navLink" href="#title-page">Title</a>
                 <a class="navLink" href="#info-page">Information</a>
                 <a class="navLink" href="#form-page">Form</a>
+                <a class="navLink" href="../index.html">Home</a>
+            </div>
+        </div>
+
+        <div id="title-page" class="single-page">
+            <img id="title-logo" src="../pictures/logo.png">
+        </div>
+
+        <div id="info-page" class="single-page">
+            <h1>Information Page</h1>
+
+            <div class="imageContainer">
+                <h3>Burrito Cat</h3>
+                <img src="../pictures/catwrapped.jpg">
+                <br>This is a cat wrapped up like a burrito.
             </div>
 
-            <div id="title-page" class="single-page">
-                <img id="title-logo" src="../pictures/logo.png">
+            <div class="imageContainer">
+                <h3>Hungry Cat</h3>
+                <img src="../pictures/hungry-cat.jpg">
+                <br>This cat is very hungry.
             </div>
 
-            <div id="info-page" class="single-page">
-                <div id="content">
-                    <p>Welcome to Cats-R-Us!  We are a one stop shop for all of your
-                        cat's needs.  We carry only the finest cat essentials.  From
-                        cat food to squeaky toys, you are sure to find something that
-                        your cat will enjoy!</p>
-                </div>
-                <div id="under-construction">
-                    <p>This page is currently under construction.  In the meantime,
-                        please enjoy this fun game called find the cat!<p>
-
-                    <p><a href='http://www.addictinggames.com/action-games/where-is-cat-game.jsp'>
-                            http://www.addictinggames.com/action-games/where-is-cat-game.jsp
-                        </a></p>
-                </div>
-                <div id="home-picture-div">
-                    <img id='home-picture' src='../pictures/sitting-cat-small.jpg'>
-                </div>
+            <div class="imageContainer">
+                <h3>A cool cat</h3>
+                <img src="../pictures/sitting-cat-small.jpg">
+                <br>This cat likes to sit.
             </div>
+        </div>
 
-            <div id="form-page" class="single-page">
-                <form name="myForm" method="post" action="">
-                    <input type="text" name="firstname" value="Mickey">
-                    <input type="text" name="lastname" value="Mouse">
-                    <input type="submit" value="Submit">
-                </form>
-            </div>
-            <div ng-include src="../'footer.html'"></div>
+        <div id="form-page" class="single-page">
+            <h1>Take a Survey!</h1>
+            <form name="myForm" method="post" action="http://www.temple.edu/cgi-bin/mail?tuf84887@temple.edu">
+                Enter your name:<br>
+                <input type="text" name="firstname" value="Mickey Mouse" required><br>
+                Enter your age:<br>
+                <input type="number" name="age" value=""><br>
+                <input type="checkbox" name="like" value="Like" required>Do you like cats?<br>
+                Choose cat or dog:<br>
+                <input type="radio" name="gender" value="cat"> Cat<br>
+                <input type="radio" name="gender" value="dog"> Dog<br>
+
+                What is your favorite color of cat?<br>
+                <select>
+                    <option value="white">White</option>
+                    <option value="brown">Brown</option>
+                    <option value="yellow">Yellow</option>
+                    <option value="black">Black</option>
+                </select><br>
+
+                Please give some additional comments about cats!<br>
+                <textarea rows="4" cols="50">
+                </textarea>
+
+                <input type="submit" value="Submit">
+            </form>
+        </div>
+        <div ng-app="">
+            <div ng-include src="'../footer.html'"></div>
         </div><!-- ng-app -->
         <!-- Jquery -->
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
