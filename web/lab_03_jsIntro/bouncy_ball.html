@@ -19,12 +19,21 @@ and open the template in the editor.
     <body>
         <div id="ball_01"></div>
         <div id="ball_02"></div>
+        
+        <input type="button" value="Make a ball!" 
+               onclick="callMakeBall( {id: 'ball_01'} )">
+        <input type="button" value="Make another ball!" 
+               onclick="callMakeBall( {id: 'ball_02', left: '500px'} )">
 
-        <script type="text/javascript" src="bouncy_ball_framework.js">
+        <script src="bouncy_ball_framework.js"></script>
+        <script type="text/javascript">
+            console.log("Hello World!")
             var ballFramework = makeBallFramework();
             
-            var ballObj1 = ballFramework.makeBall();
-            var ballObj2 = ballFramework.makeBall();
+            function callMakeBall(params) {
+                //window.console.log('param in callMakeBall:', params.id);
+                ballFramework.makeBall(params);
+            }
         </script>
     </body>
 </html>
