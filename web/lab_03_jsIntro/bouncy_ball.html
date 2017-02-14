@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Bouncy Ball</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <style>
+            body {
+                background-color: lightgreen;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="ball_01"></div>
+        <div id="ball_02"></div>
+
+        <script type="text/javascript" src="bouncy_ball_framework.js">
+            var ballFramework = makeBallFramework();
+            
+            var ballObj1 = ballFramework.makeBall();
+            var ballObj2 = ballFramework.makeBall();
+        </script>
+    </body>
+</html>
