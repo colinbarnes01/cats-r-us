@@ -18,12 +18,12 @@ function makeCatFramework() {
         if (!params.id) {
             alert("Please supply an id in the parameter to makecat()");
         }
-        console.log('params.id in catFramework.makecat(): ', params.id);
 
         var cat = document.getElementById(params.id);
 
         cat.style.top = params.top || "200px";
         cat.style.left = params.left || "240px";
+        cat.top = 200;
         cat.left = 240;
 
         cat.style.position = params.position || "fixed";
@@ -35,7 +35,7 @@ function makeCatFramework() {
         cat.style.backgroundSize = "1450%";
         cat.style.backgroundRepeat = "no-repeat";
         //cat.style.borderRadius = "50%";
-        cat.style.border = "red solid";
+        //cat.style.border = "red solid";
         cat.style.zIndex = "2";
 
         return cat;
@@ -53,7 +53,7 @@ function makeCatFramework() {
         console.log('cat.left ', cat.left)
         cat.style.left = cat.left + "px";
     }
-
+    
     return catFramework;
 }
 
