@@ -50,8 +50,14 @@ function makeCatFramework() {
         var cat = document.getElementById(id);
         console.log('speed ', speed);
         cat.left += speed;
-        console.log('cat.left ', cat.left)
+        //console.log('cat.left ', cat.left)
         cat.style.left = cat.left + "px";
+    }
+    
+    catFramework.changePosition = function(params) {
+        var cat = document.getElementById(params.id);
+        cat.style.left = params.left + "px";
+        cat.style.top = params.top + "px";
     }
     
     return catFramework;

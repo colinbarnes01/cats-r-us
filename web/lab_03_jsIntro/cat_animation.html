@@ -16,10 +16,10 @@ and open the template in the editor.
             }
         </style>
     </head>
-       
+    <body>
         <div id="walking_cat_01"></div>
         <div id="walking_cat_02"></div>
-        
+
         <input type="button" value="Make a cat!" 
                onclick="callMakeCat({id: 'walking_cat_01', top: '600px'});">
         <input type="button" value="Make another cat!" 
@@ -31,6 +31,13 @@ and open the template in the editor.
                onclick = "animateCat01('walking_cat_01')">
         <input type="button" value="Stop Cat 01"
                onclick = "stopCat01('walking_cat_01')">
+        Change cat 01 left position:
+        <input type="text" id="01_left">
+        Change cat 01 top position:
+        <input type="text" id="01_top">
+        <input type="button" value="Change Cat 01 Position"
+               onclick="callChangePosition01('walking_cat_01')">
+
         <br><br>
         <input type="button" value="Change Sprite 02" 
                onclick ="callChangeSprite('walking_cat_02')">
@@ -38,6 +45,12 @@ and open the template in the editor.
                onclick = "animateCat02('walking_cat_02')">
         <input type="button" value="Stop Cat 02"
                onclick = "stopCat02('walking_cat_02')">
+        Change cat 02 left position:
+        <input type="text" id="02_left">
+        Change cat 02 top position:
+        <input type="text" id="02_top">
+        <input type="button" value="Change Cat 02 Position"
+               onclick="callChangePosition02('walking_cat_02')">
         <br>
         <h2>Instructions</h2>
         <p>
@@ -56,17 +69,12 @@ and open the template in the editor.
                    var cat_02_sprite_positions = ["-270px -290px", "-360px -290px", "-450px -290px"];
                    var curr_position = 0;
                    var catSpeed = 10;
-
+                   var cat01 = document.getElementById("walking_cat_01");
+                   var cat02 = document.getElementById("walking_cat_02");
                    function callMakeCat(params) {
                        //window.console.log('param in callMakecat:', params.id);
                        catFramework.makeCat(params);
                    }
-
-
-
-
-
-                   
 
                    function callChangeSprite(id) {
                        curr_position++;
@@ -110,6 +118,23 @@ and open the template in the editor.
                    }
                    function stopCat02() {
                        clearInterval(interval02);
+                   }
+
+                   function callChangePosition01(id) {
+                       catFramework.changePosition(
+                               {id: id,
+                                   left: document.getElementById('01_left').value,
+                                   top: document.getElementById('01_top').value,
+                               }
+                       );
+                   }
+                   function callChangePosition02(id) {
+                       catFramework.changePosition(
+                               {id: id,
+                                   left: document.getElementById('02_left').value,
+                                   top: document.getElementById('02_top').value,
+                               }
+                       );
                    }
         </script>
     </body>
