@@ -1,43 +1,115 @@
-/* 
-    Created on : Jan 25, 2017, 4:52:11 PM
-    Author     : Colin Barnes
-    Description : the external style sheet for my website for CIS 4530 Client
-                    Side Scripting.
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
 */
-html {
+/* 
+    Created on : Feb 28, 2017, 5:59:26 PM
+    Author     : Colin
+*/
+
+
+body {
     margin:0;
     padding:0;
 }
-body {
-    background-color: #F5F0D0;
-    margin:0;
-    padding:0;
+#titlenav {
+    position: fixed;
+    background-color: pink;
+    top: 0px;
+    width: 100%;
+    /*right: 0px;*/
+    font-size: 18px;
+    font-weight: bold;
+    padding: 0px 10px 0px 10px;
+    box-shadow: 2px 2px 2px grey;
+    /*border-radius: 0px 0px 0px 20px;*/
+    z-index: 2px;
 }
 #title {
-    font-family: "Arial Black", sans-serif;
-    font-weight: bold;
-    font-size: 500%;
-    color: pink;
-    width: 100%;
-    text-align: center;
-    padding-top: 50px;
-    padding-bottom: 20px;
+    display: inline-block;
+    color: yellow;
+    font-size: 32px;
 }
-#nav {
-    font-size: 200%;
-    width: 90%;
-    text-align: right;
-    padding-bottom: 50px;
+#navbar {
+    position: fixed;
+    display: inline-block;
+    right: 0px;
+    margin: 10px 10px 0px 0px;
+}
+.navLink {
+    text-decoration: none;
+    font-family: sans-serif;
+    display: block
 }
 #nav a {
-    color: hotpink;
+    color: #FFF630;
 }
 #nav a:hover {
-    color: pink;
+    color: lightyellow;
 }
 #nav a:visited {
     color: purple;
 }
+#navGroup {
+    display: none; 
+}
+.single-page {
+    min-height: 100vh;
+}
+.single-page h1{
+    margin-top: 40px;
+}
+#info-page, #form-page {
+    padding-top: 24px;
+    padding-left: 24px;
+}
+#title-page {
+    background-image: url("pictures/background-cat-mobile.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+#title-logo {
+    display: block;
+    margin: auto;
+    width: 50%;
+    background: none;
+}
+#info-page {
+    background-color: lightblue;
+}
+.imageContainer {
+    width: 100%;
+    text-align: center;
+}
+#info-page img {
+    max-width:75%;
+    max-height:75%;
+    border-style: solid;
+    border-color: greenyellow;
+    border-width: 10px;
+    border-radius: 200px;
+    margin-bottom: 24px;
+}
+#form-page {
+    background-color: #92EFA4;
+}
+#footer {
+    background-color: lightblue;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 12px;
+}
+#footer:hover {
+    opacity:0; 
+    filter:alpha(opacity=0);
+}
+
 #content {
     width: 40%;
     text-align: center;
@@ -64,29 +136,24 @@ body {
     float: right;
     margin-right: 5%;
 }
-#footer {
-    background-color: lightblue;
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    text-align: center;
-    font-size: 18px;
-    font-weight: bold;
-    padding: 12px;
-}
 
-#lab-content{
-    padding-left: 10px;
-    margin-left: 1%;
-    margin-right: 2%;
-    margin-bottom: 24px;
-    border: #EDDE8B solid;
-    border-width: 10px;
-    border-radius: 50px;
-    padding: 1%;
-    box-shadow: 10px 10px 5px #888888;
-}
-.navLink {
-    text-decoration: none;
+@media screen and (min-width: 600px) {
+    #title-page {
+        background-image: url("pictures/background-cat.jpg");
+    }
+    .imageContainer {
+        width: 30%;
+        float: left;
+        margin-left: 4px;
+        text-align: center;
+    }
+    .navLink {
+        display: inline;
+    }
+    #navIcon {
+        display: none;
+    }
+    #navGroup {
+        display: block;
+    }
 }

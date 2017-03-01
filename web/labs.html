@@ -6,11 +6,56 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" type="text/css" href="style.css">
         <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+        <style>
+            body {
+                background-color: #F5F0D0;
+                margin:0;
+                margin-bottom: 50px;
+                padding:0;
+            }
+            #pageTitle {
+                font-family: "Arial Black", sans-serif;
+                font-weight: bold;
+                font-size: 500%;
+                color: pink;
+                width: 100%;
+                text-align: center;
+                padding-top: 50px;
+                padding-bottom: 20px;
+                margin-top: 24px;
+            }
+            #lab-content{
+                padding-left: 10px;
+                margin-left: 1%;
+                margin-right: 2%;
+                margin-bottom: 24px;
+                border: #EDDE8B solid;
+                border-width: 10px;
+                border-radius: 50px;
+                padding: 1%;
+                box-shadow: 10px 10px 5px #888888;
+            }
+        </style>
     </head>
     <body>
-        <div id="title">Labs</div>
+        <div id="pageTitle">Labs</div>
         <div ng-app="">
-            <div ng-include="'navbar.html'"></div>
+            <div id="titlenav">
+                <div id="title">
+                    Cats-R-Us
+                </div>
+                <div id="navbar">
+                    <div id="navIcon">
+                        <img src="pictures/navbars.png" alt="" width="43"/>
+                    </div>
+                    <div id='navGroup'>
+                        <a class="navLink" href="index.html">Home</a>
+                        <a class="navLink" href="labs.html">Labs</a>
+                    </div>
+                </div>
+            </div>
+
+
 
             <div id="lab-content">  
                 <h2>Lab 1</h2>
@@ -85,5 +130,35 @@
 
             <div ng-include src="'footer.html'"></div>
         </div><!-- ng-app -->
+
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+        <script>
+            $(document).ready(function () {
+
+                console.log('in hamburger function 1');
+                // when user clicks the navIcon, it toggles (makes visible/invisible)
+                // the element after that (navGroup).
+                $("#navIcon").click(function () {
+                    $(this).next().toggle(); // hide if showing, show if hiding. 
+                    console.log('in hamburger function 2');
+                });
+
+                // make the navGroup is visible when resizing to >= 580 px (desktop).
+                // make the navGroup is invisible when resizing to < 580 px (mobile).
+                // there seems to be a 20 pixel discrepancy between width of titleNav
+                // and width of browser viewing area (that's why testing 560 not 580)
+                $(window).resize(function () {
+                    var wide = $('#title-page').css("width");
+                    wide = parseInt(wide);
+                    //console.log("width " + wide);
+                    if (wide >= 560) {
+                        jQuery('#navGroup').css("display", "block");
+                        //console.log("show navGroup");
+                    } else {
+                        jQuery('#navGroup').css("display", "none");
+                    }
+                });
+            });
+        </script>
     </body>
 </html>

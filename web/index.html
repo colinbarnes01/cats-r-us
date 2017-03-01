@@ -9,33 +9,159 @@ and open the template in the editor.
         <title>CATS-R-US</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" type="text/css" href="style.css">
         <!-- Reference angular js library, so we can use the ng-include directive -->
         <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="style.css">
+
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+
+
+
     </head>
     <body>
-        <div id="title">Cats-R-Us</div>
         <div ng-app="">
-            <div ng-include src="'navbar.html'"></div>
-            <div id="content">
-                <p>Welcome to Cats-R-Us!  We are a one stop shop for all of your
-                    cat's needs.  We carry only the finest cat essentials.  From
-                    cat food to squeaky toys, you are sure to find something that
-                    your cat will enjoy!</p>
-
-                <p>This page is currently under construction.  In the meantime,
-                    please enjoy this fun game called find the cat!<p>
-
-                <p><a href='http://www.addictinggames.com/action-games/where-is-cat-game.jsp'>
-                        http://www.addictinggames.com/action-games/where-is-cat-game.jsp
-                    </a></p>
+            <div id="titlenav">
+                <div id="title">
+                    Cats-R-Us
+                </div>
+                <div id="navbar">
+                    <div id="navIcon">
+                        <img src="pictures/navbars.png" alt="" width="43"/>
+                    </div>
+                    <div id='navGroup'>
+                        <a class="navLink" href="index.html">Home</a>
+                        <a class="navLink" href="labs.html">Labs</a>
+                    </div>
+                </div>
             </div>
-            <div id="home-picture-div">
-                <img id='home-picture' src='pictures/sitting-cat-small.jpg'>
+
+
+            <div id="title-page" class="single-page">
+                <img id="title-logo" src="pictures/logo.png">
+
+                <div id="content">
+                    <p>Welcome to Cats-R-Us!  We are a one stop shop for all of your
+                        cat's needs.  We carry only the finest cat essentials.  From
+                        cat food to squeaky toys, you are sure to find something that
+                        your cat will enjoy!</p>
+
+                    <p>This page is currently under construction.  In the meantime,
+                        please enjoy this fun game called find the cat!<p>
+
+                    <p><a href='http://www.addictinggames.com/action-games/where-is-cat-game.jsp'>
+                            http://www.addictinggames.com/action-games/where-is-cat-game.jsp
+                        </a></p>
+                </div>
             </div>
 
             <div ng-include src="'footer.html'"></div>
         </div><!-- ng-app -->
+        <!-- Jquery -->
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+        <script>
+
+            // Wait until all elements exist on the page before trying to reference anything ...
+            $(document).ready(function () {
+
+
+                // Selector: All <a> elements with a href attribute that starts with "#":
+                //    Learned this from   http://www.w3schools.com/jquery/jquery_ref_selectors.asp
+                // Event: When the selected elements are clicked ...
+                // Action: Run the following (unnamed) function
+
+                var navObj = $('#nav-container');
+                var aObj = navObj.children()
+                console.log(aObj);
+
+                $('a[href^="#"]').click(function () {
+
+                    // "this" means the element involved in the event, so, the link that was clicked.
+                    console.log("this");
+                    console.log(this); // if you console.log an object, you'll see nice tree view
+                    // of the object's properties in the console (F12 from Chrome)
+                    console.log("-");
+
+                    // ".hash" refers to the href attribute of the <a> tag. So, if <a href="#page1">
+                    // was clicked, then "this.hash" has this value: "#page1"
+                    console.log("this.hash");
+                    console.log(this.hash);
+                    console.log("-");
+
+                    // $ is a jQuery function which returns a jQuery object that references the
+                    // specified HTML element. For example, $("#content") returns a jQuery
+                    // object that references the HTML element with id="content", but also has
+                    // loads of contextual information about that element (e.g., parent, siblings, 
+                    // and many other properties.
+
+                    // So, target will contain a jQuery object (with loads of info) about the element that 
+                    // is "being linked to" (the element referenced by the href attribute).
+                    var target = $(this.hash);
+                    console.log("$(this.hash)");
+                    console.log(target);
+                    console.log("-");
+
+                    // if (whatever) returns "not false" if 'whatever' exists.
+                    if (target.length) {
+
+                        // animate is a jQuery function (what_to_do, how_fast_in_millisecs). 
+                        // "what_to_do" is an object with any number of CSS property/value pairs:
+                        /*
+                         * $("button").click(function(){
+                         $("div").animate({
+                         left: '250px',
+                         opacity: '0.5',
+                         height: '150px',
+                         },500);
+                         }); 
+                         */
+                        // 
+                        // scrollTop is a javaScript property of any DOM element. 
+                        // It measures the number of pixels from the DOM element to the top of 
+                        // of the DOM element's scrollable parent element.
+                        //           see http://www.w3schools.com/jsref/tryit.asp?filename=tryjsref_element_scrollleft
+                        // 
+                        // .offset() is a function (of any jQuery object) that returns an object with 
+                        // top and left properties (top/left relative to the document).
+
+                        $('html, body').animate({
+                            // set the scrollTop property (of the browser)
+                            // to be the top attribute of the element being linked to
+                            scrollTop: target.offset().top
+                        }, 900);  // but do it a bit slow (900 millisecs)
+                    }
+
+                });
+
+            });
+        </script>
+        <script>
+            $(document).ready(function () {
+
+                console.log('in hamburger function 1');
+                // when user clicks the navIcon, it toggles (makes visible/invisible)
+                // the element after that (navGroup).
+                $("#navIcon").click(function () {
+                    $(this).next().toggle(); // hide if showing, show if hiding. 
+                    console.log('in hamburger function 2');
+                });
+
+                // make the navGroup is visible when resizing to >= 580 px (desktop).
+                // make the navGroup is invisible when resizing to < 580 px (mobile).
+                // there seems to be a 20 pixel discrepancy between width of titleNav
+                // and width of browser viewing area (that's why testing 560 not 580)
+                $(window).resize(function () {
+                    var wide = $('#title-page').css("width");
+                    wide = parseInt(wide);
+                    //console.log("width " + wide);
+                    if (wide >= 560) {
+                        jQuery('#navGroup').css("display", "block");
+                        //console.log("show navGroup");
+                    } else {
+                        jQuery('#navGroup').css("display", "none");
+                    }
+                });
+            });
+        </script>
     </body>
 
 
