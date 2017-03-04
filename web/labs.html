@@ -11,7 +11,7 @@
                 background-color: #F5F0D0;
                 margin:0;
                 margin-bottom: 50px;
-                padding:0;
+                /*padding:0;*/
             }
             #pageTitle {
                 font-family: "Arial Black", sans-serif;
@@ -35,130 +35,150 @@
                 padding: 1%;
                 box-shadow: 10px 10px 5px #888888;
             }
-        </style>
-    </head>
-    <body>
-        <div id="pageTitle">Labs</div>
-        <div ng-app="">
-            <div id="titlenav">
-                <div id="title">
-                    Cats-R-Us
-                </div>
-                <div id="navbar">
-                    <div id="navIcon">
-                        <img src="pictures/navbars.png" alt="" width="43"/>
+            #navbar {
+                position: fixed;
+                display: inline;
+                right: 0px;
+                margin: 0px 10px 0px 0px;
+            }
+            @media screen and (min-width: 600px) {
+                #navGroup {
+                    display:inherit;
+                }
+
+                #pageTitle {
+                    color: green;
+                }
+                #navbar {
+                    position: fixed;
+                    display: inline;
+                    right: 0px;
+                    margin: 0px 10px 0px 0px;
+                }
+
+            </style>
+        </head>
+        <body>
+            <div ng-app="">
+                <div id="titlenav">
+                    <div id="title">
+                        Cats-R-Us
                     </div>
-                    <div id='navGroup'>
-                        <a class="navLink" href="index.html">Home</a>
-                        <a class="navLink" href="labs.html">Labs</a>
+                    <div id="navbar">
+                        <div id="navIcon">
+                            <img src="pictures/navbars.png" alt="" width="43"/>
+                        </div>
+                        <div id='navGroup'>
+                            <a class="navLink" href="index.html">Home</a>
+                            <a class="navLink" href="labs.html">Labs</a>
+                        </div>
                     </div>
                 </div>
-            </div>
 
+                <div id="pageTitle">Labs</div>
 
+                <div id="lab-content">  
+                    <h2>Lab 1</h2>
+                    <p>
+                        I have created some web pages before using HTML/CSS but in general
+                        I am still pretty new to web programming.  I have not used
+                        javascript or any client-side frameworks before this class.
+                    </p>
+                    <p>
+                        I used compound selectors to style the links in my navbar.  I also
+                        used the float rule to move my image on the home page to the right
+                        side of the screen.
+                    </p>
+                    <p>
+                        I learned a great deal of css during this lab.  I learned how to
+                        position elements on the page.  I also learned the concepts of block
+                        elements vs. inline elements.  I also got some experience in using
+                        colors to make my website more appealing.
+                    </p>
+                    <a href='lab_01_layout/index.html'>Link to lab_01_layout/index.html</a>
+                </div>
 
-            <div id="lab-content">  
-                <h2>Lab 1</h2>
-                <p>
-                    I have created some web pages before using HTML/CSS but in general
-                    I am still pretty new to web programming.  I have not used
-                    javascript or any client-side frameworks before this class.
-                </p>
-                <p>
-                    I used compound selectors to style the links in my navbar.  I also
-                    used the float rule to move my image on the home page to the right
-                    side of the screen.
-                </p>
-                <p>
-                    I learned a great deal of css during this lab.  I learned how to
-                    position elements on the page.  I also learned the concepts of block
-                    elements vs. inline elements.  I also got some experience in using
-                    colors to make my website more appealing.
-                </p>
-                <a href='lab_01_layout/index.html'>Link to lab_01_layout/index.html</a>
-            </div>
+                <div id='lab-content'>
+                    <br>
+                    <h2>Lab 2: Responsive Design and Single Page Design</h2>
+                    <p> For this lab I learned how to design a website as a virtul
+                        single page.  This means that in essence I have three distinct
+                        pages in my website.  However, using some javascript and css
+                        I am able to present all these 'pages' in one scrollable webpage.
+                    </p>
+                    <p> I also had the opportunity to learn about responsive design.
+                        Responsive design means that a website alters its' layout
+                        according to the size of the viewing device.  So the same
+                        website will look different on a laptop and a mobile phone,
+                        for example.  I achieved this by using media queries and the
+                        jQuery javascript framework.
+                    </p>
+                    <a href="lab_02_advLayout/index.html">Link to lab_02_advLayout.html/index.html</a>
+                </div>
 
-            <div id='lab-content'>
-                <br>
-                <h2>Lab 2: Responsive Design and Single Page Design</h2>
-                <p> For this lab I learned how to design a website as a virtul
-                    single page.  This means that in essence I have three distinct
-                    pages in my website.  However, using some javascript and css
-                    I am able to present all these 'pages' in one scrollable webpage.
-                </p>
-                <p> I also had the opportunity to learn about responsive design.
-                    Responsive design means that a website alters its' layout
-                    according to the size of the viewing device.  So the same
-                    website will look different on a laptop and a mobile phone,
-                    for example.  I achieved this by using media queries and the
-                    jQuery javascript framework.
-                </p>
-                <a href="lab_02_advLayout/index.html">Link to lab_02_advLayout.html/index.html</a>
-            </div>
+                <div id ='lab-content'>
+                    <br>
+                    <h2>Lab 3 & 4: Custom JavaScript Animation Framework</h2>
+                    <p>In this lab I created a custom Javascript framework.  The
+                        framework allows a programmer to create and animate cat
+                        images. The framework uses sprites and allows the user to
+                        animate cats walking around on the screen.
+                    </p>
 
-            <div id ='lab-content'>
-                <br>
-                <h2>Lab 3 & 4: Custom JavaScript Animation Framework</h2>
-                <p>In this lab I created a custom Javascript framework.  The
-                    framework allows a programmer to create and animate cat
-                    images. The framework uses sprites and allows the user to
-                    animate cats walking around on the screen.
-                </p>
+                    <p>
+                        I learned a lot about JavaScript in this lab.  I learned a
+                        lot of JS syntax, how JS objects relate to and differ from objects
+                        in other languages.  I also learned about frameworks, what
+                        they are and how to make my own.
+                    </p>
+                    <a href='lab_03_jsIntro/cat_animation.html'>Link to lab_03_jsInto/cat_animation.html</a>
+                </div>
+                <div id='lab-content'>
+                    <br>
+                    <h2>Lab 5: Database</h2>
+                    <p>
+                        In this lab I designed a database for my lab and implemented
+                        it in MySql workbench.  I learned some useful things about SQL
+                        naming conventions, such as the following.
+                    </p>
+                    <ol>
+                        <li>Avoid SQL keywords</li>
+                        <li>Table names should be singular, not plural</li>
+                    </ol>
+                    <a href="docs/colinbarnes_database_lab.pdf">Link to database lab pdf</a>
+                </div>
 
-                <p>
-                    I learned a lot about JavaScript in this lab.  I learned a
-                    lot of JS syntax, how JS objects relate to and differ from objects
-                    in other languages.  I also learned about frameworks, what
-                    they are and how to make my own.
-                </p>
-                <a href='lab_03_jsIntro/cat_animation.html'>Link to lab_03_jsInto/cat_animation.html</a>
-            </div>
-            <div id='lab-content'>
-                <br>
-                <h2>Lab 5: Database</h2>
-                <p>
-                    In this lab I designed a database for my lab and implemented
-                    it in MySql workbench.  I learned some useful things about SQL
-                    naming conventions, such as the following.
-                </p>
-                <ol>
-                    <li>Avoid SQL keywords</li>
-                    <li>Table names should be singular, not plural</li>
-                </ol>
-                <a href="docs/colinbarnes_database_lab.pdf">Link to database lab pdf</a>
-            </div>
+                <div ng-include src="'footer.html'"></div>
+            </div><!-- ng-app -->
 
-            <div ng-include src="'footer.html'"></div>
-        </div><!-- ng-app -->
+            <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+            <script>
+                $(document).ready(function () {
 
-        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-        <script>
-            $(document).ready(function () {
+                    console.log('in hamburger function 1');
+                    // when user clicks the navIcon, it toggles (makes visible/invisible)
+                    // the element after that (navGroup).
+                    $("#navIcon").click(function () {
+                        $(this).next().toggle(); // hide if showing, show if hiding. 
+                        console.log('in hamburger function 2');
+                    });
 
-                console.log('in hamburger function 1');
-                // when user clicks the navIcon, it toggles (makes visible/invisible)
-                // the element after that (navGroup).
-                $("#navIcon").click(function () {
-                    $(this).next().toggle(); // hide if showing, show if hiding. 
-                    console.log('in hamburger function 2');
+                    // make the navGroup is visible when resizing to >= 580 px (desktop).
+                    // make the navGroup is invisible when resizing to < 580 px (mobile).
+                    // there seems to be a 20 pixel discrepancy between width of titleNav
+                    // and width of browser viewing area (that's why testing 560 not 580)
+                    $(window).resize(function () {
+                        var wide = $('#title-page').css("width");
+                        wide = parseInt(wide);
+                        //console.log("width " + wide);
+                        if (wide >= 560) {
+                            jQuery('#navGroup').css("display", "block");
+                            //console.log("show navGroup");
+                        } else {
+                            jQuery('#navGroup').css("display", "none");
+                        }
+                    });
                 });
-
-                // make the navGroup is visible when resizing to >= 580 px (desktop).
-                // make the navGroup is invisible when resizing to < 580 px (mobile).
-                // there seems to be a 20 pixel discrepancy between width of titleNav
-                // and width of browser viewing area (that's why testing 560 not 580)
-                $(window).resize(function () {
-                    var wide = $('#title-page').css("width");
-                    wide = parseInt(wide);
-                    //console.log("width " + wide);
-                    if (wide >= 560) {
-                        jQuery('#navGroup').css("display", "block");
-                        //console.log("show navGroup");
-                    } else {
-                        jQuery('#navGroup').css("display", "none");
-                    }
-                });
-            });
-        </script>
-    </body>
-</html>
+            </script>
+        </body>
+    </html>

@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Get Colin's Products (ajax demo)</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+        <style type="text/css">
+            body {
+                background-color: navy;
+                color:white;
+                font-size:14px;
+                font-weight:bold;
+                letter-spacing:1px;
+                line-height:24px;
+                margin:auto;
+                font-family:Verdana, Geneva, sans-serif;
+            }
+            #box, table, #productList {
+                margin:15px;
+            }
+            table, tr, td {
+                border: 1px solid red;
+                border-collapse: collapse;
+            }
+
+            #imageContainer {
+                width:70px;
+                height: 60px;
+                display:none;
+                border: green solid;
+                z-index: 2;
+            }
+
+            #flagproduct {
+                padding-bottom:25px;
+            }
+            #picture {
+                border: red yellow;
+                width:70px;
+                height: 60px;
+            }
+            img {
+                height: 50px;
+                width: 50px;
+            }
+        </style>
+
+        <script language="Javascript" type="text/javascript">
+
+            //Make the XMLHttpRequest Object
+            var httpReq;
+            // Make the response object which will hold the table data
+            // after a call to handleResponse()
+            var responseObj;
+            if (window.XMLHttpRequest) {
+                httpReq = new XMLHttpRequest();  //For Firefox, Safari, Opera
+            } else if (window.ActiveXObject) {
+                httpReq = new ActiveXObject("Microsoft.XMLHTTP");         //For IE 5+
+            } else {
+                alert('ajax not supported');
+            }
+
+            function $(element) {
+                return document.getElementById(element);
+            }
+
+            function sendRequest() {
+                //alert ('sending request'); 
+                //var url = "http://cis-linux2.temple.edu:8080/SP16_3344_sallyk/productFlagsJSON.jsp";
+                var url = "webApi.jsp";
+                url += "?q=" + $("productSearch").value;
+                //alert("url is " + url);
+                httpReq.open("GET", url);
+                httpReq.onreadystatechange = handleResponse;
+                httpReq.send(null);
+            }
+
+            function handleResponse() {
+                //alert('handling response');
+                if (httpReq.readyState == 4 && httpReq.status == 200) {
+
+                    var response = httpReq.responseText;
+
+                    // wrap the json in parentheses to avoid tripping over javascript ambiguity...
+                    response = "(" + response + ")";
+                    responseObj = eval(response);
+
+
+                    if (responseObj == null) {
+                        $("#productList").innerHTML = "Error: JSON string evaluated to null.";
+                        return;
+                    }
+                    if (responseObj.dbError == null) {
+                        $("#productList").innerHTML = "Error: JSON string did not have a 'dbError' property.";
+                        return;
+                    }
+
+                    if (responseObj.dbError.length > 0) {
+                        $("#productList").innerHTML = "Database error: " + obj.dbError;
+                        return;
+                    }
+
+                    if (responseObj.recordList == null) {
+                        $("#productList").innerHTML = "Error: JSON string did not have a 'recordList' property.";
+                        return;
+                    }
+
+                    if (responseObj.recordList.length == 0) {
+                        $("#productList").innerHTML = "No Countries Match Your Search";
+                        return;
+                    }
+                    console.log("responseObj:");
+                    console.log(responseObj);
+                    console.log("responseObj.recordList:")
+                    console.log(responseObj.recordList)
+
+                    numRecords = responseObj.recordList.length;
+                    numFields = Object.keys(responseObj.recordList[0]).length;
+                    console.log("number of records: " + numRecords);
+                    console.log("number of fields per object: " + numFields);
+                    makeTable(numRecords, numFields, responseObj.recordList);
+                }
+            }
+            function makeTable(numRows, numCols, products) {
+                var propertyKey = ["imageUrl", "productName", "productId", "price",
+                    "description", "errorMsg"];
+
+                console.log('numRows: ' + numRows);
+                console.log('numCols: ' + numCols);
+
+                initializeTable(numCols)
+
+                for (var i = 0; i < numRows; i++) {
+                    var row = document.createElement("TR");
+                    row.setAttribute("id", "row" + i);
+                    document.getElementById("productTable").appendChild(row);
+
+                    for (var j = 0; j < numCols; j++) {
+                        var data = document.createElement("TD");
+
+                        currProduct = products[i];
+                        currPropertyKey = propertyKey[j];
+                        currProperty = currProduct[currPropertyKey];
+
+                        if (j == 0) {
+                            var img = document.createElement("img");
+                            img.src = currProperty;
+                            data.appendChild(img);
+                        } else {
+                            var text = document.createTextNode(currProperty);
+                            data.appendChild(text);
+                        }
+                        document.getElementById("row" + i).appendChild(data);
+                    }
+                }
+            }
+
+            function initializeTable(numCols) {
+                var tableHeaders = ["Image", "Product Name", "Product Id", "Price",
+                    "Description", "Error Message"];
+
+                var productTable = document.createElement("TABLE");
+                productTable.setAttribute("id", "productTable");
+                document.body.appendChild(productTable);
+
+                var row = document.createElement("TR");
+                row.setAttribute("id", "headerRow");
+                document.getElementById("productTable").appendChild(row);
+
+                for (var j = 0; j < numCols; j++) {
+                    var data = document.createElement("TD");
+
+                    header = tableHeaders[j];
+                    var text = document.createTextNode(header);
+                    data.appendChild(text);
+                    document.getElementById("headerRow").appendChild(data);
+                }
+            }
+        </script>
+
+    </head>
+    <body>
+        <div id="box">
+            <h1>Get Product List</h1>
+            Must "Run" (through localhost), not "View"<br/><br/>
+            Enter starting characters of product for search, for example
+            <input type="text" id="productSearch" value="C" size="30" />
+            <input type="button" value="Get product and Flag" onClick="javascript:sendRequest()"/>
+            <br/>
+            <!--
+            <table>
+                <tr>
+                    <td id="imageContainer"><img id="picture" src=""></td>
+                    <td id="product"></td>
+                </tr>
+            </table>
+
+            <h3 id="other"></h3>
+            <div id="productList"></div>
+
+            <script>makeTable(2, 2)</script>
+            -->
+        </div>
+
+    </body>
+</html>
