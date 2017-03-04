@@ -28,7 +28,6 @@ and open the template in the editor.
                 border: 1px solid red;
                 border-collapse: collapse;
             }
-
             #imageContainer {
                 width:70px;
                 height: 60px;
@@ -36,7 +35,6 @@ and open the template in the editor.
                 border: green solid;
                 z-index: 2;
             }
-
             #flagproduct {
                 padding-bottom:25px;
             }
@@ -82,6 +80,8 @@ and open the template in the editor.
             }
 
             function handleResponse() {
+                clearTableAndErrorMsg();
+                
                 //alert('handling response');
                 if (httpReq.readyState == 4 && httpReq.status == 200) {
 
@@ -93,32 +93,32 @@ and open the template in the editor.
 
 
                     if (responseObj == null) {
-                        $("#productList").innerHTML = "Error: JSON string evaluated to null.";
+                        $("requestErrorMsg").innerHTML = "Error: JSON string evaluated to null.";
                         return;
                     }
                     if (responseObj.dbError == null) {
-                        $("#productList").innerHTML = "Error: JSON string did not have a 'dbError' property.";
+                        $("requestErrorMsg").innerHTML = "Error: JSON string did not have a 'dbError' property.";
                         return;
                     }
 
                     if (responseObj.dbError.length > 0) {
-                        $("#productList").innerHTML = "Database error: " + obj.dbError;
+                        $("requestErrorMsg").innerHTML = "Database error: " + obj.dbError;
                         return;
                     }
 
                     if (responseObj.recordList == null) {
-                        $("#productList").innerHTML = "Error: JSON string did not have a 'recordList' property.";
+                        $("requestErrorMsg").innerHTML = "Error: JSON string did not have a 'recordList' property.";
                         return;
                     }
 
-                    if (responseObj.recordList.length == 0) {
-                        $("#productList").innerHTML = "No Countries Match Your Search";
+                    if (responseObj.recordList.length === 0) {
+                        $("requestErrorMsg").innerHTML = "No Countries Match Your Search";
                         return;
                     }
                     console.log("responseObj:");
                     console.log(responseObj);
-                    console.log("responseObj.recordList:")
-                    console.log(responseObj.recordList)
+                    console.log("responseObj.recordList:");
+                    console.log(responseObj.recordList);
 
                     numRecords = responseObj.recordList.length;
                     numFields = Object.keys(responseObj.recordList[0]).length;
@@ -127,6 +127,19 @@ and open the template in the editor.
                     makeTable(numRecords, numFields, responseObj.recordList);
                 }
             }
+            
+            function clearTableAndErrorMsg() {
+                var productTable = document.getElementById("productTable");
+                if (productTable != null) {
+                    productTable.innerHTML = "";
+                }
+
+                var requestErrorMsg = document.getElementById("requestErrorMsg");
+                if (requestErrorMsg != null) {
+                    requestErrorMsg.innerHTML = "";
+                }
+            }
+            
             function makeTable(numRows, numCols, products) {
                 var propertyKey = ["imageUrl", "productName", "productId", "price",
                     "description", "errorMsg"];
@@ -134,14 +147,14 @@ and open the template in the editor.
                 console.log('numRows: ' + numRows);
                 console.log('numCols: ' + numCols);
 
-                initializeTable(numCols)
+                initializeTable(numCols);
 
                 for (var i = 0; i < numRows; i++) {
                     var row = document.createElement("TR");
                     row.setAttribute("id", "row" + i);
                     document.getElementById("productTable").appendChild(row);
 
-                    for (var j = 0; j < numCols; j++) {
+                    for (var j = 0; j < numCols - 1; j++) {   //numCols-1 in order to not include error message column
                         var data = document.createElement("TD");
 
                         currProduct = products[i];
@@ -163,7 +176,7 @@ and open the template in the editor.
 
             function initializeTable(numCols) {
                 var tableHeaders = ["Image", "Product Name", "Product Id", "Price",
-                    "Description", "Error Message"];
+                    "Description", "Error Message"];    // note, error message will not normally be displayed
 
                 var productTable = document.createElement("TABLE");
                 productTable.setAttribute("id", "productTable");
@@ -173,7 +186,7 @@ and open the template in the editor.
                 row.setAttribute("id", "headerRow");
                 document.getElementById("productTable").appendChild(row);
 
-                for (var j = 0; j < numCols; j++) {
+                for (var j = 0; j < numCols - 1; j++) {
                     var data = document.createElement("TD");
 
                     header = tableHeaders[j];
@@ -193,6 +206,7 @@ and open the template in the editor.
             <input type="text" id="productSearch" value="C" size="30" />
             <input type="button" value="Get product and Flag" onClick="javascript:sendRequest()"/>
             <br/>
+            <div id="requestErrorMsg"></div>
             <!--
             <table>
                 <tr>
