@@ -7,7 +7,7 @@ and open the template in the editor.
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Get Colin's Products (ajax demo)</title>
+        <title>Get Cat Products (ajax demo)</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
         <style type="text/css">
@@ -21,36 +21,20 @@ and open the template in the editor.
                 margin:auto;
                 font-family:Verdana, Geneva, sans-serif;
             }
-            #box, table, #productList {
+            #titleAndSearchBox, table {
                 margin:15px;
             }
             table, tr, td {
                 border: 1px solid red;
                 border-collapse: collapse;
             }
-            #imageContainer {
-                width:70px;
-                height: 60px;
-                display:none;
-                border: green solid;
-                z-index: 2;
-            }
-            #flagproduct {
-                padding-bottom:25px;
-            }
-            #picture {
-                border: red yellow;
-                width:70px;
-                height: 60px;
-            }
             img {
                 height: 50px;
                 width: 50px;
             }
         </style>
-
+        
         <script language="Javascript" type="text/javascript">
-
             //Make the XMLHttpRequest Object
             var httpReq;
             // Make the response object which will hold the table data
@@ -199,28 +183,14 @@ and open the template in the editor.
 
     </head>
     <body>
-        <div id="box">
-            <h1>Get Product List</h1>
-            Must "Run" (through localhost), not "View"<br/><br/>
+        <div id="titleAndSearchBox">
+            <h1>Get Cat Products</h1>
+            Enjoy our fine selection of cat products.<br/><br/>
             Enter starting characters of product for search, for example
             <input type="text" id="productSearch" value="C" size="30" />
             <input type="button" value="Get product and Flag" onClick="javascript:sendRequest()"/>
             <br/>
             <div id="requestErrorMsg"></div>
-            <!--
-            <table>
-                <tr>
-                    <td id="imageContainer"><img id="picture" src=""></td>
-                    <td id="product"></td>
-                </tr>
-            </table>
-
-            <h3 id="other"></h3>
-            <div id="productList"></div>
-
-            <script>makeTable(2, 2)</script>
-            -->
         </div>
-
     </body>
 </html>
