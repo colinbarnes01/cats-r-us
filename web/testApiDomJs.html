@@ -37,9 +37,9 @@ and open the template in the editor.
         <script language="Javascript" type="text/javascript">
             //Make the XMLHttpRequest Object
             var httpReq;
-            // Make the response object which will hold the table data
-            // after a call to handleResponse()
+            // Make the response object which will hold the table data after a call to handleResponse()
             var responseObj;
+            
             if (window.XMLHttpRequest) {
                 httpReq = new XMLHttpRequest();  //For Firefox, Safari, Opera
             } else if (window.ActiveXObject) {
@@ -74,7 +74,6 @@ and open the template in the editor.
                     // wrap the json in parentheses to avoid tripping over javascript ambiguity...
                     response = "(" + response + ")";
                     responseObj = eval(response);
-
 
                     if (responseObj == null) {
                         $("requestErrorMsg").innerHTML = "Error: JSON string evaluated to null.";
@@ -117,7 +116,6 @@ and open the template in the editor.
                 if (productTable != null) {
                     productTable.innerHTML = "";
                 }
-
                 var requestErrorMsg = document.getElementById("requestErrorMsg");
                 if (requestErrorMsg != null) {
                     requestErrorMsg.innerHTML = "";
@@ -158,8 +156,9 @@ and open the template in the editor.
                 }
             }
 
+            /* Create a new table element and also the first row containing column names */
             function initializeTable(numCols) {
-                var tableHeaders = ["Image", "Product Name", "Product Id", "Price",
+                var columnNames = ["Image", "Product Name", "Product Id", "Price",
                     "Description", "Error Message"];    // note, error message will not normally be displayed
 
                 var productTable = document.createElement("TABLE");
@@ -173,7 +172,7 @@ and open the template in the editor.
                 for (var j = 0; j < numCols - 1; j++) {
                     var data = document.createElement("TD");
 
-                    header = tableHeaders[j];
+                    header = columnNames[j];
                     var text = document.createTextNode(header);
                     data.appendChild(text);
                     document.getElementById("headerRow").appendChild(data);
