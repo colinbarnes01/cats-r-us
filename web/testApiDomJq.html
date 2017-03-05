@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Get Cat Products (ajax demo)</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+        <style type="text/css">
+            body {
+                background-color: navy;
+                color:white;
+                font-size:14px;
+                font-weight:bold;
+                letter-spacing:1px;
+                line-height:24px;
+                margin:auto;
+                font-family:Verdana, Geneva, sans-serif;
+            }
+            #titleAndSearchBox, table {
+                margin:15px;
+            }
+            table, tr, td {
+                border: 1px solid red;
+                border-collapse: collapse;
+            }
+            img {
+                height: 50px;
+                width: 50px;
+            }
+        </style>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+        <script>
+            $(document).ready(function ()
+            {
+                $('#getButton').click(function ()
+                {
+                    console.log('clicked getButton!')
+                    var url = "webApi.jsp";
+                    url += "?q=" + $("#productSearch").val();
+                    console.log(url);
+
+                    ajaxSuccess = function (response) {
+                        var responseObj = eval(response);
+
+                        if (responseObj == null) {
+                            $("#products").innerHTML = "Error: JSON string evaluated to null.";
+                            return;
+                        }
+                        if (responseObj.dbError == null) {
+                            $("#products").innerHTML = "Error: JSON string did not have a 'dbError' property.";
+                            return;
+                        }
+
+                        if (responseObj.dbError.length > 0) {
+                            $("#products").innerHTML = "Database error: " + obj.dbError;
+                            return;
+                        }
+
+                        if (responseObj.recordList == null) {
+                            $("#products").innerHTML = "Error: JSON string did not have a 'recordList' property.";
+                            return;
+                        }
+
+                        if (responseObj.recordList.length == 0) {
+                            $("#products").innerHTML = "No Countries Match Your Search";
+                            return;
+                        }
+
+
+
+                        $("#other").html("All countries that match");
+                        console.log(responseObj);
+                        var numProducts = responseObj.recordList.length;
+                        var products = "";
+                        for (i = 0; i < numProducts; i++) {
+                            products += responseObj.recordList[i].productName + "<br/>";
+                        }
+                        $("#products").html(products);
+                        var numRecords = responseObj.recordList.length;
+                        var numFields = Object.keys(responseObj.recordList[0]).length;
+                        console.log("number of records: " + numRecords);
+                        console.log("number of fields per object: " + numFields);
+                        makeTable(numRecords, numFields, responseObj.recordList);
+                    };
+
+                    ajaxError = function () {
+                        alert("Unable to retrieve data.");
+                    };
+
+                    $.ajax(
+                            {
+                                type: "GET",
+                                cache: false,
+                                url: url,
+                                dataType: "json",
+                                timeout: 500, // 500 milliseconds
+                                success: ajaxSuccess,
+                                error: ajaxError
+                            }); //end of $.ajax
+                }); //getButton.onclick
+
+                function makeTable(numRows, numCols, products) {
+                    var propertyKey = ["imageUrl", "productName", "productId", "price",
+                        "description", "errorMsg"];
+
+
+                    initializeTable(numCols);
+
+
+                    var productTable = $("#productTable");
+                    var content = ""
+
+                    for (var i = 0; i < numRows; i++) {
+                        content += '<tr>'
+
+                        for (var j = 0; j < numCols - 1; j++) {   //numCols-1 in order to not include error message column                          
+                            currProduct = products[i];
+                            currPropertyKey = propertyKey[j];
+                            currProperty = currProduct[currPropertyKey];
+
+                            if (j == 0) {
+                                content += "<td><img src=" + "'" + currProperty + "'" + "</td>";
+                            } else {
+                                content += '<td>' + currProperty + '</td>';
+                            }
+                        }
+                        content += '</tr>';
+                    }
+                    productTable.append(content);
+                    console.log(productTable);
+
+                }
+
+                /* Create a new table element and also the first row containing column names */
+                function initializeTable(numCols) {
+                    var columnNames = ["Image", "Product Name", "Product Id", "Price",
+                        "Description", "Error Message"];    // note, error message will not normally be displayed
+
+                    //var headerRow = $("#headerRow");
+                    var productTable = $('#productTable');
+
+                    for (var j = 0; j < numCols - 1; j++) {
+                        header = columnNames[j];
+                        //headerRow.append('<td>' + header + '</td>');
+                        productTable.append('<td>' + header + '</td>');
+                    }
+                }
+            });   //document.ready
+
+        </script>
+    </head>
+
+    <body>
+        <div id="titleAndSearchBox">
+            <h1>Get Cat Products</h1>
+            Enjoy our fine selection of cat products.<br/><br/>
+            Enter starting characters of product for search, for example
+            <input type="text" id="productSearch" value="C" size="30" />
+            <input type="button" id="getButton" value="Get product and Flag"/>
+            <br/>
+            <div id="requestErrorMsg"></div>
+            <div id="products"></div>
+            <table id="productTable">
+            </table>
+        </div>
+    </body>
+
+</html>
