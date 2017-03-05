@@ -23,13 +23,20 @@ and open the template in the editor.
             #titleAndSearchBox, table {
                 margin:15px;
             }
-            table, tr, td {
-                border: 1px solid red;
-                border-collapse: collapse;
-            }
             img {
                 height: 50px;
                 width: 50px;
+            }
+            td {
+                padding: 4px;
+                background-color: #2277FF;
+            }
+            .header {
+                background-color: lightgrey;
+                color: navy;
+            }
+            #errorMsg {
+                margin-left: 15px;
             }
         </style>
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
@@ -38,6 +45,9 @@ and open the template in the editor.
             {
                 $('#getButton').click(function ()
                 {
+                    $('#errorMsg').empty();
+                    $('#productTable').empty();
+                    
                     console.log('clicked getButton!')
                     var url = "webApi.jsp";
                     url += "?q=" + $("#productSearch").val();
@@ -45,28 +55,29 @@ and open the template in the editor.
 
                     ajaxSuccess = function (response) {
                         var responseObj = eval(response);
+                        console.log(responseObj);
 
-                        if (responseObj == null) {
-                            $("#products").innerHTML = "Error: JSON string evaluated to null.";
+                        if (responseObj === null) {
+                            $("#errorMsg").append("Error: JSON string evaluated to null.");
                             return;
                         }
-                        if (responseObj.dbError == null) {
-                            $("#products").innerHTML = "Error: JSON string did not have a 'dbError' property.";
+                        if (responseObj.dbError === null) {
+                            $("#errorMsg").append("Error: JSON string did not have a 'dbError' property.");
                             return;
                         }
 
                         if (responseObj.dbError.length > 0) {
-                            $("#products").innerHTML = "Database error: " + obj.dbError;
+                            $("#errorMsg").append("Database error: " + obj.dbError);
                             return;
                         }
 
-                        if (responseObj.recordList == null) {
-                            $("#products").innerHTML = "Error: JSON string did not have a 'recordList' property.";
+                        if (responseObj.recordList === null) {
+                            $("#errorMsg").append("Error: JSON string did not have a 'recordList' property.");
                             return;
                         }
 
-                        if (responseObj.recordList.length == 0) {
-                            $("#products").innerHTML = "No Countries Match Your Search";
+                        if (responseObj.recordList.length === 0) {
+                            $("#errorMsg").append("No Countries Match Your Search");
                             return;
                         }
 
@@ -75,11 +86,13 @@ and open the template in the editor.
                         $("#other").html("All countries that match");
                         console.log(responseObj);
                         var numProducts = responseObj.recordList.length;
-                        var products = "";
-                        for (i = 0; i < numProducts; i++) {
-                            products += responseObj.recordList[i].productName + "<br/>";
-                        }
-                        $("#products").html(products);
+                        /*
+                         var products = "";
+                         for (i = 0; i < numProducts; i++) {
+                         products += responseObj.recordList[i].productName + "<br/>";
+                         }
+                         $("#products").html(products);
+                         */
                         var numRecords = responseObj.recordList.length;
                         var numFields = Object.keys(responseObj.recordList[0]).length;
                         console.log("number of records: " + numRecords);
@@ -132,7 +145,6 @@ and open the template in the editor.
                     }
                     productTable.append(content);
                     console.log(productTable);
-
                 }
 
                 /* Create a new table element and also the first row containing column names */
@@ -142,12 +154,17 @@ and open the template in the editor.
 
                     //var headerRow = $("#headerRow");
                     var productTable = $('#productTable');
+                    headerContent = "";
+                    headerContent += "<tr id='headerRow'>";
 
                     for (var j = 0; j < numCols - 1; j++) {
                         header = columnNames[j];
                         //headerRow.append('<td>' + header + '</td>');
-                        productTable.append('<td>' + header + '</td>');
+                        //productTable.append('<td>' + header + '</td>');
+                        headerContent += '<td class="header">' + header + '</td>';
                     }
+                    headerContent += "</tr>";
+                    productTable.append(headerContent);
                 }
             });   //document.ready
 
@@ -160,13 +177,13 @@ and open the template in the editor.
             Enjoy our fine selection of cat products.<br/><br/>
             Enter starting characters of product for search, for example
             <input type="text" id="productSearch" value="C" size="30" />
-            <input type="button" id="getButton" value="Get product and Flag"/>
+            <input type="button" id="getButton" value="Get products"/>
             <br/>
-            <div id="requestErrorMsg"></div>
-            <div id="products"></div>
-            <table id="productTable">
-            </table>
         </div>
+        <div id="requestErrorMsg"></div>
+        <div id="errorMsg"></div>
+        <table id="productTable">
+        </table>
     </body>
 
 </html>

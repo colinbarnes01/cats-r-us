@@ -24,13 +24,17 @@ and open the template in the editor.
             #titleAndSearchBox, table {
                 margin:15px;
             }
-            table, tr, td {
-                border: 1px solid red;
-                border-collapse: collapse;
-            }
             img {
                 height: 50px;
                 width: 50px;
+            }
+            td {
+                padding: 4px;
+                background-color: #2277FF;
+            }
+            #headerRow td {
+                background-color: lightgrey;
+                color: navy;
             }
         </style>
         
@@ -47,11 +51,9 @@ and open the template in the editor.
             } else {
                 alert('ajax not supported');
             }
-
             function $(element) {
                 return document.getElementById(element);
             }
-
             function sendRequest() {
                 //alert ('sending request'); 
                 //var url = "http://cis-linux2.temple.edu:8080/SP16_3344_sallyk/productFlagsJSON.jsp";
@@ -62,19 +64,15 @@ and open the template in the editor.
                 httpReq.onreadystatechange = handleResponse;
                 httpReq.send(null);
             }
-
             function handleResponse() {
                 clearTableAndErrorMsg();
                 
                 //alert('handling response');
                 if (httpReq.readyState == 4 && httpReq.status == 200) {
-
                     var response = httpReq.responseText;
-
                     // wrap the json in parentheses to avoid tripping over javascript ambiguity...
                     response = "(" + response + ")";
                     responseObj = eval(response);
-
                     if (responseObj == null) {
                         $("requestErrorMsg").innerHTML = "Error: JSON string evaluated to null.";
                         return;
@@ -83,17 +81,14 @@ and open the template in the editor.
                         $("requestErrorMsg").innerHTML = "Error: JSON string did not have a 'dbError' property.";
                         return;
                     }
-
                     if (responseObj.dbError.length > 0) {
                         $("requestErrorMsg").innerHTML = "Database error: " + obj.dbError;
                         return;
                     }
-
                     if (responseObj.recordList == null) {
                         $("requestErrorMsg").innerHTML = "Error: JSON string did not have a 'recordList' property.";
                         return;
                     }
-
                     if (responseObj.recordList.length === 0) {
                         $("requestErrorMsg").innerHTML = "No Countries Match Your Search";
                         return;
@@ -102,7 +97,6 @@ and open the template in the editor.
                     console.log(responseObj);
                     console.log("responseObj.recordList:");
                     console.log(responseObj.recordList);
-
                     numRecords = responseObj.recordList.length;
                     numFields = Object.keys(responseObj.recordList[0]).length;
                     console.log("number of records: " + numRecords);
@@ -125,24 +119,18 @@ and open the template in the editor.
             function makeTable(numRows, numCols, products) {
                 var propertyKey = ["imageUrl", "productName", "productId", "price",
                     "description", "errorMsg"];
-
                 console.log('numRows: ' + numRows);
                 console.log('numCols: ' + numCols);
-
                 initializeTable(numCols);
-
                 for (var i = 0; i < numRows; i++) {
                     var row = document.createElement("TR");
                     row.setAttribute("id", "row" + i);
                     document.getElementById("productTable").appendChild(row);
-
                     for (var j = 0; j < numCols - 1; j++) {   //numCols-1 in order to not include error message column
                         var data = document.createElement("TD");
-
                         currProduct = products[i];
                         currPropertyKey = propertyKey[j];
                         currProperty = currProduct[currPropertyKey];
-
                         if (j == 0) {
                             var img = document.createElement("img");
                             img.src = currProperty;
@@ -155,23 +143,18 @@ and open the template in the editor.
                     }
                 }
             }
-
             /* Create a new table element and also the first row containing column names */
             function initializeTable(numCols) {
                 var columnNames = ["Image", "Product Name", "Product Id", "Price",
                     "Description", "Error Message"];    // note, error message will not normally be displayed
-
                 var productTable = document.createElement("TABLE");
                 productTable.setAttribute("id", "productTable");
                 document.body.appendChild(productTable);
-
                 var row = document.createElement("TR");
                 row.setAttribute("id", "headerRow");
                 document.getElementById("productTable").appendChild(row);
-
                 for (var j = 0; j < numCols - 1; j++) {
                     var data = document.createElement("TD");
-
                     header = columnNames[j];
                     var text = document.createTextNode(header);
                     data.appendChild(text);
@@ -187,7 +170,7 @@ and open the template in the editor.
             Enjoy our fine selection of cat products.<br/><br/>
             Enter starting characters of product for search, for example
             <input type="text" id="productSearch" value="C" size="30" />
-            <input type="button" value="Get product and Flag" onClick="javascript:sendRequest()"/>
+            <input type="button" value="Get products" onClick="javascript:sendRequest()"/>
             <br/>
             <div id="requestErrorMsg"></div>
         </div>
