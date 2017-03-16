@@ -9,6 +9,7 @@ and open the template in the editor.
         <title>TODO supply a title</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
         <style>
             .box {
                 width: 100px;
@@ -43,28 +44,39 @@ and open the template in the editor.
         <div class="boxContainer">
             <div id="box1" class="box"></div>
         </div>
-        <button type="button" onclick="mySlideLeft('box1')">Slide box left</button><br><br>
+        <button type="button" onclick="mySlideLeft({id: 'box1', duration: document.getElementsByName('slideDuration')[0].value,
+                    leftStart: document.getElementsByName('leftStart')[0].value,
+                    leftEnd: document.getElementsByName('leftEnd')[0].value})">Slide box left</button>
+        Duration (s): <input type="number" name="slideDuration" value="4"> 
+        Left Starting Position: <input type="number" name="leftStart" value="5">
+        Left Ending Position: <input type="number" name="leftEnd" value="200"><br><br>
+
 
         <div class="boxContainer">
             <div id="box2" class="box"></div>
         </div>
-        <button type="button" id="button3" onclick="myChangeColor('box2')">Change Box Color</button>
+        <button type="button" id="button3" onclick="myChangeColor({id: 'box2',
+                    startColor: document.getElementsByName('startColor')[0].value,
+                    endColor: document.getElementsByName('endColor')[0].value,
+                    duration: document.getElementsByName('colorChangeDuration')[0].value})">Change Box Color</button>
+        Starting Color: <input type="color" name="startColor" value="#FFFF00"> Ending Color: <input type="color" name="endColor" value="#FF0000">
+        Duration (s): <input type="number" name="colorChangeDuration" value="4"> 
 
 
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
         <script src="animationFramework.js"></script>
         <script  type="text/javascript">
             "use strict";
             var animationFW = makeAnimationFW();
 
-            function mySlideLeft(id) {
-                animationFW.slideLeft(id);
+            function mySlideLeft(params) {
+                animationFW.slideLeft(params);
             }
 
-            function myChangeColor(id) {
-                animationFW.changeColor(id);
+            function myChangeColor(params) {
+                animationFW.changeColor(params);
             }
-            
+
             function myAppendChangeColorCSSRules() {
                 animationFW.appendChangeColorCSSRules();
             }

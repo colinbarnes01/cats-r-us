@@ -14,29 +14,30 @@ function makeAnimationFW() {
 
     var animationFW = {};
 
-    animationFW.slideLeft = function (id) {
-        console.log('inside slideLeft with id: ' + id);
-        document.getElementById(id).classList.add('slider');
-        animationFW.appendSlideLeftCSSRules();
+    animationFW.slideLeft = function (params) {
+        console.log('inside slideLeft with params: ', params);
+        document.getElementById(params.id).classList.add('slider');
+        animationFW.appendSlideLeftCSSRules(params);
     };
 
-    animationFW.appendSlideLeftCSSRules = function () {
-        var str = "<style>.slider{ animation-name:slideLeft; animation-duration:4s; } "
-                + "@keyframes slideLeft{ from{left:5px;} to{left:200px;} }</style>";
+    animationFW.appendSlideLeftCSSRules = function (params) {
+        var str = "<style>.slider{ animation-name:slideLeft; animation-duration:" + params.duration + "s; } "
+                + "@keyframes slideLeft{ from{left:" + params.leftStart + "px;} to{left:" + params.leftEnd + "px;} }</style>";
 
         console.log(str);
         $("head").append(str);
     };
 
-    animationFW.changeColor = function (id) {
-        console.log('inside changeColor with id: ' + id);
-        document.getElementById(id).classList.add('colorChanger');
-        animationFW.appendChangeColorCSSRules();
+    animationFW.changeColor = function (params) {
+        console.log('inside changeColor with params: ' + params);
+        document.getElementById(params.id).classList.add('colorChanger');
+        animationFW.appendChangeColorCSSRules(params);
     };
 
-    animationFW.appendChangeColorCSSRules = function () {
-        var str = "<style>.colorChanger{ animation-name:changeColor; animation-duration:4s; } "
-                + "@keyframes changeColor{ from{background-color:yellow;} to{background-color:red;} }</style>";
+    animationFW.appendChangeColorCSSRules = function (params) {
+        var str = "<style>.colorChanger{ animation-name:changeColor; animation-duration:" + params.duration + "s; } "
+                + "@keyframes changeColor{ from{background-color:" + params.startColor + ";}"
+                + "to{background-color:" + params.endColor + ";} }</style>";
 
         console.log(str);
         $("head").append(str);
