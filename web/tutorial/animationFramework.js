@@ -18,12 +18,17 @@ function makeAnimationFW() {
         var ele = document.getElementById(id);
         console.log(ele);
         ele.style.backgroundColor = "blue";
-    }
+    };
 
     animationFW.slideLeft = function (id) {
         console.log('inside slideLeft with id: ' + id);
         document.getElementById(id).classList.add('slider');
-    }
+    };
+
+    animationFW.changeColor = function (id) {
+        console.log('inside changeColor with id: ' + id);
+        document.getElementById(id).classList.add('colorChanger');
+    };
 
     return animationFW;
 }

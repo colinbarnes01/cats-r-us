@@ -10,7 +10,7 @@ and open the template in the editor.
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <style>
-            #box {
+            .box {
                 width: 100px;
                 height: 100px;
                 background-color: green;
@@ -18,15 +18,11 @@ and open the template in the editor.
                 left: 5px;
             }
             .slider {
-                animation-name: myFirstAnimation;
-                animation-duration: 4s;
-            }
-            .slider2 {
-                animation-name: myFirstAnimation;
+                animation-name: slideLeft;
                 animation-duration: 4s;
             }
 
-            @keyframes myFirstAnimation {
+            @keyframes slideLeft {
                 from {
                     left: 5px;
                 }
@@ -35,7 +31,7 @@ and open the template in the editor.
                 }
             }
 
-            #boxContainer {
+            .boxContainer {
                 height: 150px;
                 border: red solid;
                 width: 100%;
@@ -44,21 +40,39 @@ and open the template in the editor.
         </style>        
     </head>
     <body>
-        <div id="boxContainer">
-            <div id="box"></div>
+        <div class="boxContainer">
+            <div id="box1" class="box"></div>
         </div>
-        <button type="button" onclick="myAnimate('box')">Animate Box</button><br>
+        <button type="button" onclick="mySlideLeft('box1')">Slide box left</button><br><br>
+
+        <div class="boxContainer">
+            <div id="box2" class="box"></div>
+        </div>
+        <button type="button" id="button2">Add class and keyframe rule to style sheet</button><br>
+        <button type="button" id="button3" onclick="myChangeColor('box2')">Add classname to box2</button>
 
 
-
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
         <script src="animationFramework.js"></script>
         <script  type="text/javascript">
             "use strict";
             var animationFW = makeAnimationFW();
 
-            function myAnimate(id) {
+            function mySlideLeft(id) {
                 animationFW.slideLeft(id);
             }
+
+            function myChangeColor(id) {
+                animationFW.changeColor(id);
+            }
+
+            $("#button2").click(function () {
+                var str = "<style>.colorChanger{ animation-name:changeColor; animation-duration:4s; } "
+                + "@keyframes changeColor{ from{background-color:yellow;} to{background-color:red;} }</style>";
+
+                console.log(str);
+                $("head").append(str);
+            });
 
         </script>
     </body>
