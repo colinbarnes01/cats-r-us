@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            #box {
+                width: 100px;
+                height: 100px;
+                background-color: green;
+                animation-name: myFirstAnimation;
+                animation-duration: 3s;
+                animation-iteration-count: infinite;
+                position: fixed;
+                left: 5px;
+            }
+
+            @keyframes myFirstAnimation {
+                from {
+                    left: 5px;
+                }
+                to {
+                    left: 200px;
+                }
+            }
+            button {
+                position: fixed;
+                top: 110px;
+            }
+
+        </style>        
+    </head>
+    <body>
+        <div id="box"></div>
+        <button type="button" onclick="myAnimate('box')">Animate Box</button>
+
+
+        <script src="animationFramework.js"></script>
+        <script>
+            "use strict";
+            var animationFW = makeAnimationFW();
+
+            function myAnimate(id) {
+                animationFW.animate(id);
+            }
+
+        </script>
+    </body>
+</html>
