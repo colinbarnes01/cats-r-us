@@ -17,7 +17,7 @@ and open the template in the editor.
                 position: fixed;
                 left: 5px;
             }
-            .slider {
+            /*.slider {
                 animation-name: slideLeft;
                 animation-duration: 4s;
             }
@@ -29,7 +29,7 @@ and open the template in the editor.
                 to {
                     left: 200px;
                 }
-            }
+            }*/
 
             .boxContainer {
                 height: 150px;
@@ -48,8 +48,7 @@ and open the template in the editor.
         <div class="boxContainer">
             <div id="box2" class="box"></div>
         </div>
-        <button type="button" id="button2">Add class and keyframe rule to style sheet</button><br>
-        <button type="button" id="button3" onclick="myChangeColor('box2')">Add classname to box2</button>
+        <button type="button" id="button3" onclick="myChangeColor('box2')">Change Box Color</button>
 
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
@@ -65,14 +64,10 @@ and open the template in the editor.
             function myChangeColor(id) {
                 animationFW.changeColor(id);
             }
-
-            $("#button2").click(function () {
-                var str = "<style>.colorChanger{ animation-name:changeColor; animation-duration:4s; } "
-                + "@keyframes changeColor{ from{background-color:yellow;} to{background-color:red;} }</style>";
-
-                console.log(str);
-                $("head").append(str);
-            });
+            
+            function myAppendChangeColorCSSRules() {
+                animationFW.appendChangeColorCSSRules();
+            }
 
         </script>
     </body>
