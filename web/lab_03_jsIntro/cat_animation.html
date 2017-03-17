@@ -42,7 +42,7 @@ and open the template in the editor.
         <input type="button" value="Change Cat 01 Position"
                onclick="callChangePosition({cat: cat01, left: document.getElementById('01_left').value, top: document.getElementById('01_top').value})">
         <input type="text" id="01_speed">
-        <input type="button" value="Change Cat 01 Speed" onclick="callChangeSpeed(cat01, document.getElementById('01_speed').value)">
+        <input type="button" value="Change Cat 01 Speed" onclick="cat01.changeSpeed(document.getElementById('01_speed').value)">
         <input type="button" value="Reverse Cat 01 Direction" onclick="callReverseDirection(cat01)">
         <br><br>
 
@@ -59,8 +59,8 @@ and open the template in the editor.
         <input type="text" id="02_top">
         <input type="button" value="Change Cat 02 Position"
                onclick="callChangePosition({cat: cat02, left: document.getElementById('02_left').value, top: document.getElementById('02_top').value})">
-        <input type="text" id="01_speed">
-        <input type="button" value="Change Cat 01 Speed" onclick="callChangeSpeed(cat02, document.getElementById('02_speed').value)">
+        <input type="text" id="02_speed">
+        <input type="button" value="Change Cat 02 Speed" onclick="cat02.changeSpeed(document.getElementById('02_speed').value)">
         <input type="button" value="Reverse Cat 02 Direction" onclick="callReverseDirection(cat02)">
         <br>
         <h2>Instructions</h2>

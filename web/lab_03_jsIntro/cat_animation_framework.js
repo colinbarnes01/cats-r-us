@@ -22,7 +22,6 @@ function makeCatFramework() {
         cat.id = params.id;
         cat.top = params.top || 200;
         cat.left = params.left || 240;
-        console.log('cat.left after assignment: ' + cat.left);
         cat.style.top = cat.top + "px";
         cat.style.left = cat.left + "px";
         cat.style.position = params.position || "fixed";
@@ -34,28 +33,38 @@ function makeCatFramework() {
         cat.style.backgroundRepeat = "no-repeat";
         cat.style.zIndex = "2";
 
-        // private variables
-        console.log('params.speed: ' + params.speed);
+        // private variables to the cat object being created
         cat.speed = params.speed || "10";
-        console.log('cat.speed: ' + cat.speed);
         cat.direction = "FORWARD";
         cat.interval;                                  // interval is a js method for repeated actions, like changing sprites
         cat.spritePositions = params.spritePositions;
-
-
-        cat.changeSpeed = function (speed) {
-            console.log("speed: " + speed);
-            cat.speed = speed;
+        
+        // private variables
+        var speed = params.speed || "10";
+        var direction = "FORWARD";;
+        
+        
+        
+        cat.changeSpeed = function (newSpeed) {
+            console.log("newSpeed: " + newSpeed);
+            speed = newSpeed;
+            updateCat();
         };
 
         cat.reverseDirection = function () {
             if (cat.direction == "FORWARD") {
-                cat.direction = "BACKWARD";
+                direction = "BACKWARD";
             } else {
-                cat.direction = "FORWARD";
+                direction = "FORWARD";
             }
+            updateCat();
             cat.reverseSpeed();
         };
+        
+        function updateCat() {
+            cat.speed = speed;
+            cat.direction = direction;
+        }
 
         cat.reverseSpeed = function () {
             console.log(cat.direction);
@@ -70,7 +79,6 @@ function makeCatFramework() {
     };
 
     catFramework.moveCat = function (cat) {
-        //var cat = document.getElementById(cat.id);
         console.log('inside moveCat with cat: ' + cat.id);
         console.log('inside moveCat with cat.speed:' + cat.speed);
         cat.left += parseInt(cat.speed);
