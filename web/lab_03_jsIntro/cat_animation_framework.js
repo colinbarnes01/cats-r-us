@@ -20,11 +20,11 @@ function makeCatFramework() {
         var cat = document.getElementById(params.id);
 
         cat.id = params.id;
-        cat.style.top = params.top || "200px";
-        cat.style.left = params.left || "240px";
-        cat.top = 200;
-        cat.left = 240;
-
+        cat.top = params.top || 200;
+        cat.left = params.left || 240;
+        console.log('cat.left after assignment: ' + cat.left);
+        cat.style.top = cat.top + "px";
+        cat.style.left = cat.left + "px";
         cat.style.position = params.position || "fixed";
         cat.style.height = params.height || "75px";
         cat.style.width = params.width || "75px";
@@ -34,36 +34,49 @@ function makeCatFramework() {
         cat.style.backgroundRepeat = "no-repeat";
         cat.style.zIndex = "2";
 
-        // private parameters
-        cat.speed = 10;
+        // private variables
+        console.log('params.speed: ' + params.speed);
+        cat.speed = params.speed || "10";
+        console.log('cat.speed: ' + cat.speed);
         cat.direction = "FORWARD";
-        cat.interval;   // interval is a js method for repeated actions, like changing sprites
+        cat.interval;                                  // interval is a js method for repeated actions, like changing sprites
         cat.spritePositions = params.spritePositions;
-        console.log(cat.spritePositions);
 
-        cat.setSpeed = function (speed) {
-            catSpeed = speed;
-            //display();
+
+        cat.changeSpeed = function (speed) {
+            console.log("speed: " + speed);
+            cat.speed = speed;
         };
 
-        cat.setDirection = function (direction) {
-            catDirection = direction;
-            //display();
+        cat.reverseDirection = function () {
+            if (cat.direction == "FORWARD") {
+                cat.direction = "BACKWARD";
+            } else {
+                cat.direction = "FORWARD";
+            }
+            cat.reverseSpeed();
         };
+
+        cat.reverseSpeed = function () {
+            console.log(cat.direction);
+            if (cat.direction == "FORWARD") {
+                cat.changeSpeed(Math.abs(cat.speed));
+            } else if (cat.direction == "BACKWARD") {
+                cat.changeSpeed(-Math.abs(cat.speed));
+            }
+        }
 
         return cat;
-    }
+    };
 
     catFramework.moveCat = function (cat) {
         //var cat = document.getElementById(cat.id);
-        cat.left += cat.speed;
+        console.log('inside moveCat with cat: ' + cat.id);
+        console.log('inside moveCat with cat.speed:' + cat.speed);
+        cat.left += parseInt(cat.speed);
+        console.log('inside moveCat with cat.left: ' + cat.left);
         cat.style.left = cat.left + "px";
-    }
-
-    catFramework.changePosition = function (params) {
-        params.cat.style.left = params.left + "px";
-        params.cat.style.top = params.top + "px";
-    }
+    };
 
     // VARIABLES FOR CAT ANIMATION ARE DEFINED HERE
     var interval01;
@@ -80,7 +93,7 @@ function makeCatFramework() {
             cat.interval = interval01;
         } else {
             interval02 = setInterval(function () {
-                changeSprite(cat);
+                catFramework.changeSprite(cat);
                 catFramework.moveCat(cat);
             }, 200);
             cat.interval = interval02;
@@ -108,8 +121,13 @@ function makeCatFramework() {
         if (curr_position > 2) {
             curr_position = 0;
         }
-       cat.style.backgroundPosition = cat.spritePositions[curr_position];
-    }
+        cat.style.backgroundPosition = cat.spritePositions[curr_position];
+    };
+
+    catFramework.changePosition = function (params) {
+        params.cat.style.left = params.left + "px";
+        params.cat.style.top = params.top + "px";
+    };
 
 
 

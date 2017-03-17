@@ -20,12 +20,15 @@ and open the template in the editor.
         <div id="cat01"></div>
         <div id="cat02"></div>
 
+        <!-- CAT 01 & 02 CREATION USER INTERFACE -->
         <input type="button" value="Make a cat!" 
-               onclick="callMakeCat({id: 'cat01', top: '600px', spritePositions: cat_01_sprite_positions});">
+               onclick="callMakeCat({id: 'cat01', top: 600, spritePositions: cat_01_sprite_positions, speed: '10'});">
         <input type="button" value="Make another cat!" 
-               onclick="callMakeCat({id: 'cat02', top: '600px', left: '400px',
-                           backgroundPosition: '-270px -290px', spritePositions: cat_02_sprite_positions})">
+               onclick="callMakeCat({id: 'cat02', top: 600, left: 400,
+                           backgroundPosition: '-270px -290px', spritePositions: cat_02_sprite_positions, speed: '0'})">
         <br><br>
+
+        <!-- CAT 01 USER INTERFACE -->
         <input type="button" value="Change Sprite 01" 
                onclick ="callChangeSprite(cat01)">
         <input type="button" id="walkBtn01" value="Walk Cat 01"
@@ -37,9 +40,13 @@ and open the template in the editor.
         Change cat 01 top position:
         <input type="text" id="01_top">
         <input type="button" value="Change Cat 01 Position"
-               onclick="callChangePosition01(cat01)">
-
+               onclick="callChangePosition({cat: cat01, left: document.getElementById('01_left').value, top: document.getElementById('01_top').value})">
+        <input type="text" id="01_speed">
+        <input type="button" value="Change Cat 01 Speed" onclick="callChangeSpeed(cat01, document.getElementById('01_speed').value)">
+        <input type="button" value="Reverse Cat 01 Direction" onclick="callReverseDirection(cat01)">
         <br><br>
+
+        <!-- CAT 02 USER INTERFACE -->
         <input type="button" value="Change Sprite 02" 
                onclick ="callChangeSprite(cat02)">
         <input type="button" id="walkBtn02" value="Walk Cat 02"
@@ -51,7 +58,10 @@ and open the template in the editor.
         Change cat 02 top position:
         <input type="text" id="02_top">
         <input type="button" value="Change Cat 02 Position"
-               onclick="callChangePosition02(cat02)">
+               onclick="callChangePosition({cat: cat02, left: document.getElementById('02_left').value, top: document.getElementById('02_top').value})">
+        <input type="text" id="01_speed">
+        <input type="button" value="Change Cat 01 Speed" onclick="callChangeSpeed(cat02, document.getElementById('02_speed').value)">
+        <input type="button" value="Reverse Cat 02 Direction" onclick="callReverseDirection(cat02)">
         <br>
         <h2>Instructions</h2>
         <p>
@@ -66,55 +76,49 @@ and open the template in the editor.
         <script type="text/javascript">
 
 
-                   var catFramework = makeCatFramework();
-                   var cat01 = document.getElementById("cat01");
-                   var cat02 = document.getElementById("cat02");
+            var catFramework = makeCatFramework();
+            var cat01 = document.getElementById("cat01");
+            var cat02 = document.getElementById("cat02");
 
-                   var cat_01_sprite_positions = ["-10px -200px", "-100px -200px", "-186px -200px"];
-                   var cat_02_sprite_positions = ["-270px -290px", "-360px -290px", "-450px -290px"];
-
-
-
-                   function callMakeCat(params) {
-                       //window.console.log('param in callMakecat:', params.id);
-                       catFramework.makeCat(params);
-                   }
+            // these are used to get the cat sprites from the sprite sheet.  They are passed to callMakeCat
+            // and become instance variable of the cat object
+            var cat_01_sprite_positions = ["-10px -200px", "-100px -200px", "-186px -200px"];
+            var cat_02_sprite_positions = ["-270px -290px", "-360px -290px", "-450px -290px"];
 
 
 
-                   function callAnimateCat(cat) {
-                       catFramework.animateCat(cat);
-                   }
+            function callMakeCat(params) {
+                catFramework.makeCat(params);
+            }
 
-                   function myStopCat(catNumber) {
-                       catFramework.stopCat(catNumber);
-                   }
+            function callAnimateCat(cat) {
+                catFramework.animateCat(cat);
+            }
 
-                   function callChangePosition01(cat) {
-                       catFramework.changePosition(
-                               {cat: cat,
-                                   left: document.getElementById('01_left').value,
-                                   top: document.getElementById('01_top').value,
-                               }
-                       );
-                   }
-                   function callChangePosition02(cat) {
-                       catFramework.changePosition(
-                               {cat: cat,
-                                   left: document.getElementById('02_left').value,
-                                   top: document.getElementById('02_top').value,
-                               }
-                       );
-                   }
-                   
-                   function callChangeSprite(cat) {
-                       catFramework.changeSprite(cat);
-                   }
-                   
-                   function enableWalkButtons() {
-                       document.getElementById("walkBtn01").disabled = false;
-                       document.getElementById("walkBtn01").disabled = false;
-                   }
+            function myStopCat(catNumber) {
+                catFramework.stopCat(catNumber);
+            }
+
+            function callChangeSpeed(cat, speed) {
+                cat.changeSpeed(speed);
+            }
+
+            function callReverseDirection(cat) {
+                cat.reverseDirection();
+            }
+
+            function callChangeSprite(cat) {
+                catFramework.changeSprite(cat);
+            }
+
+            function callChangePosition(params) {
+                catFramework.changePosition(params);
+            }
+
+            function enableWalkButtons() {
+                document.getElementById("walkBtn01").disabled = false;
+                document.getElementById("walkBtn01").disabled = false;
+            }
         </script>
     </body>
 </html>
