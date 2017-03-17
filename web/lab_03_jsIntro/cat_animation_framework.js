@@ -38,6 +38,8 @@ function makeCatFramework() {
         cat.speed = 10;
         cat.direction = "FORWARD";
         cat.interval;   // interval is a js method for repeated actions, like changing sprites
+        cat.spritePositions = params.spritePositions;
+        console.log(cat.spritePositions);
 
         cat.setSpeed = function (speed) {
             catSpeed = speed;
@@ -52,11 +54,6 @@ function makeCatFramework() {
         return cat;
     }
 
-    catFramework.changeSprite = function (id, position) {
-        var cat = document.getElementById(id);
-        cat.style.backgroundPosition = position;
-    }
-
     catFramework.moveCat = function (cat) {
         //var cat = document.getElementById(cat.id);
         cat.left += cat.speed;
@@ -64,25 +61,26 @@ function makeCatFramework() {
     }
 
     catFramework.changePosition = function (params) {
-        var cat = document.getElementById(params.id);
-        cat.style.left = params.left + "px";
-        cat.style.top = params.top + "px";
+        params.cat.style.left = params.left + "px";
+        params.cat.style.top = params.top + "px";
     }
 
+    // VARIABLES FOR CAT ANIMATION ARE DEFINED HERE
     var interval01;
     var interval02;
-    
+    var curr_position = 0;  // used in the changeSprite function
+
     catFramework.animateCat = function (cat) {
         console.log('cat: ' + cat);
         if (interval01 == null) {
             interval01 = setInterval(function () {
-                callChangeSprite(cat.id);
+                catFramework.changeSprite(cat);
                 catFramework.moveCat(cat);
             }, 200);
             cat.interval = interval01;
         } else {
             interval02 = setInterval(function () {
-                callChangeSprite(cat.id);
+                changeSprite(cat);
                 catFramework.moveCat(cat);
             }, 200);
             cat.interval = interval02;
@@ -103,6 +101,15 @@ function makeCatFramework() {
         }
         clearInterval(cat.interval);
     };
+
+
+    catFramework.changeSprite = function (cat) {
+        curr_position++;
+        if (curr_position > 2) {
+            curr_position = 0;
+        }
+       cat.style.backgroundPosition = cat.spritePositions[curr_position];
+    }
 
 
 

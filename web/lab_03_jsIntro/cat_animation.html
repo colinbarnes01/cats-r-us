@@ -16,17 +16,18 @@ and open the template in the editor.
             }
         </style>
     </head>
-    <body>
+    <body onload="enableWalkButtons()">
         <div id="cat01"></div>
         <div id="cat02"></div>
 
         <input type="button" value="Make a cat!" 
-               onclick="callMakeCat({id: 'cat01', top: '600px'});">
+               onclick="callMakeCat({id: 'cat01', top: '600px', spritePositions: cat_01_sprite_positions});">
         <input type="button" value="Make another cat!" 
-               onclick="callMakeCat({id: 'cat02', top: '600px', left: '400px', backgroundPosition: '-270px -290px'})">
+               onclick="callMakeCat({id: 'cat02', top: '600px', left: '400px',
+                           backgroundPosition: '-270px -290px', spritePositions: cat_02_sprite_positions})">
         <br><br>
         <input type="button" value="Change Sprite 01" 
-               onclick ="callChangeSprite('cat01')">
+               onclick ="callChangeSprite(cat01)">
         <input type="button" id="walkBtn01" value="Walk Cat 01"
                onclick = "callAnimateCat(cat01)">
         <input type="button" value="Stop Cat 01"
@@ -36,11 +37,11 @@ and open the template in the editor.
         Change cat 01 top position:
         <input type="text" id="01_top">
         <input type="button" value="Change Cat 01 Position"
-               onclick="callChangePosition01('cat01')">
+               onclick="callChangePosition01(cat01)">
 
         <br><br>
         <input type="button" value="Change Sprite 02" 
-               onclick ="callChangeSprite('cat02')">
+               onclick ="callChangeSprite(cat02)">
         <input type="button" id="walkBtn02" value="Walk Cat 02"
                onclick = "callAnimateCat(cat02)">
         <input type="button" value="Stop Cat 02"
@@ -50,7 +51,7 @@ and open the template in the editor.
         Change cat 02 top position:
         <input type="text" id="02_top">
         <input type="button" value="Change Cat 02 Position"
-               onclick="callChangePosition02('cat02')">
+               onclick="callChangePosition02(cat02)">
         <br>
         <h2>Instructions</h2>
         <p>
@@ -64,13 +65,14 @@ and open the template in the editor.
         <script src="cat_animation_framework.js"></script>
         <script type="text/javascript">
 
+
                    var catFramework = makeCatFramework();
                    var cat01 = document.getElementById("cat01");
                    var cat02 = document.getElementById("cat02");
 
                    var cat_01_sprite_positions = ["-10px -200px", "-100px -200px", "-186px -200px"];
                    var cat_02_sprite_positions = ["-270px -290px", "-360px -290px", "-450px -290px"];
-                   var curr_position = 0;
+
 
 
                    function callMakeCat(params) {
@@ -78,20 +80,7 @@ and open the template in the editor.
                        catFramework.makeCat(params);
                    }
 
-                   function callChangeSprite(id) {
-                       curr_position++;
-                       if (curr_position > 2) {
-                           curr_position = 0;
-                       }
-                       //console.log(curr_position);
-                       if (id.search("01") >= 0) {
-                           position = cat_01_sprite_positions[curr_position];
-                       } else {
-                           position = cat_02_sprite_positions[curr_position];
-                       }
-                       //console.log(position);
-                       catFramework.changeSprite(id, position);
-                   }
+
 
                    function callAnimateCat(cat) {
                        catFramework.animateCat(cat);
@@ -101,21 +90,30 @@ and open the template in the editor.
                        catFramework.stopCat(catNumber);
                    }
 
-                   function callChangePosition01(id) {
+                   function callChangePosition01(cat) {
                        catFramework.changePosition(
-                               {id: id,
+                               {cat: cat,
                                    left: document.getElementById('01_left').value,
                                    top: document.getElementById('01_top').value,
                                }
                        );
                    }
-                   function callChangePosition02(id) {
+                   function callChangePosition02(cat) {
                        catFramework.changePosition(
-                               {id: id,
+                               {cat: cat,
                                    left: document.getElementById('02_left').value,
                                    top: document.getElementById('02_top').value,
                                }
                        );
+                   }
+                   
+                   function callChangeSprite(cat) {
+                       catFramework.changeSprite(cat);
+                   }
+                   
+                   function enableWalkButtons() {
+                       document.getElementById("walkBtn01").disabled = false;
+                       document.getElementById("walkBtn01").disabled = false;
                    }
         </script>
     </body>
