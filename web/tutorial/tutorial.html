@@ -18,44 +18,30 @@ and open the template in the editor.
                 position: fixed;
                 left: 5px;
             }
-            /*.slider {
-                animation-name: slideLeft;
-                animation-duration: 4s;
-            }
-
-            @keyframes slideLeft {
-                from {
-                    left: 5px;
-                }
-                to {
-                    left: 200px;
-                }
-            }*/
-
             .boxContainer {
                 height: 150px;
                 border: red solid;
                 width: 100%;
             }
-
         </style>        
     </head>
     <body>
         <div class="boxContainer">
             <div id="box1" class="box"></div>
         </div>
-        <button type="button" onclick="mySlideLeft({id: 'box1', duration: document.getElementsByName('slideDuration')[0].value,
+        <button type="button" id="sliderButton" onclick="animationFW.slideLeft({id: 'box1',
                     leftStart: document.getElementsByName('leftStart')[0].value,
-                    leftEnd: document.getElementsByName('leftEnd')[0].value})">Slide box left</button>
-        Duration (s): <input type="number" name="slideDuration" value="4"> 
+                    leftEnd: document.getElementsByName('leftEnd')[0].value,
+                    duration: document.getElementsByName('slideDuration')[0].value})">Slide box left</button>
         Left Starting Position: <input type="number" name="leftStart" value="5">
-        Left Ending Position: <input type="number" name="leftEnd" value="200"><br><br>
+        Left Ending Position: <input type="number" name="leftEnd" value="200">
+        Duration (s): <input type="number" name="slideDuration" value="4"> <br><br>
 
 
         <div class="boxContainer">
             <div id="box2" class="box"></div>
         </div>
-        <button type="button" id="button3" onclick="myChangeColor({id: 'box2',
+        <button type="button" id="changeColorButton" onclick="animationFW.changeColor({id: 'box2',
                     startColor: document.getElementsByName('startColor')[0].value,
                     endColor: document.getElementsByName('endColor')[0].value,
                     duration: document.getElementsByName('colorChangeDuration')[0].value})">Change Box Color</button>
@@ -69,17 +55,13 @@ and open the template in the editor.
             "use strict";
             var animationFW = makeAnimationFW();
 
-            function mySlideLeft(params) {
-                animationFW.slideLeft(params);
-            }
+            $(function () {
+                animationFW.listenForButtonClickAndRestartAnimation();
+            });
 
-            function myChangeColor(params) {
-                animationFW.changeColor(params);
-            }
 
-            function myAppendChangeColorCSSRules() {
-                animationFW.appendChangeColorCSSRules();
-            }
+
+
 
         </script>
     </body>

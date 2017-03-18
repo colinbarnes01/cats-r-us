@@ -15,7 +15,9 @@ function makeAnimationFW() {
     var animationFW = {};
 
     animationFW.slideLeft = function (params) {
-        console.log('inside slideLeft with params: ', params);
+        //console.log('inside slideLeft with params: ', params);
+        var ele = document.getElementById(params.id);
+        ele.classList.remove('slider');
         document.getElementById(params.id).classList.add('slider');
         animationFW.appendSlideLeftCSSRules(params);
     };
@@ -24,7 +26,7 @@ function makeAnimationFW() {
         var str = "<style>.slider{ animation-name:slideLeft; animation-duration:" + params.duration + "s; } "
                 + "@keyframes slideLeft{ from{left:" + params.leftStart + "px;} to{left:" + params.leftEnd + "px;} }</style>";
 
-        console.log(str);
+        //console.log(str);
         $("head").append(str);
     };
 
@@ -43,21 +45,42 @@ function makeAnimationFW() {
         $("head").append(str);
     };
 
+    animationFW.listenForButtonClickAndRestartAnimation = function () {
+        $("#sliderButton").click(function () {
+            console.log("inside slider btn click");
+            animationFW.restartAnimation("box1");
+        });
+        $("#changeColorButton").click(function () {
+            console.log("inside change color btn click");
+            animationFW.restartAnimation("box2");
+        });
+    };
+
+    animationFW.restartAnimation = function (elementId) {
+        var oldEle = $("#" + elementId);
+        console.log("inside restart: " + oldEle);
+        var newEle = oldEle.clone(true);
+
+        oldEle.before(newEle);
+        oldEle.remove();
+        //$("." + oldBox.attr("class") + ":last").remove();
+    };
+
     return animationFW;
 }
 
 
 /*
-            .slider {
-                animation-name: slideLeft;
-                animation-duration: 4s;
-            }
-
-            @keyframes slideLeft {
-                from {
-                    left: 5px;
-                }
-                to {
-                    left: 200px;
-                }
-            }*/
+ .slider {
+ animation-name: slideLeft;
+ animation-duration: 4s;
+ }
+ 
+ @keyframes slideLeft {
+ from {
+ left: 5px;
+ }
+ to {
+ left: 200px;
+ }
+ }*/
