@@ -9,19 +9,36 @@ and open the template in the editor.
         <title>TODO supply a title</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="../style.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+        <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
         <style>
             body {
-                background-color: lightblue;
+                background-color: #F5F0D0;
+                font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+            }
+            h1, h3, h4, p {
+                margin-left: 10px;
+            }
+            h3 {
+                margin-bottom: 0px;
+            }
+            p {
+                background-color: #fcf4c4;
+                border-radius: 10%;
+                padding: 15px;
+                width: 45%;
+                margin-top: 5px;
             }
             .box {
                 width: 100px;
                 height: 100px;
                 background-color: green;
-                position: fixed;
+                position: relative;
                 left: 5px;
             }
             .boxContainer {
+                margin-left: 10px;
                 height: 150px;
                 border: red solid;
                 width: 100%;
@@ -35,58 +52,144 @@ and open the template in the editor.
                 left: 20px;
                 top: 20px;
             }
-        </style>        
-    </head>
-    <body>
-        <div class="boxContainer">
-            <div id="box1" class="box"></div>
-        </div>
-        <button type="button" id="sliderButton" onclick="slider.slideLeft()">Slide box left</button>
-        Left Starting Position: <input type="number" name="leftStart" value="5">
-        Left Ending Position: <input type="number" name="leftEnd" value="200">
-        Duration (s): <input type="number" name="slideDuration" value="4"><br><br>
+            .arrow-up {
+                width: 0; 
+                height: 0; 
+                border-left: 60px solid transparent;
+                border-right: 60px solid transparent;
+                border-bottom: 60px solid red;
+            }
+            .shapeShifter {
+                width: 100px;
+                height: 100px;
+                background-color: green;
+                animation: shapeShift 3s;
+            }
+
+            @keyframes shapeShift {
+                from {
+                    width: 100px;
+                    height: 100px;
+                    transform: scale(.3);
+                    background-color: red;
+                    border-radius: 50px;
+                }
+                50% {
+                    background-color: orange;
+                }
+                to {
+                    transform: scale(1.5);
+                    border-radius: 0px;
+                    background-color: yellow;
+                }
+            }
+            #navbar {
+                position: fixed;
+                display: inline;
+                right: 0px;
+                margin: 0px 10px 0px 0px;
+            }
+            @media screen and (min-width: 600px) {
+                #navGroup {
+                    display:inherit;
+                }
+
+                #pageTitle {
+                    color: green;
+                }
+                #navbar {
+                    position: fixed;
+                    display: inline;
+                    right: 0px;
+                    margin: 0px 10px 0px 0px;
+                }
+
+            </style>        
+        </head>
+        <body>
+            <div id="titlenav">
+                <div id="title">
+                    Cats-R-Us
+                </div>
+                <div id="navbar">
+                    <div id="navIcon">
+                        <img src="../pictures/navbars.png" alt="" width="43"/>
+                    </div>
+                    <div id='navGroup'>
+                        <a class="navLink" href="../index.html">Home</a>
+                        <a class="navLink" href="../labs.html">Labs</a>
+                    </div>
+                </div>
+            </div>
+            <h1 style="margin-top:70px">Custom CSS KeyFrame Animation Framework</h1>
+            <h3>By Colin Barnes</h3><br><br>
+            
+            <h3>What are CSS Keyframes?</h3>
+            <p>Keyframes are a way to create animations using purely CSS.  They are easy to
+                use and are a great way for a web developer to design some simple animations.<br>
+            <a href="https://www.w3schools.com/cssref/css3_pr_animation-keyframes.asp">W3Schools Keyframes Tutorial</a></p>
+            
+            <h3>What can this framework do for me?</h3>
+            <p>Keyframe animations generally run once upon the rendering of an html object.
+            This framework allows you to easily create custom Keyframe animations that
+            can be run repeatedly.  Keyframes also require hard-coding all parameters into
+            the stylesheet before runtime.  This framework allows animations to be updated
+            with new html input parameters at any time.</p>
+            
+            <div class="boxContainer">
+                <div id="box1" class="box"></div>
+            </div>
+            <button type="button" id="sliderButton" onclick="slider.slideLeft()">Slide box left</button>
+            Left Starting Position: <input type="number" name="leftStart" value="5">
+            Left Ending Position: <input type="number" name="leftEnd" value="200">
+            Duration (s): <input type="number" name="slideDuration" value="4"><br><br>
 
 
 
-        <div class="boxContainer">
-            <div id="box2" class="box"></div>
-        </div>
-        <button type="button" id="changeColorButton" onclick="colorChanger.changeColor()">Change Box Color</button>
-        Starting Color: <input type="color" name="startColor" value="#FFFF00"> Ending Color: <input type="color" name="endColor" value="#FF0000">
-        Duration (s): <input type="number" name="colorChangeDuration" value="4"><br><br>
+            <div class="boxContainer">
+                <div id="box2" class="box"></div>
+            </div>
+            <button type="button" id="changeColorButton" onclick="colorChanger.changeColor()">Change Box Color</button>
+            Starting Color: <input type="color" name="startColor" value="#FFFF00"> Ending Color: <input type="color" name="endColor" value="#FF0000">
+            Duration (s): <input type="number" name="colorChangeDuration" value="4"><br><br>
+
+            <div class="boxContainer">
+                <div id="triangle1" class="shapeShifter"></div>
+            </div>
 
 
 
 
 
-        <script src="animationFramework.js"></script>
-        <script  type="text/javascript">
-            "use strict";
-            var animationFW = makeAnimationFW();
 
-            var slider = animationFW.makeSlider({id: 'box1', leftStart: 'leftStart', leftEnd: 'leftEnd', duration: 'slideDuration'});
-            var colorChanger = animationFW.makeColorChanger({id: 'box2', startColor: 'startColor',
-                endColor: 'endColor', duration: 'colorChangeDuration'});
+            <script src="animationFramework.js"></script>
+            <script  type="text/javascript">
+                "use strict";
+                var animationFW = makeAnimationFW();
+
+                var slider = animationFW.makeSlider({id: 'box1', leftStart: 'leftStart', leftEnd: 'leftEnd', duration: 'slideDuration'});
+                var colorChanger = animationFW.makeColorChanger({id: 'box2', startColor: 'startColor',
+                    endColor: 'endColor', duration: 'colorChangeDuration'});
 
 
-            $(function () {
-                // for each component, the html page needs to create a button click that passes 
-                // the id of the component to the framework's restart animation function
-                
-                $("#sliderButton").click(function () {
-                    console.log("inside slider btn click");
-                    //animationFW.restartAnimation("box1");
-                    animationFW.restartAnimation(slider);
+                $(function () {
+                    // for each component, the html page needs to create a button click that passes 
+                    // the id of the component to the framework's restart animation function
+
+                    $("#sliderButton").click(function () {
+                        console.log("inside slider btn click");
+                        //animationFW.restartAnimation("box1");
+                        animationFW.restartAnimation(slider);
+                    });
+                    $("#changeColorButton").click(function () {
+                        console.log("inside change color btn click");
+                        //animationFW.restartAnimation("box2");
+                        animationFW.restartAnimation(colorChanger);
+                    });
                 });
-                $("#changeColorButton").click(function () {
-                    console.log("inside change color btn click");
-                    //animationFW.restartAnimation("box2");
-                    animationFW.restartAnimation(colorChanger);
-                });
-            });
 
 
 
-        </script>
-    </body>
-</html>
+            </script>
+        </body>
+    </html>
