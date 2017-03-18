@@ -29,22 +29,17 @@ and open the template in the editor.
         <div class="boxContainer">
             <div id="box1" class="box"></div>
         </div>
-        <button type="button" id="sliderButton" onclick="animationFW.slideLeft({id: 'box1',
-                    leftStart: document.getElementsByName('leftStart')[0].value,
-                    leftEnd: document.getElementsByName('leftEnd')[0].value,
-                    duration: document.getElementsByName('slideDuration')[0].value})">Slide box left</button>
+        <button type="button" id="sliderButton" onclick="slider.slideLeft()">Slide box left</button>
         Left Starting Position: <input type="number" name="leftStart" value="5">
         Left Ending Position: <input type="number" name="leftEnd" value="200">
         Duration (s): <input type="number" name="slideDuration" value="4"> <br><br>
 
 
+
         <div class="boxContainer">
             <div id="box2" class="box"></div>
         </div>
-        <button type="button" id="changeColorButton" onclick="animationFW.changeColor({id: 'box2',
-                    startColor: document.getElementsByName('startColor')[0].value,
-                    endColor: document.getElementsByName('endColor')[0].value,
-                    duration: document.getElementsByName('colorChangeDuration')[0].value})">Change Box Color</button>
+        <button type="button" id="changeColorButton" onclick="colorChanger.changeColor()">Change Box Color</button>
         Starting Color: <input type="color" name="startColor" value="#FFFF00"> Ending Color: <input type="color" name="endColor" value="#FF0000">
         Duration (s): <input type="number" name="colorChangeDuration" value="4"> 
 
@@ -54,10 +49,21 @@ and open the template in the editor.
         <script  type="text/javascript">
             "use strict";
             var animationFW = makeAnimationFW();
+            
+            var slider = animationFW.makeSlider({id: 'box1',
+                leftStart: document.getElementsByName('leftStart')[0].value,
+                leftEnd: document.getElementsByName('leftEnd')[0].value,
+                duration: document.getElementsByName('slideDuration')[0].value});
+            
+            var colorChanger = animationFW.makeColorChanger({id: 'box2',
+                startColor: document.getElementsByName('startColor')[0].value,
+                endColor: document.getElementsByName('endColor')[0].value,
+                duration: document.getElementsByName('colorChangeDuration')[0].value});
 
             $(function () {
                 animationFW.listenForButtonClickAndRestartAnimation();
             });
+
 
 
 
