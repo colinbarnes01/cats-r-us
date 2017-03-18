@@ -16,11 +16,15 @@ function makeAnimationFW() {
 
     animationFW.makeSlider = function (params) {
         var slider = document.getElementById(params.id);
-        slider.leftStart = params.leftStart || 5;
-        slider.leftEnd = params.leftEnd || 200;
-        slider.duration = params.duration || 4;
+        slider.htmlElementsMap = params;     // we need this because we have to check the html
+        // input fields and update the slider obj every button click
 
-        console.log('slider created: ' + slider);
+
+        slider.updateFields = function () {
+            slider.leftStart = document.getElementsByName(slider.htmlElementsMap.leftStart)[0].value || 5;
+            slider.leftEnd = document.getElementsByName(slider.htmlElementsMap.leftEnd)[0].value || 200;
+            slider.duration = document.getElementsByName(slider.htmlElementsMap.duration)[0].value || 4;
+        };
 
         slider.slideLeft = function () {
             slider.updateFields();
@@ -36,21 +40,21 @@ function makeAnimationFW() {
             console.log(str);
             $("head").append(str);
         };
-        
-        slider.updateFields = function() {
-                slider.leftStart = document.getElementsByName('leftStart')[0].value;
-                slider.leftEnd = document.getElementsByName('leftEnd')[0].value;
-                slider.duration = document.getElementsByName('slideDuration')[0].value;
-        }
+
+        slider.updateFields();
         return slider;
     }
 
 
     animationFW.makeColorChanger = function (params) {
         var colorChanger = document.getElementById(params.id);
-        colorChanger.startColor = params.startColor || "#FFFF00";
-        colorChanger.endColor = params.endColor || "#FF0000";
-        colorChanger.duration = params.duration || 4;
+        colorChanger.htmlElementsMap = params;
+
+        colorChanger.updateFields = function () {
+            colorChanger.startColor = document.getElementsByName(colorChanger.htmlElementsMap.startColor)[0].value || "#FFFF00";
+            colorChanger.endColor = document.getElementsByName(colorChanger.htmlElementsMap.endColor)[0].value || "#FF0000";
+            colorChanger.duration = document.getElementsByName(colorChanger.htmlElementsMap.duration)[0].value || 4;
+        };
 
         colorChanger.changeColor = function () {
             colorChanger.updateFields();
@@ -67,29 +71,14 @@ function makeAnimationFW() {
             $("head").append(str);
         };
 
-        colorChanger.updateFields = function () {
-            colorChanger.startColor = document.getElementsByName('startColor')[0].value;
-            colorChanger.endColor = document.getElementsByName('endColor')[0].value;
-            colorChanger.duration = document.getElementsByName('colorChangeDuration')[0].value;
-
-        };
+        colorChanger.updateFields();
         return colorChanger;
     };
 
 
-
-    animationFW.listenForButtonClickAndRestartAnimation = function () {
-        $("#sliderButton").click(function () {
-            console.log("inside slider btn click");
-            animationFW.restartAnimation("box1");
-        });
-        $("#changeColorButton").click(function () {
-            console.log("inside change color btn click");
-            animationFW.restartAnimation("box2");
-        });
-    };
-
-    animationFW.restartAnimation = function (elementId) {
+    animationFW.restartAnimation = function (component) {
+        var elementId = component.htmlElementsMap.id;
+        console.log(elementId);
         var oldEle = $("#" + elementId);
         console.log("inside restart: " + oldEle);
         var newEle = oldEle.clone(true);
