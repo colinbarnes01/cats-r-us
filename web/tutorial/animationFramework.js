@@ -90,19 +90,3 @@ function makeAnimationFW() {
 
     return animationFW;
 }
-
-
-/*
- .slider {
- animation-name: slideLeft;
- animation-duration: 4s;
- }
- 
- @keyframes slideLeft {
- from {
- left: 5px;
- }
- to {
- left: 200px;
- }
- }*/

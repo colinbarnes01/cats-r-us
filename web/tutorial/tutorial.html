@@ -17,8 +17,8 @@ and open the template in the editor.
                 background-color: #F5F0D0;
                 font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
             }
-            h1, h3, h4, p {
-                margin-left: 10px;
+            #bodyContainer {
+                margin-left: 15px;
             }
             h3 {
                 margin-bottom: 0px;
@@ -38,10 +38,9 @@ and open the template in the editor.
                 left: 5px;
             }
             .boxContainer {
-                margin-left: 10px;
                 height: 150px;
                 border: red solid;
-                width: 100%;
+                width: 95%;
             }
             .circle {
                 width: 100px;
@@ -67,7 +66,6 @@ and open the template in the editor.
             }
             .codePenContainer {
                 width: 60%;
-                margin-left: 10px;
             }
 
             @keyframes shapeShift {
@@ -111,6 +109,7 @@ and open the template in the editor.
             </style>        
         </head>
         <body>
+
             <div id="titlenav">
                 <div id="title">
                     Cats-R-Us
@@ -125,104 +124,115 @@ and open the template in the editor.
                     </div>
                 </div>
             </div>
-            <h1 style="margin-top:70px">Custom CSS KeyFrame Animation Framework</h1>
-            <h3>By Colin Barnes</h3><br><br>
+            <div id="bodyContainer">
+                <h1 style="margin-top:70px">Custom CSS KeyFrame Animation Framework</h1>
+                <h3>By Colin Barnes</h3><br><br>
 
-            <h3>What are CSS Keyframes?</h3>
-            <p>Keyframes are a way to create animations using purely CSS.  They are easy to
-                use and are a great way for a web developer to design some simple animations.<br>
-                <a href="https://www.w3schools.com/cssref/css3_pr_animation-keyframes.asp">W3Schools Keyframes Tutorial</a></p>
+                <h3>What are CSS Keyframes?</h3>
+                <p>Keyframes are a way to create animations using purely CSS.  They are easy to
+                    use and are a great way for a web developer to design some simple animations.<br>
+                    <a href="https://www.w3schools.com/cssref/css3_pr_animation-keyframes.asp">W3Schools Keyframes Tutorial</a></p>
 
-            <h3>What can this framework do for me?</h3>
-            <p>Keyframe animations generally run once upon the rendering of an html object.
-                This framework allows you to easily create custom Keyframe animations that
-                can be run repeatedly.  Keyframes also require hard-coding all parameters into
-                the stylesheet before runtime.  This framework allows animations to be updated
-                with new html input parameters at any time.</p>
+                <h3>What can this framework do for me?</h3>
+                <p>Keyframe animations generally run once upon the rendering of an html object.
+                    This framework allows you to easily create custom Keyframe animations that
+                    can be run repeatedly.  Keyframes also require hard-coding all parameters into
+                    the stylesheet before runtime.  This framework allows animations to be updated
+                    with new html input parameters at any time.<br><br>
+                    Currently, this framework provides three custom-made animation classes
+                    for html pages to use: Sliders, Color Changers, and Transformers.<br>
+                    The framework is written in such a way that it would be easy to expand
+                    and add more custom animation classes in the future.
+                </p>
 
-            <h3>Here is a simple example of a CSS Keyframe animation</h3>
-            <div class="codePenContainer">
-                <p data-height="422" data-theme-id="0" data-slug-hash="dvJQRx" data-default-tab="css,result" data-user="cbarnes" data-embed-version="2" data-pen-title="dvJQRx" data-preview="true" class="codepen">See the Pen <a href="https://codepen.io/cbarnes/pen/dvJQRx/">dvJQRx</a> by Colin Barnes (<a href="http://codepen.io/cbarnes">@cbarnes</a>) on <a href="http://codepen.io">CodePen</a>.</p>
-                <script async src="https://production-assets.codepen.io/assets/embed/ei.js"></script>
-            </div>
+                <h3>Here is a simple example of a CSS Keyframe animation</h3>
+                <div class="codePenContainer">
+                    <p data-height="422" data-theme-id="0" data-slug-hash="dvJQRx" data-default-tab="css,result" data-user="cbarnes" data-embed-version="2" data-pen-title="dvJQRx" data-preview="true" class="codepen">See the Pen <a href="https://codepen.io/cbarnes/pen/dvJQRx/">dvJQRx</a> by Colin Barnes (<a href="http://codepen.io/cbarnes">@cbarnes</a>) on <a href="http://codepen.io">CodePen</a>.</p>
+                    <script async src="https://production-assets.codepen.io/assets/embed/ei.js"></script>
+                </div>
 
-            <h3>Restarting CSS Keyframe Animations</h3>
-            <p>This is great.  The animation loops repeatedly because of the 'infinite' variable
-                in the animamtion css rules.  If this were removed, the animation would only run once.
-                What if you wanted to trigger the animation on an even like a button click?</p>
-            <p>Keyframes usually run once upon element rendering.  In order to restart an animation,
-                a trick I found on <a href='https://css-tricks.com/restart-css-animation/'>CSS-Tricks.com</a>
-                is to clone the element, delete the old one and render the
-                new one.  The animation will fire upon rendering of the new animation.</p>
-            <div class='codePenContainer'>
-                <p data-height="420" data-theme-id="0" data-slug-hash="MprzxP" data-default-tab="js" data-user="cbarnes" data-embed-version="2" data-pen-title="MprzxP" class="codepen">See the Pen <a href="https://codepen.io/cbarnes/pen/MprzxP/">MprzxP</a> by Colin Barnes (<a href="http://codepen.io/cbarnes">@cbarnes</a>) on <a href="http://codepen.io">CodePen</a>.</p>
-                <script async src="https://production-assets.codepen.io/assets/embed/ei.js"></script>
-            </div>
+                <h3>Restarting CSS Keyframe Animations</h3>
+                <p>This is great.  The animation loops repeatedly because of the 'infinite' variable
+                    in the animamtion css rules.  If this were removed, the animation would only run once.
+                    What if you wanted to trigger the animation on an even like a button click?</p>
+                <p>Keyframes usually run once upon element rendering.  In order to restart an animation,
+                    a trick I found on <a href='https://css-tricks.com/restart-css-animation/'>CSS-Tricks.com</a>
+                    is to clone the element, delete the old one and render the
+                    new one.  The animation will fire upon rendering of the new animation.</p>
+                <div class='codePenContainer'>
+                    <p data-height="420" data-theme-id="0" data-slug-hash="MprzxP" data-default-tab="js" data-user="cbarnes" data-embed-version="2" data-pen-title="MprzxP" class="codepen">See the Pen <a href="https://codepen.io/cbarnes/pen/MprzxP/">MprzxP</a> by Colin Barnes (<a href="http://codepen.io/cbarnes">@cbarnes</a>) on <a href="http://codepen.io">CodePen</a>.</p>
+                    <script async src="https://production-assets.codepen.io/assets/embed/ei.js"></script>
+                </div>
 
-            <h3>Adding CSS Keyframe Rules with JavaScript</h3>
-            <p>Keyframes are just CSS rules.  In order to generate them dynamically with
-                Javascript, the framework appends a string containing the keyframe rule
-                to the head element using jQuery.</p>
+                <h3>Adding CSS Keyframe Rules with JavaScript</h3>
+                <p>Keyframes are just CSS rules.  In order to generate them dynamically with
+                    Javascript, the framework appends a string containing the keyframe rule
+                    to the head element using jQuery.</p>
 
-            <div class='codePenContainer'>
-                <p data-height="221" data-theme-id="0" data-slug-hash="xqpmEG" data-default-tab="js" data-user="cbarnes" data-embed-version="2" data-pen-title="xqpmEG" class="codepen">See the Pen <a href="https://codepen.io/cbarnes/pen/xqpmEG/">xqpmEG</a> by Colin Barnes (<a href="http://codepen.io/cbarnes">@cbarnes</a>) on <a href="http://codepen.io">CodePen</a>.</p>
-                <script async src="https://production-assets.codepen.io/assets/embed/ei.js"></script>
-            </div>
-
-            <div class="boxContainer">
-                <div id="box1" class="box"></div>
-            </div>
-            <button type="button" id="sliderButton" onclick="slider.slideLeft()">Slide box left</button>
-            Left Starting Position: <input type="number" name="leftStart" value="5">
-            Left Ending Position: <input type="number" name="leftEnd" value="200">
-            Duration (s): <input type="number" name="slideDuration" value="4"><br><br>
-
-
-
-            <div class="boxContainer">
-                <div id="box2" class="box"></div>
-            </div>
-            <button type="button" id="changeColorButton" onclick="colorChanger.changeColor()">Change Box Color</button>
-            Starting Color: <input type="color" name="startColor" value="#FFFF00"> Ending Color: <input type="color" name="endColor" value="#FF0000">
-            Duration (s): <input type="number" name="colorChangeDuration" value="4"><br><br>
-
-            <div class="boxContainer">
-                <div id="triangle1" class="shapeShifter"></div>
-            </div>
+                <div class='codePenContainer'>
+                    <p data-height="221" data-theme-id="0" data-slug-hash="xqpmEG" data-default-tab="js" data-user="cbarnes" data-embed-version="2" data-pen-title="xqpmEG" class="codepen">See the Pen <a href="https://codepen.io/cbarnes/pen/xqpmEG/">xqpmEG</a> by Colin Barnes (<a href="http://codepen.io/cbarnes">@cbarnes</a>) on <a href="http://codepen.io">CodePen</a>.</p>
+                    <script async src="https://production-assets.codepen.io/assets/embed/ei.js"></script>
+                </div>
+                
+                
+                <h2>Three custom classes provided by the framework</h2>
+                <h3>The Slider</h3>
+                <div class="boxContainer">
+                    <div id="box1" class="box"></div>
+                </div>
+                <button type="button" id="sliderButton" onclick="slider.slideLeft()">Slide box left</button>
+                Left Starting Position: <input type="number" name="leftStart" value="5">
+                Left Ending Position: <input type="number" name="leftEnd" value="200">
+                Duration (s): <input type="number" name="slideDuration" value="4"><br><br>
 
 
+                <h3>The Color Changer</h3>
+                <div class="boxContainer">
+                    <div id="box2" class="box"></div>
+                </div>
+                <button type="button" id="changeColorButton" onclick="colorChanger.changeColor()">Change Box Color</button>
+                Starting Color: <input type="color" name="startColor" value="#FFFF00"> Ending Color: <input type="color" name="endColor" value="#FF0000">
+                Duration (s): <input type="number" name="colorChangeDuration" value="4"><br><br>
+
+                <h3>The Transformer</h3>
+                <div class="boxContainer">
+                    <div id="triangle1" class="shapeShifter"></div>
+                </div>
 
 
 
 
-            <script src="animationFramework.js"></script>
-            <script  type="text/javascript">
-                "use strict";
-                var animationFW = makeAnimationFW();
-
-                var slider = animationFW.makeSlider({id: 'box1', leftStart: 'leftStart', leftEnd: 'leftEnd', duration: 'slideDuration'});
-                var colorChanger = animationFW.makeColorChanger({id: 'box2', startColor: 'startColor',
-                    endColor: 'endColor', duration: 'colorChangeDuration'});
 
 
-                $(function () {
-                    // for each component, the html page needs to create a button click that passes 
-                    // the id of the component to the framework's restart animation function
+                <script src="animationFramework.js"></script>
+                <script  type="text/javascript">
+                    "use strict";
+                    var animationFW = makeAnimationFW();
 
-                    $("#sliderButton").click(function () {
-                        console.log("inside slider btn click");
-                        //animationFW.restartAnimation("box1");
-                        animationFW.restartAnimation(slider);
+                    var slider = animationFW.makeSlider({id: 'box1', leftStart: 'leftStart', leftEnd: 'leftEnd', duration: 'slideDuration'});
+                    var colorChanger = animationFW.makeColorChanger({id: 'box2', startColor: 'startColor',
+                        endColor: 'endColor', duration: 'colorChangeDuration'});
+
+
+                    $(function () {
+                        // for each component, the html page needs to create a button click that passes 
+                        // the id of the component to the framework's restart animation function
+
+                        $("#sliderButton").click(function () {
+                            console.log("inside slider btn click");
+                            //animationFW.restartAnimation("box1");
+                            animationFW.restartAnimation(slider);
+                        });
+                        $("#changeColorButton").click(function () {
+                            console.log("inside change color btn click");
+                            //animationFW.restartAnimation("box2");
+                            animationFW.restartAnimation(colorChanger);
+                        });
                     });
-                    $("#changeColorButton").click(function () {
-                        console.log("inside change color btn click");
-                        //animationFW.restartAnimation("box2");
-                        animationFW.restartAnimation(colorChanger);
-                    });
-                });
 
 
 
-            </script>
+                </script>
+            </div>
         </body>
     </html>
