@@ -39,7 +39,7 @@ function makeCatFramework() {
         cat.interval;                                  // interval is a js method for repeated actions, like changing sprites
         cat.spritePositions = params.spritePositions;
         
-        // private variables
+        // private variables to the constructor method
         var speed = params.speed || "10";
         var direction = "FORWARD";;
         

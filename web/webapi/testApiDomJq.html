@@ -47,7 +47,7 @@ and open the template in the editor.
                 {
                     $('#errorMsg').empty();
                     $('#productTable').empty();
-                    
+
                     console.log('clicked getButton!')
                     var url = "webApi.jsp";
                     url += "?q=" + $("#productSearch").val();
@@ -67,7 +67,7 @@ and open the template in the editor.
                         }
 
                         if (responseObj.dbError.length > 0) {
-                            $("#errorMsg").append("Database error: " + obj.dbError);
+                            $("#errorMsg").append("Database error: " + responseObj.dbError);
                             return;
                         }
 
@@ -77,7 +77,7 @@ and open the template in the editor.
                         }
 
                         if (responseObj.recordList.length === 0) {
-                            $("#errorMsg").append("No Countries Match Your Search");
+                            $("#errorMsg").append("No products Match Your Search");
                             return;
                         }
 
@@ -175,6 +175,8 @@ and open the template in the editor.
         <div id="titleAndSearchBox">
             <h1>Get Cat Products</h1>
             Enjoy our fine selection of cat products.<br/><br/>
+            Enter 'C' to see a list of products.<br>
+            Enter 'Z' to see what happens when no products match.<br>
             Enter starting characters of product for search, for example
             <input type="text" id="productSearch" value="C" size="30" />
             <input type="button" id="getButton" value="Get products"/>

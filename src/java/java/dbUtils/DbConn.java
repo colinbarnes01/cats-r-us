@@ -41,7 +41,7 @@ public class DbConn {
                 
                 // unless you are working from temple (wachman hall)
                 if (isTemple) {
-                    url = "jdbc:mysql://cis-linux2.temple.edu:3306//sp17_3344_1_tuf84887?user=tuf84887&password=mohbaigh";  
+                    url = "jdbc:mysql://cis-linux2.temple.edu:3306/sp17_3344_1_tuf84887?user=tuf84887&password=mohbaigh";  
                 }                 
                 this.conn = DriverManager.getConnection(url);
 

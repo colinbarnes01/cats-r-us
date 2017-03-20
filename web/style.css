@@ -27,7 +27,7 @@ html, body {
     padding: 0px 10px 0px 10px;
     box-shadow: 2px 2px 2px grey;
     /*border-radius: 0px 0px 0px 20px;*/
-    z-index: 2px;
+    z-index: 3px;
 }
 #title {
     display: inline-block;

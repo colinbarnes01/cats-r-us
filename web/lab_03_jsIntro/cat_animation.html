@@ -71,6 +71,12 @@ and open the template in the editor.
             'stop cat' button to stop the animation.  Two different cats are
             able to be created and animated in this page.
         </p>
+        <p>
+            Use the change speed input box to to change the speed of the cat.  Use
+            the reverse direction to reverse the button of the cat.  NOTE:  The default
+            speed of the second cat is set to 0, change this value to see him move left
+            and right.
+        </p>
 
         <script src="cat_animation_framework.js"></script>
         <script type="text/javascript">
@@ -79,6 +85,7 @@ and open the template in the editor.
             var catFramework = makeCatFramework();
             var cat01 = document.getElementById("cat01");
             var cat02 = document.getElementById("cat02");
+
 
             // these are used to get the cat sprites from the sprite sheet.  They are passed to callMakeCat
             // and become instance variable of the cat object

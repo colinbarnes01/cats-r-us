@@ -22,7 +22,7 @@ function makeAnimationFW() {
 
         slider.updateFields = function () {
             slider.leftStart = document.getElementsByName(slider.htmlElementsMap.leftStart)[0].value || 5;
-            slider.leftEnd = document.getElementsByName(slider.htmlElementsMap.leftEnd)[0].value || 200;
+            slider.leftEnd = document.getElementsByName(slider.htmlElementsMap.leftEnd)[0].value || 300;
             slider.duration = document.getElementsByName(slider.htmlElementsMap.duration)[0].value || 4;
         };
 
@@ -37,7 +37,6 @@ function makeAnimationFW() {
             var str = "<style>.slider{ animation-name:slideLeft; animation-duration:" + slider.duration + "s; } "
                     + "@keyframes slideLeft{ from{left:" + slider.leftStart + "px;} to{left:" + slider.leftEnd + "px;} }</style>";
 
-            console.log(str);
             $("head").append(str);
         };
 
@@ -51,8 +50,8 @@ function makeAnimationFW() {
         colorChanger.htmlElementsMap = params;
 
         colorChanger.updateFields = function () {
-            colorChanger.startColor = document.getElementsByName(colorChanger.htmlElementsMap.startColor)[0].value || "#FFFF00";
-            colorChanger.endColor = document.getElementsByName(colorChanger.htmlElementsMap.endColor)[0].value || "#FF0000";
+            colorChanger.startColor = document.getElementsByName(colorChanger.htmlElementsMap.startColor)[0].value || "#00FF00";
+            colorChanger.endColor = document.getElementsByName(colorChanger.htmlElementsMap.endColor)[0].value || "#0000FF";
             colorChanger.duration = document.getElementsByName(colorChanger.htmlElementsMap.duration)[0].value || 4;
         };
 
@@ -75,17 +74,57 @@ function makeAnimationFW() {
         return colorChanger;
     };
 
+    animationFW.makeTransformer = function (params) {
+        var transformer = document.getElementById(params.id);
+        transformer.htmlElementsMap = params;
+
+        transformer.updateFields = function () {
+            transformer.startScale = document.getElementsByName(transformer.htmlElementsMap.startScale)[0].value || .3;
+            transformer.startBgColor = document.getElementsByName(transformer.htmlElementsMap.startBgColor)[0].value || "FF0000";
+            transformer.startBorderRadius = document.getElementsByName(transformer.htmlElementsMap.startBorderRadius)[0].value || 50;
+            transformer.middleBgColor = document.getElementsByName(transformer.htmlElementsMap.middleBgColor)[0].value || "FFA500";
+            transformer.endScale = document.getElementsByName(transformer.htmlElementsMap.endScale)[0].value || 1.5;
+            transformer.endBgColor = document.getElementsByName(transformer.htmlElementsMap.endBgColor)[0].value || "FFFF00";
+            transformer.endBorderRadius = document.getElementsByName(transformer.htmlElementsMap.endBorderRadius)[0].value || 0;
+            transformer.duration = document.getElementsByName(transformer.htmlElementsMap.duration)[0].value || 4;
+        };
+
+        transformer.transform = function () {
+            transformer.updateFields();
+            transformer.classList.remove('transformer');
+            transformer.classList.add('transformer');
+            transformer.appendTransformCSSRules();
+        };
+
+        transformer.appendTransformCSSRules = function () {
+            var str = "<style>.transformer{ animation-name:transform; animation-duration:" + transformer.duration + "s; } "
+                    + "@keyframes transform{ from {"
+                    + "transform: scale(" + transformer.startScale + ");"
+                    + "background-color:" + transformer.startBgColor + ";"
+                    + "border-radius: " + transformer.startBorderRadius + "px;}"
+                    + "50%{background-color: " + transformer.middleBgColor + ";}"
+                    + "to{transform: scale(" + transformer.endScale + ");"
+                    + "border-radius: " + transformer.endBorderRadius + "px;"
+                    + "background-color:" + transformer.endBgColor + ";} }</style>";
+
+            $("head").append(str);
+        };
+
+        transformer.updateFields();
+        return transformer;
+    };
+
+
+
 
     animationFW.restartAnimation = function (component) {
         var elementId = component.htmlElementsMap.id;
-        console.log(elementId);
         var oldEle = $("#" + elementId);
         console.log("inside restart: " + oldEle);
         var newEle = oldEle.clone(true);
 
         oldEle.before(newEle);
         oldEle.remove();
-        //$("." + oldBox.attr("class") + ":last").remove();
     };
 
     return animationFW;

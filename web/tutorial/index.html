@@ -36,6 +36,7 @@ and open the template in the editor.
                 background-color: green;
                 position: relative;
                 left: 5px;
+                z-index: -1;
             }
             .boxContainer {
                 height: 150px;
@@ -131,7 +132,8 @@ and open the template in the editor.
                 <h3>What are CSS Keyframes?</h3>
                 <p>Keyframes are a way to create animations using purely CSS.  They are easy to
                     use and are a great way for a web developer to design some simple animations.<br>
-                    <a href="https://www.w3schools.com/cssref/css3_pr_animation-keyframes.asp">W3Schools Keyframes Tutorial</a></p>
+                    <a href="https://www.w3schools.com/cssref/css3_pr_animation-keyframes.asp">W3Schools Keyframes Tutorial</a><br>
+                    <a href="https://www.w3.org/TR/css3-animations/">W3.org CSS Animations</a></p>
 
                 <h3>What can this framework do for me?</h3>
                 <p>Keyframe animations generally run once upon the rendering of an html object.
@@ -152,9 +154,11 @@ and open the template in the editor.
                 </div>
 
                 <h3>Restarting CSS Keyframe Animations</h3>
-                <p>This is great.  The animation loops repeatedly because of the 'infinite' variable
-                    in the animamtion css rules.  If this were removed, the animation would only run once.
-                    What if you wanted to trigger the animation on an even like a button click?</p>
+                <p>This is great.  You just need to define a keyframes rule in the CSS and reference the rule
+                    name in the CSS for the div or class you want to animate.
+                    The animation loops repeatedly because of the 'infinite' variable
+                    in the animation CSS rules.  If this were removed, the animation would only run once.
+                    What if you wanted to trigger the animation on an event like a button click?</p>
                 <p>Keyframes usually run once upon element rendering.  In order to restart an animation,
                     a trick I found on <a href='https://css-tricks.com/restart-css-animation/'>CSS-Tricks.com</a>
                     is to clone the element, delete the old one and render the
@@ -173,8 +177,8 @@ and open the template in the editor.
                     <p data-height="221" data-theme-id="0" data-slug-hash="xqpmEG" data-default-tab="js" data-user="cbarnes" data-embed-version="2" data-pen-title="xqpmEG" class="codepen">See the Pen <a href="https://codepen.io/cbarnes/pen/xqpmEG/">xqpmEG</a> by Colin Barnes (<a href="http://codepen.io/cbarnes">@cbarnes</a>) on <a href="http://codepen.io">CodePen</a>.</p>
                     <script async src="https://production-assets.codepen.io/assets/embed/ei.js"></script>
                 </div>
-                
-                
+
+
                 <h2>Three custom classes provided by the framework</h2>
                 <h3>The Slider</h3>
                 <div class="boxContainer">
@@ -182,7 +186,7 @@ and open the template in the editor.
                 </div>
                 <button type="button" id="sliderButton" onclick="slider.slideLeft()">Slide box left</button>
                 Left Starting Position: <input type="number" name="leftStart" value="5">
-                Left Ending Position: <input type="number" name="leftEnd" value="200">
+                Left Ending Position: <input type="number" name="leftEnd" value="300">
                 Duration (s): <input type="number" name="slideDuration" value="4"><br><br>
 
 
@@ -190,18 +194,25 @@ and open the template in the editor.
                 <div class="boxContainer">
                     <div id="box2" class="box"></div>
                 </div>
-                <button type="button" id="changeColorButton" onclick="colorChanger.changeColor()">Change Box Color</button>
-                Starting Color: <input type="color" name="startColor" value="#FFFF00"> Ending Color: <input type="color" name="endColor" value="#FF0000">
+                <button type="button" id="changeColorButton" onclick="colorChanger.changeColor()">Change box color</button>
+                Starting Color: <input type="color" name="startColor" value="#008000"> Ending Color: <input type="color" name="endColor" value="#0000FF">
                 Duration (s): <input type="number" name="colorChangeDuration" value="4"><br><br>
 
                 <h3>The Transformer</h3>
                 <div class="boxContainer">
-                    <div id="triangle1" class="shapeShifter"></div>
+                    <div id="box3" class="box"></div>
                 </div>
+                <button type="button" id="transformButton" onclick="transformer.transform()">Transform box</button>
+                Starting Color: <input type="color" name="startBgColor" value="#FF0000"> Middle Color: <input type="color" name="middleBgColor" value="#FFA500">
+                Ending Color: <input type="color" name="endBgColor" value="#FFFF00">
+                Duration (s): <input type="number" name="transformDuration" value="4">
+                Starting Border Radius : <input type="number" name="startBorderRadius" value=50>
+                Ending Border Radius : <input type="number" name="endBorderRadius" value=0>
+                Starting Scale: <input type="number" name="startScale" value=0.3>
+                Ending Scale : <input type="number" name="endScale" value=1.5>
 
 
-
-
+                <br><br>
 
 
                 <script src="animationFramework.js"></script>
@@ -213,6 +224,21 @@ and open the template in the editor.
                     var colorChanger = animationFW.makeColorChanger({id: 'box2', startColor: 'startColor',
                         endColor: 'endColor', duration: 'colorChangeDuration'});
 
+                    // TO DO: finish html input paramaters
+                    var transformer = animationFW.makeTransformer(
+                            {
+                                id: 'box3',
+                                startBgColor: 'startBgColor',
+                                endBgColor: 'endBgColor',
+                                duration: 'transformDuration',
+                                middleBgColor: 'middleBgColor',
+                                endBgColor: 'endBgColor',
+                                        startBorderRadius: 'startBorderRadius',
+                                endBorderRadius: 'endBorderRadius',
+                                startScale: 'startScale',
+                                endScale: 'endScale'
+                            });
+
 
                     $(function () {
                         // for each component, the html page needs to create a button click that passes 
@@ -220,13 +246,15 @@ and open the template in the editor.
 
                         $("#sliderButton").click(function () {
                             console.log("inside slider btn click");
-                            //animationFW.restartAnimation("box1");
                             animationFW.restartAnimation(slider);
                         });
                         $("#changeColorButton").click(function () {
                             console.log("inside change color btn click");
-                            //animationFW.restartAnimation("box2");
                             animationFW.restartAnimation(colorChanger);
+                        });
+                        $("#transformButton").click(function () {
+                            console.log("inside transform btn click");
+                            animationFW.restartAnimation(transformer);
                         });
                     });
 

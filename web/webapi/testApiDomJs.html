@@ -82,7 +82,7 @@ and open the template in the editor.
                         return;
                     }
                     if (responseObj.dbError.length > 0) {
-                        $("requestErrorMsg").innerHTML = "Database error: " + obj.dbError;
+                        $("requestErrorMsg").innerHTML = "Database error: " + responseObj.dbError;
                         return;
                     }
                     if (responseObj.recordList == null) {
@@ -90,7 +90,7 @@ and open the template in the editor.
                         return;
                     }
                     if (responseObj.recordList.length === 0) {
-                        $("requestErrorMsg").innerHTML = "No Countries Match Your Search";
+                        $("requestErrorMsg").innerHTML = "No Products Match Your Search";
                         return;
                     }
                     console.log("responseObj:");
@@ -168,6 +168,8 @@ and open the template in the editor.
         <div id="titleAndSearchBox">
             <h1>Get Cat Products</h1>
             Enjoy our fine selection of cat products.<br/><br/>
+            Enter 'C' to see a list of products.<br>
+            Enter 'Z' to see what happens when no products match.<bR>
             Enter starting characters of product for search, for example
             <input type="text" id="productSearch" value="C" size="30" />
             <input type="button" value="Get products" onClick="javascript:sendRequest()"/>
