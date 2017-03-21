@@ -92,6 +92,37 @@ and open the template in the editor.
                 right: 0px;
                 margin: 0px 10px 0px 0px;
             }
+            #box4 {
+                animation-name: advancedSlide;
+                animation-duration: 4s;
+                /*animation-iteration-count: infinite;*/
+            }
+            @keyframes advancedSlide {
+                0% {
+                    transform: rotate(0deg);
+                    left: 5px;
+                }
+                25% {
+                    transform: rotate(20deg);
+                    left: 5px;
+                }
+                50% {
+                    transform: rotate(0deg);
+                    left: 500px;
+                }
+                55% {
+                    transform: rotate(0deg);
+                    left: 500px;
+                }
+                70% {
+                    transform: rotate(0deg);
+                    left: 500px;
+                }
+                100% {
+                    transform: rotate(-360deg);
+                    left: 5px;
+                }
+            }
             @media screen and (min-width: 600px) {
                 #navGroup {
                     display:inherit;
@@ -128,6 +159,13 @@ and open the template in the editor.
             <div id="bodyContainer">
                 <h1 style="margin-top:70px">Custom CSS KeyFrame Animation Framework</h1>
                 <h3>By Colin Barnes</h3><br><br>
+
+
+                <h3>Advanced Slider</h3>
+                <div class="boxContainer">
+                    <div id="box4" class="box" style="height:50px;"></div>
+                </div><br><br>
+
 
                 <h3>What are CSS Keyframes?</h3>
                 <p>Keyframes are a way to create animations using purely CSS.  They are easy to
@@ -210,9 +248,9 @@ and open the template in the editor.
                 Ending Border Radius : <input type="number" name="endBorderRadius" value=0>
                 Starting Scale: <input type="number" name="startScale" value=0.3>
                 Ending Scale : <input type="number" name="endScale" value=1.5>
-
-
                 <br><br>
+
+
 
 
                 <script src="animationFramework.js"></script>
