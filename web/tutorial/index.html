@@ -40,8 +40,11 @@ and open the template in the editor.
             }
             .boxContainer {
                 height: 150px;
-                border: red solid;
+                /*border: red solid;*/
                 width: 95%;
+            }
+            .demoContainer {
+                border-bottom: 5px solid ;
             }
             .advancedSlider {
                 display: inline-block;
@@ -79,7 +82,6 @@ and open the template in the editor.
                 #navGroup {
                     display:inherit;
                 }
-
                 #pageTitle {
                     color: green;
                 }
@@ -89,11 +91,9 @@ and open the template in the editor.
                     right: 0px;
                     margin: 0px 10px 0px 0px;
                 }
-
             </style>        
         </head>
         <body>
-
             <div id="titlenav">
                 <div id="title">
                     Cats-R-Us
@@ -111,7 +111,6 @@ and open the template in the editor.
             <div id="bodyContainer">
                 <h1 style="margin-top:70px">Custom CSS KeyFrame Animation Framework</h1>
                 <h3>By Colin Barnes</h3><br><br>
-
 
                 <h3>What are CSS Keyframes?</h3>
                 <p>Keyframes are a way to create animations using purely CSS.  They are easy to
@@ -133,16 +132,14 @@ and open the template in the editor.
 
                 <h3>Here is a simple example of a CSS Keyframe animation</h3>
                 <div class="codePenContainer">
-                    <p data-height="422" data-theme-id="0" data-slug-hash="dvJQRx" data-default-tab="css,result" data-user="cbarnes" data-embed-version="2" data-pen-title="dvJQRx" data-preview="true" class="codepen">See the Pen <a href="https://codepen.io/cbarnes/pen/dvJQRx/">dvJQRx</a> by Colin Barnes (<a href="http://codepen.io/cbarnes">@cbarnes</a>) on <a href="http://codepen.io">CodePen</a>.</p>
+                    <p data-height="390" data-theme-id="0" data-slug-hash="dvJQRx" data-default-tab="css,result" data-user="cbarnes" data-embed-version="2" data-pen-title="dvJQRx" data-preview="true" class="codepen">See the Pen <a href="https://codepen.io/cbarnes/pen/dvJQRx/">dvJQRx</a> by Colin Barnes (<a href="http://codepen.io/cbarnes">@cbarnes</a>) on <a href="http://codepen.io">CodePen</a>.</p>
                     <script async src="https://production-assets.codepen.io/assets/embed/ei.js"></script>
                 </div>
 
                 <h3>Restarting CSS Keyframe Animations</h3>
                 <p>This is great.  You just need to define a keyframes rule in the CSS and reference the rule
-                    name in the CSS for the div or class you want to animate.
-                    The animation loops repeatedly because of the 'infinite' variable
-                    in the animation CSS rules.  If this were removed, the animation would only run once.
-                    What if you wanted to trigger the animation on an event like a button click?</p>
+                    name in the CSS for the div or class you want to animate.  But as you can see,
+                    it only runs once. What if you wanted to trigger the animation on an event like a button click?</p>
                 <p>Keyframes usually run once upon element rendering.  In order to restart an animation,
                     a trick I found on <a href='https://css-tricks.com/restart-css-animation/'>CSS-Tricks.com</a>
                     is to clone the element, delete the old one and render the
@@ -171,104 +168,116 @@ and open the template in the editor.
 
 
                 <h2>Four custom classes provided by the framework</h2>
-                <h3>The Slider</h3>
-                <div class="boxContainer">
-                    <div id="box1" class="box"></div>
-                </div>
-                <button type="button" id="sliderButton" onclick="slider.slideLeft()">Slide box left</button>
-                Left Starting Position: <input type="number" name="leftStart" value="5">
-                Left Ending Position: <input type="number" name="leftEnd" value="300">
-                Duration (s): <input type="number" name="slideDuration" value="4"><br><br>
 
 
-                <h3>The Color Changer</h3>
-                <div class="boxContainer">
-                    <div id="box2" class="box"></div>
+                <div class='demoContainer'>
+                    <h3>The Slider</h3>
+                    <div class="boxContainer">
+                        <div id="box1" class="box"></div>
+                    </div>
+                    <button type="button" id="sliderButton" onclick="slider.slideLeft()">Slide box left</button>
+                    Left Starting Position: <input type="number" name="leftStart" value="5">
+                    Left Ending Position: <input type="number" name="leftEnd" value="300">
+                    Duration (s): <input type="number" name="slideDuration" value="4">
                 </div>
-                <button type="button" id="changeColorButton" onclick="colorChanger.changeColor()">Change box color</button>
-                Starting Color: <input type="color" name="startColor" value="#008000"> 
-                Ending Color: <input type="color" name="endColor" value="#0000FF">
-                Duration (s): <input type="number" name="colorChangeDuration" value="4"><br><br>
 
-                <h3>The Transformer</h3>
-                <div class="boxContainer">
-                    <div id="box3" class="box"></div>
+                <div class='demoContainer'>
+                    <h3>The Color Changer</h3>
+                    <div class="boxContainer">
+                        <div id="box2" class="box"></div>
+                    </div>
+                    <button type="button" id="changeColorButton" onclick="colorChanger.changeColor()">Change box color</button>
+                    Starting Color: <input type="color" name="startColor" value="#008000"> 
+                    Ending Color: <input type="color" name="endColor" value="#0000FF">
+                    Duration (s): <input type="number" name="colorChangeDuration" value="4">
                 </div>
-                <button type="button" id="transformButton" onclick="transformer.transform()">Transform box</button>
-                Starting Color: <input type="color" name="startBgColor" value="#FF0000"> Middle Color: <input type="color" name="middleBgColor" value="#FFA500">
-                Ending Color: <input type="color" name="endBgColor" value="#FFFF00">
-                Duration (s): <input type="number" name="transformDuration" value="4">
-                Starting Border Radius : <input type="number" name="startBorderRadius" value=50>
-                Ending Border Radius : <input type="number" name="endBorderRadius" value=0>
-                Starting Scale: <input type="number" name="startScale" value=0.3>
-                Ending Scale : <input type="number" name="endScale" value=1.5>
+
+                <div class='demoContainer'>
+                    <h3>The Transformer</h3>
+                    <div class="boxContainer">
+                        <div id="box3" class="box"></div>
+                    </div>
+                    <button type="button" id="transformButton" onclick="transformer.transform()">Transform box</button>
+                    Starting Color: <input type="color" name="startBgColor" value="#FF0000"> Middle Color: <input type="color" name="middleBgColor" value="#FFA500">
+                    Ending Color: <input type="color" name="endBgColor" value="#FFFF00">
+                    Duration (s): <input type="number" name="transformDuration" value="4">
+                    Starting Border Radius : <input type="number" name="startBorderRadius" value=50>
+                    Ending Border Radius : <input type="number" name="endBorderRadius" value=0>
+                    Starting Scale: <input type="number" name="startScale" value=0.3>
+                    Ending Scale : <input type="number" name="endScale" value=1.5>
+                </div>                    
+
+                <div class='demoContainer'>
+                    <h3>Advanced Slider</h3>
+                    <div class="boxContainer">
+                        <div id="box4" class="advancedSlider">Animations!</div>
+                    </div>
+                    <button type="button" id="advSliderButton" onclick="advSlider.slide()">Slide Box</button>
+                    Starting Color: <input type="color" name="startColorAdv" value="#ADD8E6"> 
+                    Ending Color: <input type="color" name="endColorAdv" value="#90EE90">
+                    Duration (s): <input type="number" name="advSliderDuration" value="4">
+                    Left Start Position: <input type='number' name='leftStartAdv' value='5'>
+                    Left End Position: <input type='number' name='leftEndAdv' value='500'>
+                </div>
                 <br><br>
-
-                <h3>Advanced Slider</h3>
-                <div class="boxContainer">
-                    <div id="box4" class="advancedSlider">Animations!</div>
-                </div>
-                <button type="button" id="advSliderButton" onclick="advSlider.slide()">Slide Box</button>
-                Starting Color: <input type="color" name="startColorAdv" value="#ADD8E6"> 
-                Ending Color: <input type="color" name="endColorAdv" value="#90EE90">
-                Duration (s): <input type="number" name="advSliderDuration" value="4"><br><br>
 
 
 
 
                 <script src="animationFramework.js"></script>
                 <script  type="text/javascript">
-                    "use strict";
-                    var animationFW = makeAnimationFW();
+                        "use strict";
+                        var animationFW = makeAnimationFW();
 
-                    var slider = animationFW.makeSlider({id: 'box1', leftStart: 'leftStart', leftEnd: 'leftEnd', duration: 'slideDuration'});
-                    var colorChanger = animationFW.makeColorChanger({id: 'box2', startColor: 'startColor',
-                        endColor: 'endColor', duration: 'colorChangeDuration'});
+                        var slider = animationFW.makeSlider({id: 'box1', leftStart: 'leftStart', leftEnd: 'leftEnd', duration: 'slideDuration'});
+                        var colorChanger = animationFW.makeColorChanger({id: 'box2', startColor: 'startColor',
+                            endColor: 'endColor', duration: 'colorChangeDuration'});
 
-                    var transformer = animationFW.makeTransformer(
-                            {
-                                id: 'box3',
-                                startBgColor: 'startBgColor',
-                                endBgColor: 'endBgColor',
-                                duration: 'transformDuration',
-                                middleBgColor: 'middleBgColor',
-                                startBorderRadius: 'startBorderRadius',
-                                endBorderRadius: 'endBorderRadius',
-                                startScale: 'startScale',
-                                endScale: 'endScale'
+                        var transformer = animationFW.makeTransformer(
+                                {
+                                    id: 'box3',
+                                    startBgColor: 'startBgColor',
+                                    endBgColor: 'endBgColor',
+                                    duration: 'transformDuration',
+                                    middleBgColor: 'middleBgColor',
+                                    startBorderRadius: 'startBorderRadius',
+                                    endBorderRadius: 'endBorderRadius',
+                                    startScale: 'startScale',
+                                    endScale: 'endScale'
+                                });
+
+                        var advSlider = animationFW.makeAdvancedSlider(
+                                {
+                                    id: 'box4',
+                                    startColorAdv: 'startColorAdv',
+                                    endColorAdv: 'endColorAdv',
+                                    advSliderDuration: 'advSliderDuration',
+                                    leftStartAdv: 'leftStartAdv',
+                                    leftEndAdv: 'leftEndAdv'
+                                });
+
+
+                        $(function () {
+                            // for each component, the html page needs to create a button click that passes 
+                            // the id of the component to the framework's restart animation function
+
+                            $("#sliderButton").click(function () {
+                                console.log("inside slider btn click");
+                                animationFW.restartAnimation(slider);
                             });
-
-                    var advSlider = animationFW.makeAdvancedSlider(
-                            {
-                                id: 'box4',
-                                startColorAdv: 'startColorAdv',
-                                endColorAdv: 'endColorAdv',
-                                advSliderDuration: 'advSliderDuration'
+                            $("#changeColorButton").click(function () {
+                                console.log("inside change color btn click");
+                                animationFW.restartAnimation(colorChanger);
                             });
-
-
-                    $(function () {
-                        // for each component, the html page needs to create a button click that passes 
-                        // the id of the component to the framework's restart animation function
-
-                        $("#sliderButton").click(function () {
-                            console.log("inside slider btn click");
-                            animationFW.restartAnimation(slider);
+                            $("#transformButton").click(function () {
+                                console.log("inside transform btn click");
+                                animationFW.restartAnimation(transformer);
+                            });
+                            $("#advSliderButton").click(function () {
+                                console.log("inside adv Slider btn click");
+                                animationFW.restartAnimation(advSlider);
+                            });
                         });
-                        $("#changeColorButton").click(function () {
-                            console.log("inside change color btn click");
-                            animationFW.restartAnimation(colorChanger);
-                        });
-                        $("#transformButton").click(function () {
-                            console.log("inside transform btn click");
-                            animationFW.restartAnimation(transformer);
-                        });
-                        $("#advSliderButton").click(function () {
-                            console.log("inside adv Slider btn click");
-                            animationFW.restartAnimation(advSlider);
-                        });
-                    });
-
 
 
                 </script>

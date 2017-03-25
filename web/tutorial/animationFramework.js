@@ -123,23 +123,23 @@ function makeAnimationFW() {
             advSlider.startColor = document.getElementsByName(advSlider.htmlElementsMap.startColorAdv)[0].value || "#ADD8E6";
             advSlider.endColor = document.getElementsByName(advSlider.htmlElementsMap.endColorAdv)[0].value || "#90EE90";
             advSlider.duration = document.getElementsByName(advSlider.htmlElementsMap.advSliderDuration)[0].value || 4;
+            advSlider.leftStart = document.getElementsByName(advSlider.htmlElementsMap.leftStartAdv)[0].value || 5;
+            advSlider.leftEnd = document.getElementsByName(advSlider.htmlElementsMap.leftEndAdv)[0].value || 500;
         };
 
         advSlider.slide = function () {
             advSlider.updateFields();
             advSlider.classList.remove('advancedSlider');
             advSlider.classList.add('advancedSlider');
-            advSlider.appendChangeColorCSSRules();
+            advSlider.appendAdvancedSlideCSSRules();
         };
 
-
-
-        advSlider.appendChangeColorCSSRules = function () {
+        advSlider.appendAdvancedSlideCSSRules = function () {
             console.log('inside append advSlider.duration: ' + advSlider.duration);
             var str = "<style>.advancedSlider{ animation-name: advancedSlide; animation-duration:" + advSlider.duration + "s; } "
                     + "@keyframes advancedSlide{"
-                    + "0% { background-color:" + advSlider.startColor + "; transform: rotate(0deg); left: 5px; }"
-                    + "70% { background-color:" + advSlider.endColor + "; transform: rotate(0deg); left: 500px; }"
+                    + "0% { background-color:" + advSlider.startColor + "; transform: rotate(0deg); left: " + advSlider.leftStart + "px; }"
+                    + "70% { background-color:" + advSlider.endColor + "; transform: rotate(0deg); left: " + advSlider.leftEnd + "px; }"
                     + "100% { transform: rotate(-360deg); left: 5px; }"
                     + "}</style>";
 
