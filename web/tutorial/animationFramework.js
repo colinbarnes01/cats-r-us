@@ -114,6 +114,69 @@ function makeAnimationFW() {
         return transformer;
     };
 
+    animationFW.makeAdvancedSlider = function (params) {
+        var advSlider = document.getElementById(params.id);
+        advSlider.htmlElementsMap = params;
+
+        advSlider.updateFields = function () {
+            console.log('adv slider duration: ' + document.getElementsByName(advSlider.htmlElementsMap.advSliderDuration)[0].value);
+            advSlider.startColor = document.getElementsByName(advSlider.htmlElementsMap.startColorAdv)[0].value || "#ADD8E6";
+            advSlider.endColor = document.getElementsByName(advSlider.htmlElementsMap.endColorAdv)[0].value || "#90EE90";
+            advSlider.duration = document.getElementsByName(advSlider.htmlElementsMap.advSliderDuration)[0].value || 4;
+        };
+
+        advSlider.slide = function () {
+            advSlider.updateFields();
+            advSlider.classList.remove('advancedSlider');
+            advSlider.classList.add('advancedSlider');
+            advSlider.appendChangeColorCSSRules();
+        };
+
+
+
+        advSlider.appendChangeColorCSSRules = function () {
+            console.log('inside append advSlider.duration: ' + advSlider.duration);
+            var str = "<style>.advancedSlider{ animation-name: advancedSlide; animation-duration:" + advSlider.duration + "s; } "
+                    + "@keyframes advancedSlide{"
+                    + "0% { background-color:" + advSlider.startColor + "; transform: rotate(0deg); left: 5px; }"
+                    + "70% { background-color:" + advSlider.endColor + "; transform: rotate(0deg); left: 500px; }"
+                    + "100% { transform: rotate(-360deg); left: 5px; }"
+                    + "}</style>";
+
+            $("head").append(str);
+        };
+
+        /*            @keyframes advancedSlide {
+         0% {
+         transform: rotate(0deg);
+         left: 5px;
+         }
+         25% {
+         transform: rotate(20deg);
+         left: 5px;
+         }
+         50% {
+         transform: rotate(0deg);
+         left: 500px;
+         }
+         55% {
+         transform: rotate(0deg);
+         left: 500px;
+         }
+         70% {
+         transform: rotate(0deg);
+         left: 500px;
+         background-color: lightgreen;
+         }
+         100% {
+         transform: rotate(-360deg);
+         left: 5px;
+         }
+         }*/
+        advSlider.updateFields();
+        return advSlider;
+    };
+
 
 
 
