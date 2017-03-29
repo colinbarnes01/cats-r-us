@@ -36,7 +36,7 @@ public class UserStringDataList {
                     sd.userId = FormatUtils.formatInteger(results.getObject("user_id"));
                     sd.userName = FormatUtils.formatString(results.getObject("user_name"));
                     sd.email = FormatUtils.formatString(results.getObject("email"));
-                    sd.password = FormatUtils.formatDollar(results.getObject("password"));
+                    sd.password = FormatUtils.formatString(results.getObject("password"));
                     sd.role = FormatUtils.formatString(results.getObject("role"));
                     this.recordList.add(sd);
                 } catch (Exception e) {
