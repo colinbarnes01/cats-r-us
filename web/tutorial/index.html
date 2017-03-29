@@ -23,6 +23,12 @@ and open the template in the editor.
             h3 {
                 margin-bottom: 0px;
             }
+            h2 {
+                font-weight: bold;
+                border-bottom: 5px solid ;
+                width: 45%;
+                margin-top: 60px;
+            }
             p {
                 background-color: #fcf4c4;
                 border-radius: 10%;
@@ -110,8 +116,9 @@ and open the template in the editor.
             </div>
             <div id="bodyContainer">
                 <h1 style="margin-top:70px">Custom CSS KeyFrame Animation Framework</h1>
-                <h3>By Colin Barnes</h3><br><br>
+                <h3>By Colin Barnes</h3>
 
+                <h2>Introduction</h2>
                 <h3>What are CSS Keyframes?</h3>
                 <p>Keyframes are a way to create animations using purely CSS.  They are easy to
                     use and are a great way for a web developer to design some simple animations.<br>
@@ -219,7 +226,41 @@ and open the template in the editor.
                     Left Start Position: <input type='number' name='leftStartAdv' value='5'>
                     Left End Position: <input type='number' name='leftEndAdv' value='500'>
                 </div>
-                <br><br>
+
+                <h2>How to use this framework / Overview</h2>
+                <p> <a href="animationFramework.zip">Link to framework zip file</a><br>
+                    A page uses this framework by creating a div in their html code.
+                    Make sure you have included a reference to the animationFramework.js
+                    code in a script tag, and created a framework object in the html file.  
+                    Then, pass the id of the div and any necessary parameters to the component
+                    constructor method function in the framework code.</p>
+                <div class="codePenContainer">
+                    <p data-height="202" data-theme-id="0" data-slug-hash="bqjxJB" data-default-tab="js" data-user="cbarnes" data-embed-version="2" data-pen-title="constructor call" class="codepen">See the Pen <a href="https://codepen.io/cbarnes/pen/bqjxJB/">constructor call</a> by Colin Barnes (<a href="http://codepen.io/cbarnes">@cbarnes</a>) on <a href="http://codepen.io">CodePen</a>.</p>
+                    <script async src="https://production-assets.codepen.io/assets/embed/ei.js"></script>
+                </div>
+                <p>An element id is required for each make function.  Other parameters, such
+                    as duration, will be set to default values by the framework if not
+                    specified by the client when calling the constructor function.</p>
+
+                <p> The other thing the HTML page has to do is let the framework know
+                    when an event has occurred, such as a button click, so that the framework
+                    knows when to restart the animation.  This can be done by adding code inside
+                    a jQuery document.ready() function that listens for a button click and then
+                    calls the framework's restartAnimation() function.
+                <div class='codePenContainer'>
+                    <p data-height="184" data-theme-id="0" data-slug-hash="LWBJwv" data-default-tab="js" data-user="cbarnes" data-embed-version="2" data-pen-title="restart animation caller" class="codepen">See the Pen <a href="https://codepen.io/cbarnes/pen/LWBJwv/">restart animation caller</a> by Colin Barnes (<a href="http://codepen.io/cbarnes">@cbarnes</a>) on <a href="http://codepen.io">CodePen</a>.</p>
+                    <script async src="https://production-assets.codepen.io/assets/embed/ei.js"></script>
+                </div>
+
+                <h2>Summary</h2>
+                <p>In conclusion, writing this framework and tutorial was a great way
+                    for me to learn about animating elements with CSS Keyframes.  I also got
+                    to practice writing a small JavaScript framework and thinking about how
+                    responsibilities should be divided up between the client HTML page and
+                    the JavaScript Framework.
+
+                    I hope that this tutorial has been helpful and encourage you to try this
+                    framework if you want to easily customize and restart your CSS animations.</p><br><br><br>
 
 
 
@@ -229,7 +270,8 @@ and open the template in the editor.
                         "use strict";
                         var animationFW = makeAnimationFW();
 
-                        var slider = animationFW.makeSlider({id: 'box1', leftStart: 'leftStart', leftEnd: 'leftEnd', duration: 'slideDuration'});
+                        var slider = animationFW.makeSlider(
+                                {id: 'box1', leftStart: 'leftStart', leftEnd: 'leftEnd', duration: 'slideDuration'});
                         var colorChanger = animationFW.makeColorChanger({id: 'box2', startColor: 'startColor',
                             endColor: 'endColor', duration: 'colorChangeDuration'});
 
@@ -283,4 +325,5 @@ and open the template in the editor.
                 </script>
             </div>
         </body>
+        <div id='footer'>Colin Barnes</div>
     </html>

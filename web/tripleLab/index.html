@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>CATS-R-US</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="style.css">
+        <style>
+            table {
+                border-collapse: collapse;
+            }
+
+            table, th, td {
+                border: 1px solid black;
+            }
+        </style>
+
+        <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-route.js"></script>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+        <script src="route.js"></script>
+    </head>
+    <body ng-app="myApp">
+        <div id="titlenav">
+            <div id="title">
+                Cats-R-Us
+            </div>
+            <div id="navbar">
+                <div id="navIcon">
+                    <img src="../pictures/navbars.png" alt="" width="43"/>
+                </div>
+                <div id='navGroup'>
+                    <a class="navLink" href="#user">Users</a>
+                    <a class="navLink" href="#other">Other</a>
+                    <a class="navLink" href="../labs.html">Labs</a>
+                </div>
+            </div>
+        </div>
+
+
+        <div id="title-page" class="single-page">
+            <img id="title-logo" src="../pictures/logo.png">
+
+
+            <div ng-controller="otherController">
+                <div ng-view id="angularContent"></div>
+            </div>
+
+
+
+        </div>
+
+        <script>
+                    $(document).ready(function () {
+                        // when user clicks the navIcon, it toggles (makes visible/invisible)
+                        // the element after that (navGroup).
+                        $("#navIcon").click(function () {
+                            $(this).next().toggle(); // hide if showing, show if hiding. 
+                        });
+
+                        // make the navGroup is visible when resizing to >= 580 px (desktop).
+                        // make the navGroup is invisible when resizing to < 580 px (mobile).
+                        // there seems to be a 20 pixel discrepancy between width of titleNav
+                        // and width of browser viewing area (that's why testing 560 not 580)
+                        $(window).resize(function () {
+                            var wide = $('#title-page').css("width");
+                            wide = parseInt(wide);
+                            //console.log("width " + wide);
+                            if (wide >= 560) {
+                                jQuery('#navGroup').css("display", "block");
+                                //console.log("show navGroup");
+                            } else {
+                                jQuery('#navGroup').css("display", "none");
+                            }
+                        });
+                    });
+        </script>
+    </body>
+
+
+</html>

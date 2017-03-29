@@ -1,6 +1,6 @@
 package model.product;
 
-public class StringData {
+public class ProductStringData {
 
     // select product_id, product_name, flag_abbrev, flag_URL from product_flag
     public String productId = "";

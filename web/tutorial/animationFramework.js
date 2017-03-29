@@ -1,12 +1,7 @@
 /* 
  * author: Colin
  * date created:  03/14/2017
- * 
- * GOALS:
- * 1) call a keyframe animation from a wrapper function in my js FW || NOT DONE
- * 2) create wrapper functions for several fun keyframes || NOT DONE
- * 3) allow users to create custom animations (optional?) || NOT DONE
- * 
+ *
  */
 "use strict";
 
@@ -34,7 +29,7 @@ function makeAnimationFW() {
         };
 
         slider.appendSlideLeftCSSRules = function () {
-            var str = "<style>.slider{ animation-name:slideLeft; animation-duration:" + slider.duration + "s; } "
+            var str = "<style>.slider{ animation-name:slideLeft; animation-duration:" + slider.duration + "s;}"
                     + "@keyframes slideLeft{ from{left:" + slider.leftStart + "px;} to{left:" + slider.leftEnd + "px;} }</style>";
 
             $("head").append(str);
@@ -42,7 +37,7 @@ function makeAnimationFW() {
 
         slider.updateFields();
         return slider;
-    }
+    };
 
 
     animationFW.makeColorChanger = function (params) {
@@ -145,34 +140,7 @@ function makeAnimationFW() {
 
             $("head").append(str);
         };
-
-        /*            @keyframes advancedSlide {
-         0% {
-         transform: rotate(0deg);
-         left: 5px;
-         }
-         25% {
-         transform: rotate(20deg);
-         left: 5px;
-         }
-         50% {
-         transform: rotate(0deg);
-         left: 500px;
-         }
-         55% {
-         transform: rotate(0deg);
-         left: 500px;
-         }
-         70% {
-         transform: rotate(0deg);
-         left: 500px;
-         background-color: lightgreen;
-         }
-         100% {
-         transform: rotate(-360deg);
-         left: 5px;
-         }
-         }*/
+        
         advSlider.updateFields();
         return advSlider;
     };

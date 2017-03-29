@@ -1,24 +1,24 @@
 package model.product;
 
-import model.product.StringData;
+import model.product.ProductStringData;
 import dbUtils.*;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
-public class StringDataList {
+public class ProductStringDataList {
 
     public String dbError = "";
-    private ArrayList<StringData> recordList = new ArrayList();
+    private ArrayList<ProductStringData> recordList = new ArrayList();
 
     // Default constructor just leaves the 2 data members initialized as above
-    public StringDataList() {
+    public ProductStringDataList() {
     }
 
     // overloaded constructor populates the list (and possibly the dbError)
-    public StringDataList(String productNameStartsWith, DbConn dbc) {
+    public ProductStringDataList(String productNameStartsWith, DbConn dbc) {
 
-        StringData sd = new StringData();
+        ProductStringData sd = new ProductStringData();
 
         System.out.println("Searching for countries that start with " + productNameStartsWith);
 
@@ -33,7 +33,7 @@ public class StringDataList {
 
             while (results.next()) {
                 try {
-                    sd = new StringData();
+                    sd = new ProductStringData();
                     sd.productId = FormatUtils.formatInteger(results.getObject("product_id"));
                     sd.productName = FormatUtils.formatString(results.getObject("product_name"));
                     sd.imageUrl = FormatUtils.formatString(results.getObject("image_url"));
