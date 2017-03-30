@@ -78,6 +78,13 @@ public class UserDBWrapper
 
     private static UserStringData validate(UserStringData inputData)
     {
-        return new UserStringData();
+        UserStringData errorMsgs = new UserStringData();
+
+        errorMsgs.userName = ValidationUtils.stringValidationMsg(inputData.userName, 45, true);
+        errorMsgs.password = ValidationUtils.stringValidationMsg(inputData.password, 45, true);
+        errorMsgs.email = ValidationUtils.stringValidationMsg(inputData.email, 45, false);
+        errorMsgs.role = ValidationUtils.stringValidationMsg(inputData.role, 45, true);
+
+        return errorMsgs;
     }
 }
