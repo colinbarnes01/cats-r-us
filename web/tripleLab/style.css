@@ -123,17 +123,6 @@ html, body {
     padding: 1%;
     box-shadow: 10px 10px 5px #888888;
 }
-#angularContent {
-    width: 90%;
-    text-align: center;
-    margin-left: 2%;
-    margin-right: 2%;
-    border: #EDDE8B solid;
-    border-width: 10px;
-    border-radius: 50px;
-    padding: 1%;
-    box-shadow: 10px 10px 5px #888888;
-}
 #home-picture {
     border-style: solid;
     border-color: greenyellow;

@@ -11,6 +11,7 @@ public class ProductStringData
     public String description = "";
     public String websiteUrl = "";
     public String errorMsg = "";
+    public int id;
 
     public int getCharacterCount()
     {

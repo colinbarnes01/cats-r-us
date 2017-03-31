@@ -1,17 +1,20 @@
 <a href="#insertProduct">Insert Product</a>
+Filter By: <input ng-model="query" type="text"/>
 <table>
     <tr>
-        <th>Id</th>
-        <th>Name</th>
-        <th>Image</th>
-        <th>Price</th>
-        <th>Description</th>
+        <th> <a href="" ng-click="sortField = 'id'; reverse = !reverse">Id</a></th>
+        <th> <a href="" ng-click="sortField = 'productName'; reverse = !reverse">Name</a></th>
+        <th> <a href="" ng-click="sortField = 'imageUrl'; reverse = !reverse">Image</a></th>
+        <th> <a href="" ng-click="sortField = 'price'; reverse = !reverse">Price</a></th>
+        <th> <a href="" ng-click="sortField = 'description'; reverse = !reverse">Description</a></th>
+        <th> <a href="" ng-click="sortField = 'websiteUrl'; reverse = !reverse">Website Url</a></th>
     </tr>
-    <tr ng-repeat="product in products">
-        <td>{{product.productId}}</td>
+    <tr ng-repeat="product in products| filter:query | orderBy:sortField:reverse">
+        <td>{{product.id}}</td>
         <td>{{product.productName}}</td>
         <td><img src="{{product.imageUrl}}" width="80" alt=""></td>
         <td>{{product.price}}</td>
         <td>{{product.description}}</td>
+        <td><a href="{{product.websiteUrl}}">{{product.websiteUrl}}</a></td>
     </tr>
 </table>

@@ -17,4 +17,6 @@ app.controller('productListController', function ($scope, $http) {
                 console.log("");
             }
     ); // closes off the parameter list to the "then" function...
+    //$scope.sortField = 'productName';
+    //$scope.reverse = true;
 }); // finishes fn def'n for unnamed controller of 'ContryListCtrl' ng-controller element.

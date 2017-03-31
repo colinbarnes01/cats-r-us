@@ -11,7 +11,6 @@ public class ProductStringDataList {
     public String dbError = "";
     private ArrayList<ProductStringData> recordList = new ArrayList();
 
-    // Default constructor just leaves the 2 data members initialized as above
     public ProductStringDataList() {
     }
 
@@ -24,7 +23,7 @@ public class ProductStringDataList {
 
         try {
 
-            String sql = "SELECT image_url, product_name, product_id, price, description FROM product "
+            String sql = "SELECT image_url, product_name, product_id, price, description, website_url FROM product "
                     + " WHERE product_name LIKE ? ORDER BY product_name";
 
             PreparedStatement stmt = dbc.getConn().prepareStatement(sql);
@@ -39,6 +38,8 @@ public class ProductStringDataList {
                     sd.imageUrl = FormatUtils.formatString(results.getObject("image_url"));
                     sd.price = FormatUtils.formatDollar(results.getObject("price"));
                     sd.description = FormatUtils.formatString(results.getObject("description"));
+                    sd.websiteUrl = FormatUtils.formatString(results.getObject("website_url"));
+                    sd.id = Integer.parseInt(sd.productId);
                     this.recordList.add(sd);
                 } catch (Exception e) {
                     sd.errorMsg = "Record Level Error in model.product.StringDataList Constructor: " + e.getMessage();
