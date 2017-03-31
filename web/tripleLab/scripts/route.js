@@ -3,7 +3,8 @@ var app = angular.module("myApp", ["ngRoute"]);
 app.config(function ($routeProvider) {
     $routeProvider
             .when("/", {
-                template: "Welcome User!"
+                templateUrl: "partialHTMLPages/productList.html",
+                controller: "productListController"
             })
             .when("/user", {
                 templateUrl: "partialHTMLPages/userList.html",
