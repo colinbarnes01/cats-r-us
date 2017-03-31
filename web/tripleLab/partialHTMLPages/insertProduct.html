@@ -1,0 +1,16 @@
+<h2>Insert Product</h2>
+<br><br>
+Product Name: <input type="text" ng-model="product.productName">  {{responseErrors.productName}}<br>
+Price: <input type="text" ng-model="product.price">  {{responseErrors.price}}<br>
+Image Url: <input type="text" ng-model="product.imageUrl">  {{responseErrors.imageUrl}}<br>
+Description: <input type="text" ng-model="product.description"> {{responseErrors.description}}<br>
+Website Url : <input type="text" ng-model="product.websiteUrl"> {{responseErrors.websiteUrl}}<br>
+<br>
+<br>
+<button ng-click="insertProduct()">Insert Product</button>
+<br>
+<br>
+<a href="#product">back to product list</a>
+<br>
+<br>
+{{responseErrors.errorMsg}}

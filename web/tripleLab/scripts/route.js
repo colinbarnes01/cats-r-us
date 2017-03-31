@@ -17,6 +17,10 @@ app.config(function ($routeProvider) {
                 templateUrl: "partialHTMLPages/insertUser.html",
                 controller: "userInsertController"
             })
+            .when("/insertProduct", {
+                templateUrl: "partialHTMLPages/insertProduct.html",
+                controller: "productInsertController"
+            })
             .otherwise({
                 redirectTo: '/'
             });

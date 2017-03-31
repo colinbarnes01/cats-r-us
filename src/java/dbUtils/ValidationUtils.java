@@ -121,9 +121,8 @@ public class ValidationUtils {
                 return ""; // Empty string OK if fld not req'd.
             }
         }
-
         if (val.length() > maxlen) {
-            return "Please shorten to [" + val.substring(0, maxlen) + "]";
+            return "Please shorten to [" + val.substring(0, maxlen) + "] or " + maxlen + "characters";
         } else {
             return ""; // input is good
         }
