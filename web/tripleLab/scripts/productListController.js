@@ -9,6 +9,7 @@ app.controller('productListController', function ($scope, $http) {
                 console.log(response);
                 console.log("");
                 $scope.products = response.data.recordList;
+                $scope.dbError = response.data.dbError;
                 //console.log($scope.persons);
             },
             function (response) { // what to do if error
