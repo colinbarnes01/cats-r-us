@@ -131,7 +131,7 @@ public class ProductDBWrapper
 
         errorMsgs = validate(productData);
         String formMsg = ""; // used for error messages
-        
+
         if (errorMsgs.getCharacterCount() > 0)
         {  // at least one field has an error, don't go any further.
             System.out.println("Validation errors: " + errorMsgs.toString());
@@ -157,7 +157,7 @@ public class ProductDBWrapper
 
                 pStatement.setString(1, productData.productName);
                 pStatement.setString(2, productData.imageUrl);
-                pStatement.setInt(3, ValidationUtils.integerConversion(productData.price));
+                pStatement.setBigDecimal(3, new BigDecimal(productData.price));
                 pStatement.setString(4, productData.description);
                 pStatement.setString(5, productData.websiteUrl);
                 pStatement.setInt(6, ValidationUtils.integerConversion(productData.productId));

@@ -1,5 +1,8 @@
 package model.product;
 
+import dbUtils.FormatUtils;
+import java.sql.ResultSet;
+
 public class ProductStringData
 {
 
@@ -28,5 +31,23 @@ public class ProductStringData
                 + ", role:" + this.description
                 + ", websiteUrl: " + this.websiteUrl
                 + ", errorMsg:" + this.errorMsg;
+    }
+
+    public void extractProductStringsFromResultSet(ResultSet results)
+    {
+        try
+        {
+            this.productId = FormatUtils.formatInteger(results.getObject("product_id"));
+            this.productName = FormatUtils.formatString(results.getObject("product_name"));
+            this.imageUrl = FormatUtils.formatString(results.getObject("image_url"));
+            this.price = FormatUtils.formatDollar(results.getObject("price"));
+            this.description = FormatUtils.formatString(results.getObject("description"));
+            this.websiteUrl = FormatUtils.formatString(results.getObject("website_url"));
+            this.id = Integer.parseInt(this.productId);
+        } catch (Exception e)
+        {
+            this.errorMsg = "Data Exception thrown in extractProductStringsFromResultSet(): " + e.getMessage();
+            System.out.println("*****" + this.errorMsg);
+        }
     }
 }

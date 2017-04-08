@@ -1,5 +1,8 @@
 app.controller('productInsertController', function ($scope, $http) {
     $scope.product = {};
+    $scope.pageTitle = "Insert";
+    $scope.isUpdateMode = false;
+    $scope.isInsertMode = true;
 
     $scope.insertProduct = function () {
         console.log("in insertproduct function");

@@ -19,14 +19,17 @@ app.config(function ($routeProvider) {
                 controller: "userInsertController"
             })
             .when("/insertProduct", {
-                templateUrl: "partialHTMLPages/insertProduct.html",
+                templateUrl: "partialHTMLPages/insertUpdateProduct.html",
                 controller: "productInsertController"
+            })
+            .when('/update/:productId', {
+                templateUrl: 'partialHTMLPages/insertUpdateProduct.html',
+                controller: 'productUpdateController'
             })
             .otherwise({
                 redirectTo: '/'
             });
 });
-
 
 
 

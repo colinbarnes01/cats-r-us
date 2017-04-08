@@ -1,5 +1,7 @@
-<h2>Insert Product</h2>
+<h2>{{pageTitle}} Product</h2>
+
 <br><br>
+<div data-ng-show="isUpdateMode">Product ID: {{productId}}</div>
 Product Name: <input type="text" ng-model="product.productName">  {{responseErrors.productName}}<br>
 Price: <input type="text" ng-model="product.price">  {{responseErrors.price}}<br>
 Image Url: <input type="text" ng-model="product.imageUrl">  {{responseErrors.imageUrl}}<br>
@@ -7,10 +9,17 @@ Description: <input type="text" ng-model="product.description"> {{responseErrors
 Website Url : <input type="text" ng-model="product.websiteUrl"> {{responseErrors.websiteUrl}}<br>
 <br>
 <br>
-<button ng-click="insertProduct()">Insert Product</button>
-<br>
-<br>
+<!--<button ng-click="insertProduct()">Insert Product</button>-->
+
+
+
+
+<input type="button" value="Insert Product" data-ng-show="isInsertMode" data-ng-click="insertProduct()">
+<input type="button" value="Update Product" data-ng-show="isUpdateMode" data-ng-click="updateProduct()">
+
+<br><br>
 <a href="#product">back to product list</a>
-<br>
-<br>
+
+<br><br>
 {{responseErrors.errorMsg}}
+{{status}}

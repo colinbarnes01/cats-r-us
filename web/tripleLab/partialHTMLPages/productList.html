@@ -2,6 +2,9 @@
 Filter By: <input ng-model="query" type="text"/>
 <table>
     <tr>
+        <th></th>
+        <th></th>
+        <th></th>
         <th> <a href="" ng-click="sortField = 'id'; reverse = !reverse">Id</a></th>
         <th> <a href="" ng-click="sortField = 'productName'; reverse = !reverse">Name</a></th>
         <th> <a href="" ng-click="sortField = 'imageUrl'; reverse = !reverse">Image</a></th>
@@ -10,6 +13,15 @@ Filter By: <input ng-model="query" type="text"/>
         <th> <a href="" ng-click="sortField = 'websiteUrl'; reverse = !reverse">Website Url</a></th>
     </tr>
     <tr ng-repeat="product in products| filter:query | orderBy:sortField:reverse">
+        <td>
+            <a href="#/show/{{product.productId}}"><img src="icons/view.png"></a>
+        </td>
+        <td>
+            <a href="#/update/{{product.productId}}"><img src="icons/update.png"></a>
+        </td>
+        <td>
+            <a href="#/delete/{{product.productId}}"><img src="icons/delete.png"></a>
+        </td>
         <td>{{product.id}}</td>
         <td>{{product.productName}}</td>
         <td><img src="{{product.imageUrl}}" width="80" alt=""></td>
