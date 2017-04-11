@@ -10,10 +10,10 @@ app.config(function ($routeProvider) {
                 templateUrl: "partialHTMLPages/userList.html",
                 controller: "userListController"
             })
-            .when("/product", {
+            /*.when("/product", {
                 templateUrl: "partialHTMLPages/productList.html",
                 controller: "productListController"
-            })
+            })*/
             .when("/insertUser", {
                 templateUrl: "partialHTMLPages/insertUser.html",
                 controller: "userInsertController"

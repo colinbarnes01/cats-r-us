@@ -58,5 +58,6 @@ app.controller('productListController', function ($scope, $http, $routeParams) {
 
                 }
         );
+        window.location = "index.html";
     }
 });
