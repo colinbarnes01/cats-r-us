@@ -188,4 +188,34 @@ public class ProductDBWrapper
         errorMsgs.errorMsg = formMsg;
         return errorMsgs;
     }
+    
+        public static String deleteById(String id, DbConn dbc) {
+
+        if (id == null) {
+            return "Programmer error: for delete, Person Id should not be null.";
+        }
+        if (id.length() == 0) {
+            return "Programmer error: for delete, Person Id should not be empty string.";
+        }
+
+        String formMsg = dbc.getErr(); // will be empty string if DB connection is OK.
+
+        if (formMsg.length() == 0) { // db connection is good
+            String sql = "DELETE FROM product WHERE product_id=?";
+            PrepStatement pStatement = new PrepStatement(dbc, sql);
+            pStatement.setString(1, id);
+
+            int numRows = pStatement.executeUpdate();  // executeUpdate is used for any SQL other than SELECT
+            formMsg = pStatement.getErrorMsg();     // This will return empty string if all went well, else all error messages.
+            if (formMsg.length() == 0) {
+                if (numRows == 1) {
+                    formMsg = ""; // This means SUCCESS. Let the JSP page decide how to tell this to the user.
+                } else {
+                    // probably never get here unless you forgot your WHERE clause and did a bulk sql update.
+                    formMsg = numRows + " records were deleted (expected to delete 1).";
+                }
+            }
+        } // Db Connection is good - double check, JSP page should not send us a bad one... 
+        return formMsg;
+    }
 }

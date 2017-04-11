@@ -26,6 +26,10 @@ app.config(function ($routeProvider) {
                 templateUrl: 'partialHTMLPages/insertUpdateProduct.html',
                 controller: 'productUpdateController'
             })
+            .when('/delete/:productId', {
+                templateUrl: "partialHTMLPages/productList.html",
+                controller: "productListController"
+            })
             .otherwise({
                 redirectTo: '/'
             });
