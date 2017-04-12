@@ -13,7 +13,7 @@
 
 <%
 
-    StringDataList list = new StringDataList();
+    ProductStringDataList list = new ProductStringDataList();
 
     DbConn dbc = new DbConn();
     list.dbError = dbc.getErr(); // returns "" if connection is good, else db error msg.
@@ -28,7 +28,7 @@
         // productFlagList is an object with an array of product objects inside, 
         // plus a possible dbError.
         System.out.println("jsp page ready to search for product with " + productNameStartsWith);
-        list = new StringDataList(productNameStartsWith, dbc);
+        list = new ProductStringDataList(productNameStartsWith, dbc);
     } 
 
     // PREVENT DB connection leaks:
