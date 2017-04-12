@@ -35,6 +35,7 @@ public class ProductStringData
 
     public void extractProductStringsFromResultSet(ResultSet results)
     {
+        System.out.println("inside extract function with results: " + results);
         try
         {
             this.productId = FormatUtils.formatInteger(results.getObject("product_id"));

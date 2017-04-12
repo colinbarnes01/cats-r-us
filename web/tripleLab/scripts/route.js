@@ -11,9 +11,9 @@ app.config(function ($routeProvider) {
                 controller: "userListController"
             })
             /*.when("/product", {
-                templateUrl: "partialHTMLPages/productList.html",
-                controller: "productListController"
-            })*/
+             templateUrl: "partialHTMLPages/productList.html",
+             controller: "productListController"
+             })*/
             .when("/insertUser", {
                 templateUrl: "partialHTMLPages/insertUser.html",
                 controller: "userInsertController"
@@ -29,6 +29,10 @@ app.config(function ($routeProvider) {
             .when('/delete/:productId', {
                 templateUrl: "partialHTMLPages/productList.html",
                 controller: "productListController"
+            })
+            .when('/show/:productId', {
+                templateUrl: 'partialHTMLPages/productDetail.html',
+                controller: 'productDetailController'
             })
             .otherwise({
                 redirectTo: '/'

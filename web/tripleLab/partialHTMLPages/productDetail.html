@@ -1,0 +1,37 @@
+<h2>Product Detail</h2>
+<style>
+    .fieldName {
+        font-weight: bold;
+    }
+</style>
+
+<table>
+    <tr>
+        <td class="fieldName">Id</td>
+        <td class="fieldValue">{{product.productId}}</td>
+    </tr>
+    <tr>
+        <td class="fieldName">Name</td>
+        <td class="fieldValue">{{product.productName}}</td>
+    </tr>
+    <tr>
+        <td class="fieldName">Image</td>
+        <td class="fieldValue"><img src="{{product.imageUrl}}" width="80" alt=""></td>
+    </tr>
+    <tr>
+        <td class="fieldName">Price</td>
+        <td class="fieldValue">{{product.price}}</td>
+    </tr>
+    <tr>
+        <td class="fieldName">Description</td>
+        <td class="fieldValue">{{product.description}}</td>
+    </tr>
+    <tr>
+        <td class="fieldName">Website URL</td>
+        <td class="fieldValue">{{product.websiteUrl}}</td>
+    </tr>
+</table>
+
+<p>
+    <a href="#/">back to list</a>
+</p>

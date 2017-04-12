@@ -14,9 +14,11 @@
 
     DbConn dbc = new DbConn();
     String id = request.getParameter("id");
-    
+
     //findPersonById will check if id is null or not...
-    ProductStringData product = ProductView.findProductById(dbc,id); 
+    System.out.println("in productJson with product id: " + id);
+    ProductStringData product = ProductView.findProductById(dbc, id);
+    System.out.println("in productJson with product: " + product);
     out.print(gson.toJson(product).trim());
 
     // PREVENT DB connection leaks:
