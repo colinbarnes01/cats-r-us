@@ -6,6 +6,8 @@
 package model.user;
 
 import dbUtils.*;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 
 /**
  *
@@ -16,9 +18,7 @@ public class UserDBWrapper
 
     public static UserStringData insert(UserStringData userData, DbConn dbc)
     {
-
         UserStringData errorMsgs = new UserStringData();
-
         System.out.println("In InsertUpdate.insert() ready to insert person with these values: " + userData.toString());
 
         errorMsgs = validate(userData);
@@ -86,5 +86,39 @@ public class UserDBWrapper
         errorMsgs.role = ValidationUtils.stringValidationMsg(inputData.role, 45, true);
 
         return errorMsgs;
+    }
+
+    public static UserStringData logon(String email, String password, DbConn dbc)
+    {
+        UserStringData foundUser = new UserStringData(); // default constructor sets all fields to "" (empty string) 
+        try
+        {
+            String sql = "SELECT * FROM my_user WHERE email = ? AND password = ?;";
+            PreparedStatement stmt = dbc.getConn().prepareStatement(sql);
+            stmt.setString(1, email);
+            stmt.setString(2, password);
+
+            ResultSet results = stmt.executeQuery();
+
+            // since the email address is required (in database) to be unique, we don't need a while loop like we did 
+            // for the display data lab. An "if" statement is better for this purpose.
+            if (results.next())
+            {
+                foundUser.userId = FormatUtils.formatInteger(results.getObject("user_id"));
+                foundUser.userName = FormatUtils.formatString(results.getObject("user_name"));
+                foundUser.email = FormatUtils.formatString(results.getObject("email"));
+                foundUser.password = FormatUtils.formatString(results.getObject("password"));
+                foundUser.role = FormatUtils.formatString(results.getObject("role")); //System.out.println("*** 5 fields extracted from result set");
+                return foundUser;
+            } else
+            {
+                foundUser.errorMsg = "No results found in logon.find()";
+                return foundUser;
+            }
+        } catch (Exception e)
+        {
+            foundUser.errorMsg = "Exception thrown in Logon.find(): " + e.getMessage();
+            return foundUser;
+        }
     }
 }

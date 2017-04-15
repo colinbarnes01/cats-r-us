@@ -21,6 +21,7 @@
     if (list.dbError.length() == 0) { // got open connection 
 
         String productNameStartsWith = request.getParameter("q");
+        System.out.println("***** Inside webApi.jsp with parameter: " + productNameStartsWith + " *****");
         if (productNameStartsWith == null) {
             productNameStartsWith = "";
         }

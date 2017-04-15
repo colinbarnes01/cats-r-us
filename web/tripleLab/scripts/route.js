@@ -34,6 +34,10 @@ app.config(function ($routeProvider) {
                 templateUrl: 'partialHTMLPages/productDetail.html',
                 controller: 'productDetailController'
             })
+            .when('/logon/', {
+                templateUrl: 'partialHTMLPages/logon.html',
+                controller: 'logonController'
+            })
             .otherwise({
                 redirectTo: '/'
             });

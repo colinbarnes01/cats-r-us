@@ -1,3 +1,5 @@
+<a href="#logon"><h2>Log In</h2></a>
+<br><br>
 <a href="#insertProduct">Insert Product</a>
 Filter By: <input ng-model="query" type="text"/>
 <table>
@@ -12,7 +14,7 @@ Filter By: <input ng-model="query" type="text"/>
         <th> <a href="" ng-click="sortField = 'description'; reverse = !reverse">Description</a></th>
         <th> <a href="" ng-click="sortField = 'websiteUrl'; reverse = !reverse">Website Url</a></th>
     </tr>
-    <tr ng-repeat="product in products| filter:query | orderBy:sortField:reverse">
+    <tr ng-repeat="product in products | filter:query | orderBy:sortField:reverse">
         <td>
             <a href="#/show/{{product.productId}}"><img src="icons/view.png"></a>
         </td>

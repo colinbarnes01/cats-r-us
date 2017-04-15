@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<h1> Log In </h1>
+
+Email: <input type="text" ng-model="user.email" name="Email"><br>
+<!--Password: <input type="password" name="Password"><br>-->
+Password: <input type="text" ng-model="user.password" name="Password"><br>
+
+<input type="button" name="logOnButton" value="Log On" ng-click="logon()">
+
+<br><br>{{errorMsg}}
