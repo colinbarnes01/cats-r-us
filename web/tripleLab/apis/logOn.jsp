@@ -1,5 +1,5 @@
 <%-- 
-    Document   : logon
+    Document   : logOn
     Created on : Apr 14, 2017, 1:04:55 PM
     Author     : Colin
 --%>
@@ -9,7 +9,6 @@
 <%@page language="java" import="dbUtils.*" %>
 <%@page language="java" import="model.user.*" %>
 <%@page language="java" import="java.util.ArrayList" %>
-
 <%@page language="java" import="com.google.gson.*" %>
 
 <%
@@ -18,11 +17,12 @@
     String emailErrorMsg = ""; // be optimistic
     String passwordErrorMsg = ""; // dont show an error upon 1st rendering
     String connErrorMsg = ""; //error message for connection failure
-    String welcomeMsg = ""; //message to welcome user if logon successful
+    String welcomeMsg = ""; //message to welcome user if logOn successful
     String msg = ""; // this is an overall messsage (beyond field level validation)
     boolean success = false; //variable to state whether log on was successful or not
 
     UserStringData loggedOnUser = new UserStringData();
+
 
     if (request.getParameter("email") != null)
     {
@@ -40,30 +40,34 @@
         }
 
         DbConn dbc = new DbConn(); //get database connection
-        if (connErrorMsg.length() == 0)
-        { // no error message so database connection OK
-            System.out.println("about to call logon java function");
-            loggedOnUser = UserDBWrapper.logon(email, password, dbc);
-            System.out.println("loggedOnUser: " + loggedOnUser);
+        try
+        {
+            if (connErrorMsg.length() == 0)
+            { // no error message so database connection OK
+                System.out.println("about to call logOn java function with params email: " + email + " and password: " + password);
+                loggedOnUser = UserDBWrapper.logOn(email, password, dbc);
+                System.out.println("loggedOnUser: " + loggedOnUser);
 
-            if (loggedOnUser != null)
-            {
-                session.setAttribute("user", loggedOnUser);
-                success = true;
+                if (loggedOnUser != null)
+                {
+                    System.out.println("Saving userName in session object");
+                    session.setAttribute("userName", loggedOnUser.userName);
+                    System.out.println("session userName: " + session.getAttribute("userName"));
+                }
             }
-            if (success && (loggedOnUser.userName.length() > 0))
+            dbc.close();
+            Gson gson = new Gson();
+            String jsonToPass = gson.toJson(loggedOnUser);
+            System.out.println("passing this Json to logOn controller: "  + jsonToPass);
+            out.print(jsonToPass);
+        } catch (Exception e)
+        {
+            if (dbc != null)
             {
-                welcomeMsg = "Log In Successful, Welcome " + loggedOnUser.userName + "!";
-            } else
-            {
-                welcomeMsg = "Log In Failed. Username and Email invalid.";
+                dbc.close();
             }
         }
-        dbc.close();
-        Gson gson = new Gson();
-        out.print(gson.toJson(loggedOnUser).trim());
-    } else
-    {
+    } else {
         Gson gson = new Gson();
         out.print(gson.toJson(loggedOnUser).trim());
     }

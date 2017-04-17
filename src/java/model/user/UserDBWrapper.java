@@ -88,7 +88,7 @@ public class UserDBWrapper
         return errorMsgs;
     }
 
-    public static UserStringData logon(String email, String password, DbConn dbc)
+    public static UserStringData logOn(String email, String password, DbConn dbc)
     {
         UserStringData foundUser = new UserStringData(); // default constructor sets all fields to "" (empty string) 
         try
@@ -112,12 +112,12 @@ public class UserDBWrapper
                 return foundUser;
             } else
             {
-                foundUser.errorMsg = "No results found in logon.find()";
+                foundUser.errorMsg = "No results found in logOn.find()";
                 return foundUser;
             }
         } catch (Exception e)
         {
-            foundUser.errorMsg = "Exception thrown in Logon.find(): " + e.getMessage();
+            foundUser.errorMsg = "Exception thrown in logOn.find(): " + e.getMessage();
             return foundUser;
         }
     }

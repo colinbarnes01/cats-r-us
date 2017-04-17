@@ -49,7 +49,9 @@ and open the template in the editor.
         <script src="scripts/productInsertController.js"></script>
         <script src="scripts/productUpdateController.js"></script>
         <script src="scripts/productDetailController.js"></script>
-        <script src="scripts/logonController.js"></script>
+        <script src="scripts/logOnController.js"></script>
+        <script src="scripts/logOffController.js"></script>
+
     </head>
     <body ng-app="myApp">
         <div id="titlenav">
@@ -71,6 +73,8 @@ and open the template in the editor.
 
         <div id="title-page" class="single-page">
             <img id="title-logo" src="../pictures/logo.png">
+            <a href="#logOn"><h2>Log In                           </h2></a>
+            <a href="#logOff"><h2>Log Off</h2></a>
             <div ng-view id="angularContent"></div>
         </div>
 

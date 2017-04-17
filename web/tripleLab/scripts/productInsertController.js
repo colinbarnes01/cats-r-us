@@ -15,17 +15,12 @@ app.controller('productInsertController', function ($scope, $http) {
 
         $http.get(url).then(
                 function (response) { // this function will run if http.get success
-                    console.log("Person Insert/Save ajax success");
-                    console.log(response);
-                    console.log("");
-                    $scope.responseErrors = response.data;
-                    console.log('responseErrors:' + $scope.responseErrors);
-                    $scope.status = $scope.responseErrors.errorMsg;
+                    console.log("Person Insert/Save ajax success, response: ", response);
+                    $scope.response = response.data;
+                    $scope.status = response.data.errorMsg;
                     console.log('$scope.status after successful ajax call: ' + $scope.status);
-                    if ($scope.responseErrors.errorMsg.length === 0) {
+                    if ($scope.status.length == 0) {
                         $scope.status = "Product Sucessfully Inserted";
-                    } else {
-                        $scope.status = "ERRORS trying to insert product in controller: insertProduct() function";
                     }
                     //console.log('$scope.status after successful ajax call: ');
                     //console.log($scope.status);
@@ -33,8 +28,7 @@ app.controller('productInsertController', function ($scope, $http) {
                 function (response) { // this function will run if http.get error
                     console.log("Products Insert/Save ajax error");
                     console.log(response + "");
-                    $scope.status = "Error: " + response.status + " " + response.statusText;
-
+                    $scope.status = "Error: " + response.status + " " + response.statusText;    
                 }
 
         );

@@ -8,7 +8,6 @@
 <%@page language="java" import="dbUtils.*" %>
 <%@page language="java" import="model.user.*" %>
 <%@page language="java" import="java.util.ArrayList" %>
-
 <%@page language="java" import="com.google.gson.*" %>
 
 <%

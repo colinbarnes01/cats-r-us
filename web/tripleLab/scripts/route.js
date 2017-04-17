@@ -10,10 +10,6 @@ app.config(function ($routeProvider) {
                 templateUrl: "partialHTMLPages/userList.html",
                 controller: "userListController"
             })
-            /*.when("/product", {
-             templateUrl: "partialHTMLPages/productList.html",
-             controller: "productListController"
-             })*/
             .when("/insertUser", {
                 templateUrl: "partialHTMLPages/insertUser.html",
                 controller: "userInsertController"
@@ -34,12 +30,16 @@ app.config(function ($routeProvider) {
                 templateUrl: 'partialHTMLPages/productDetail.html',
                 controller: 'productDetailController'
             })
-            .when('/logon/', {
-                templateUrl: 'partialHTMLPages/logon.html',
-                controller: 'logonController'
+            .when('/logOn/', {
+                templateUrl: 'partialHTMLPages/logOn.html',
+                controller: 'logOnController'
+            })
+            .when('/logOff/', {
+                templateUrl: "partialHTMLPages/logOff.html",
+                controller: 'logOffController'
             })
             .otherwise({
-                redirectTo: '/'
+                redirectTo: "partialHTMLPages/productList.html"
             });
 });
 
