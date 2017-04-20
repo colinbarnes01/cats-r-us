@@ -1,9 +1,9 @@
 <%@page contentType="application/json" pageEncoding="UTF-8"%> 
 <%@page language="java" import="dbUtils.DbConn"%> 
 <%@page language="java" import="model.product.*"%>
-
 <%@page language="java" import="com.google.gson.*" %>
 
+<%@include file="checkLogOn_product.jsp"%>
 <%
     Gson gson = new Gson();
 

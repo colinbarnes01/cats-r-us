@@ -1,5 +1,9 @@
-<a href="#insertProduct">Insert Product</a>
+<a href="#insertProduct" data-ng-show="logOnStatus">Insert Product</a>
 Filter By: <input ng-model="query" type="text"/>
+
+<br>{{dbError}}
+<br>{{deleteMsg}}
+
 <table>
     <tr>
         <th></th>
@@ -17,10 +21,10 @@ Filter By: <input ng-model="query" type="text"/>
             <a href="#/show/{{product.productId}}"><img src="icons/view.png"></a>
         </td>
         <td>
-            <a href="#/update/{{product.productId}}"><img src="icons/update.png"></a>
+            <a href="#/update/{{product.productId}}" data-ng-show="logOnStatus"><img src="icons/update.png"></a>
         </td>
         <td>
-            <a href="#/delete/{{product.productId}}"><img src="icons/delete.png"></a>
+            <a href="#/delete/{{product.productId}}" data-ng-show="logOnStatus"><img src="icons/delete.png"></a>
         </td>
         <td>{{product.id}}</td>
         <td>{{product.productName}}</td>
@@ -31,4 +35,3 @@ Filter By: <input ng-model="query" type="text"/>
     </tr>
 </table>
 
-{{dbError}}

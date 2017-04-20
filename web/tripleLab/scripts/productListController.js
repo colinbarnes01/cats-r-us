@@ -1,8 +1,8 @@
 app.controller('productListController', function ($scope, $http, $routeParams) {
-    
-    // main code for this controller
     console.log("productListController" + $routeParams);
+    $scope.logOnStatus;
 
+    // main controller code
     if ($routeParams.productId) {
         console.log("First I will delete product " + $routeParams.productId);
         deleteProduct($routeParams.productId);
@@ -11,31 +11,21 @@ app.controller('productListController', function ($scope, $http, $routeParams) {
     }
     getProductList();
 
-
-    // The "then" (chained function call) takes two parameters: 
-    //   * function for success (of ajax call) then 
-    //   * function for error (of ajax call).
     function getProductList() {
         $http.get('apis/getProductList.jsp').then(
-                function (response) { // what to do if success
-                    //console.log("ajax success");
-                    console.log(response);
-                    console.log("");
+                function (response) {
+                    console.log("ajax success with response: ", response);
                     $scope.products = response.data.recordList;
                     $scope.dbError = response.data.dbError;
-                    //console.log($scope.products);
+                    $scope.logOnMsg = $scope.products[$scope.products.length - 1].errorMsg;
+                    console.log("$scope.logOnMsg: " + $scope.logOnMsg);
+                    updateLogOnStatusIfNecessary($scope.logOnMsg);
                 },
-                function (response) { // what to do if error
-                    console.log("ajax error");
-                    console.log(response);
-                    console.log("");
+                function (response) {
+                    console.log("ajax error with response: ", response);
                 }
         );
     }
-
-
-    //$scope.sortField = 'productName';
-    //$scope.reverse = true;
 
     function deleteProduct(id) {
         var url = "apis/deleteProduct.jsp?id=" + id;
@@ -48,16 +38,26 @@ app.controller('productListController', function ($scope, $http, $routeParams) {
                     $scope.deleteMsg = response.data.errorMsg;
                     if ($scope.deleteMsg.length === 0) {
                         $scope.deleteMsg = "Sucessfully deleted product " + id;
-                    } else {
-                        $scope.deleteMsg = "error deleting product in list controller: " + $scope.deleteMsg;
+                        window.location = "index.html";
                     }
                 },
                 function (response) { // this function will run if http.get error
                     console.log("Product Delete ajax error" + response);
                     $scope.deleteMsg = "ajax error deleting product in list controller " + response.status + " " + response.statusText;
-
                 }
         );
-        window.location = "index.html";
+    }
+
+    function isLoggedOn() {
+        return $scope.logOnStatus;
+    }
+
+    function updateLogOnStatusIfNecessary(logOnMsg) {
+        if (logOnMsg === "LOG ON ERROR") {
+            $scope.logOnStatus = false;
+        } else {
+            $scope.logOnStatus = true;
+        }
+        console.log("$scope.logOnStatus", $scope.logOnStatus);
     }
 });

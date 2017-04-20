@@ -7,9 +7,9 @@
 <%@page contentType="application/json" pageEncoding="UTF-8"%> 
 <%@page language="java" import="dbUtils.DbConn"%> 
 <%@page language="java" import="model.user.*"%>
-
 <%@page language="java" import="com.google.gson.*" %>
 
+<%@include file="checkLogOn_product.jsp"%>
 <%
     /*  http://stackoverflow.com/questions/477816/what-is-the-correct-json-content-type 
      The MIME media type for JSON text is application/json. The default encoding is UTF-8. (Source: RFC 4627).
