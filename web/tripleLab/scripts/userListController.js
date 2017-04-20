@@ -1,21 +1,28 @@
 app.controller('userListController', function ($scope, $http) {
+    console.log("inside userListController function");
+    $scope.logOnStatus;
 
-    // The "then" (chained function call) takes two parameters: 
-    //   * function for success (of ajax call) then 
-    //   * function for error (of ajax call).
     $http.get('apis/getUserList.jsp').then(
-            function (response) { // what to do if success
-                //console.log("ajax success");
-                console.log(response);
-                console.log("");
+            function (response) {
+                console.log("ajax success with response: ", response);
                 $scope.users = response.data.recordList;
                 $scope.dbError = response.data.dbError;
-                //console.log($scope.persons);
+                $scope.logOnMsg = $scope.users[$scope.users.length - 1].errorMsg;
+                console.log("$scope.logOnMsg: " + $scope.logOnMsg);
+                updateLogOnStatusIfNecessary($scope.logOnMsg);
             },
-            function (response) { // what to do if error
-                console.log("ajax error");
-                console.log(response);
-                console.log("");
+            function (response) {
+                console.log("ajax error with response: ", response);
             }
-    ); // closes off the parameter list to the "then" function...
-}); // finishes fn def'n for unnamed controller of 'ContryListCtrl' ng-controller element.
+    );
+
+    function updateLogOnStatusIfNecessary(logOnMsg) {
+        if (logOnMsg === "LOG ON ERROR") {
+            $scope.logOnStatus = false;
+        } else {
+            $scope.logOnStatus = true;
+        }
+        console.log("$scope.logOnStatus", $scope.logOnStatus);
+    }
+
+});

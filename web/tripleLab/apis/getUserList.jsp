@@ -4,7 +4,6 @@
     Author     : Colin Barnes
 --%>
 <%@page contentType="application/json; charset=UTF-8" pageEncoding="UTF-8"%> 
-
 <%@page language="java" import="dbUtils.*" %>
 <%@page language="java" import="model.user.*" %>
 <%@page language="java" import="java.util.ArrayList" %>
@@ -32,6 +31,17 @@
 
     // PREVENT DB connection leaks:
     dbc.close(); // EVERY code path that opens a db connection, must also close it.
+    
+    // check if the current user is logged in to show / hide insert user buttoin
+    UserStringData logOnError = new UserStringData();
+    String userName = (String) session.getAttribute("userName");
+    if (userName == null)
+    {
+        logOnError.errorMsg = "LOG ON ERROR";
+    } else {
+        logOnError.errorMsg = "LOG ON SUCCESSFUL";
+    }
+    list.add(logOnError);
 
     Gson gson = new Gson();
     out.print(gson.toJson(list).trim()); 

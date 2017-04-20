@@ -48,10 +48,6 @@ app.controller('productListController', function ($scope, $http, $routeParams) {
         );
     }
 
-    function isLoggedOn() {
-        return $scope.logOnStatus;
-    }
-
     function updateLogOnStatusIfNecessary(logOnMsg) {
         if (logOnMsg === "LOG ON ERROR") {
             $scope.logOnStatus = false;
