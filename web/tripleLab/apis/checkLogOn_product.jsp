@@ -13,7 +13,7 @@
 
 <%
     String userName = (String) session.getAttribute("userName");
-    if (userName == null)
+    if (userName == null || userName.isEmpty())
     {
         Gson gson = new Gson();
         System.out.println("Inside of null login in insertProduct");

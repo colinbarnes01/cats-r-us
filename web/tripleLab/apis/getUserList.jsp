@@ -35,7 +35,7 @@
     // check if the current user is logged in to show / hide insert user buttoin
     UserStringData logOnError = new UserStringData();
     String userName = (String) session.getAttribute("userName");
-    if (userName == null)
+    if (userName == null || userName.isEmpty())
     {
         logOnError.errorMsg = "LOG ON ERROR";
     } else {

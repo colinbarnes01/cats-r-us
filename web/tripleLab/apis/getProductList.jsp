@@ -30,14 +30,13 @@
         System.out.println("jsp page ready to search for product with " + productNameStartsWith);
         list = new ProductStringDataList(productNameStartsWith, dbc);
     }
-
-    // PREVENT DB connection leaks:
-    dbc.close(); // EVERY code path that opens a db connection, must also close it.
+    dbc.close(); 
 
     // check if the user was logged in to show / hide update and delete icons
     ProductStringData logOnError = new ProductStringData();
     String userName = (String) session.getAttribute("userName");
-    if (userName == null)
+    System.out.println("userName in getProductList: " + userName);
+    if (userName == null || userName.isEmpty())
     {
         logOnError.errorMsg = "LOG ON ERROR";
     } else {

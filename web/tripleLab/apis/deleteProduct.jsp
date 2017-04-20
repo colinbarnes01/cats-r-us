@@ -15,7 +15,7 @@
 
     product.errorMsg = "";
     String userName = (String) session.getAttribute("userName");
-    if (userName == null)
+    if (userName == null || userName.isEmpty())
     {
         product.errorMsg = "Error: you must be logged in to delete product.";
         out.print(gson.toJson(product));
