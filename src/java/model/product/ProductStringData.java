@@ -26,9 +26,9 @@ public class ProductStringData
     {
         return "productId:" + this.productId
                 + ", productName:" + this.productName
-                + ", email:" + this.imageUrl
-                + ", password:" + this.price
-                + ", role:" + this.description
+                + ", imageUrl:" + this.imageUrl
+                + ", price:" + this.price
+                + ", desciprtion:" + this.description
                 + ", websiteUrl: " + this.websiteUrl
                 + ", errorMsg:" + this.errorMsg;
     }

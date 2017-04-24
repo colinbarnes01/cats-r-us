@@ -7,6 +7,7 @@ app.controller('productInsertController', function ($scope, $http) {
     $scope.insertProduct = function () {
         console.log("in insertproduct function");
         console.log($scope.product);
+        validatePrice();
 
         var jsonData = JSON.stringify($scope.product);
         console.log(jsonData);
@@ -28,9 +29,17 @@ app.controller('productInsertController', function ($scope, $http) {
                 function (response) { // this function will run if http.get error
                     console.log("Products Insert/Save ajax error");
                     console.log(response + "");
-                    $scope.status = "Error: " + response.status + " " + response.statusText;    
+                    $scope.status = "Error: " + response.status + " " + response.statusText;
                 }
 
         );
     };
+
+    function validatePrice() {
+        console.log("in validatee price with price: ", $scope.product.price);
+        if ($scope.product.price == -null || $scope.product.price === "") {
+            $scope.product.price = "0.0";
+        }
+    }
+
 });

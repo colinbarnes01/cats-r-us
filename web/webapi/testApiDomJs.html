@@ -55,19 +55,14 @@ and open the template in the editor.
                 return document.getElementById(element);
             }
             function sendRequest() {
-                //alert ('sending request'); 
-                //var url = "http://cis-linux2.temple.edu:8080/SP16_3344_sallyk/productFlagsJSON.jsp";
                 var url = "webApi.jsp";
                 url += "?q=" + $("productSearch").value;
-                //alert("url is " + url);
                 httpReq.open("GET", url);
                 httpReq.onreadystatechange = handleResponse;
                 httpReq.send(null);
             }
             function handleResponse() {
                 clearTableAndErrorMsg();
-                
-                //alert('handling response');
                 if (httpReq.readyState == 4 && httpReq.status == 200) {
                     var response = httpReq.responseText;
                     // wrap the json in parentheses to avoid tripping over javascript ambiguity...
@@ -93,15 +88,13 @@ and open the template in the editor.
                         $("requestErrorMsg").innerHTML = "No Products Match Your Search";
                         return;
                     }
-                    console.log("responseObj:");
-                    console.log(responseObj);
-                    console.log("responseObj.recordList:");
-                    console.log(responseObj.recordList);
+                    console.log("responseObj: ", responseObj);
+                    console.log("responseObj.recordList:", responseObj.recordList);
                     numRecords = responseObj.recordList.length;
                     numFields = Object.keys(responseObj.recordList[0]).length;
-                    console.log("number of records: " + numRecords);
-                    console.log("number of fields per object: " + numFields);
-                    makeTable(numRecords, numFields, responseObj.recordList);
+                    console.log("number of records: ", numRecords);
+                    console.log("number of fields per object: ", numFields);
+                    makeTable(numRecords, numFields-1, responseObj.recordList); // has to be minus 1 because I added a field to ProductStringData
                 }
             }
             

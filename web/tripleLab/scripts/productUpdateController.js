@@ -7,36 +7,25 @@ app.controller('productUpdateController', function ($scope, $http, $routeParams)
     console.log($routeParams);
     $scope.productId = $routeParams.productId;
 
-    // blank out the new product in case the ajax get fails to populate product
-    //$scope.product = SkService.emptyProduct();
-    // blank out error message object
-    //$scope.myErrors = SkService.emptyProduct();
-
     var url = "apis/productJson.jsp?id=" + $routeParams.productId;
     $http.get(url).then(
-            function (response) { // this function will run if http.get success
-                console.log("Product Update (get) ajax success");
-                console.log(response);
-                console.log("");
+            function (response) {
+                console.log("Product Update (get) ajax success", response);
                 $scope.product = response.data;
+                $scope.product.price = formatPrice($scope.product.price);
                 $scope.product.productId = $routeParams.productId;
-                //$scope.responseErrors = response.data;  // i added this
                 $scope.errorMsg = "";
             },
-            function (response) { // this function will run if http.get error
-                console.log("Product Update (get) ajax error");
-                console.log(response);
-                console.log("");
+            function (response) {
+                console.log("Product Update (get) ajax error", response);
                 $scope.errorMsg = "Error: " + response.status + " " + response.statusText;
 
             }
     );
 
     $scope.updateProduct = function () {
-
-        // empty out all the field level user error messages in case of an ajax error 
-        //$scope.myErrors = SkService.emptyProduct();
-
+        validatePrice();
+        console.log("$scope.product.price after validate: ", $scope.product.price)
         var myData = JSON.stringify($scope.product);
         console.log('myData in updateProduct(): ');
         console.log(myData);
@@ -63,5 +52,18 @@ app.controller('productUpdateController', function ($scope, $http, $routeParams)
                 } // end of error fn
         ); // closes off "then" function call
     };
+    function formatPrice(price) {
+        if (price.charAt(0) === '$') {
+            price = price.substr(1);
+        }
+        return price;
+    }
+
+    function validatePrice() {
+        console.log("in validatee price with price: ", $scope.product.price);
+        if ($scope.product.price ==- null || $scope.product.price === "") {
+            $scope.product.price = "0.0";
+        }
+    }
 
 });

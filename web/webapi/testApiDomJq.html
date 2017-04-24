@@ -86,18 +86,11 @@ and open the template in the editor.
                         $("#other").html("All countries that match");
                         console.log(responseObj);
                         var numProducts = responseObj.recordList.length;
-                        /*
-                         var products = "";
-                         for (i = 0; i < numProducts; i++) {
-                         products += responseObj.recordList[i].productName + "<br/>";
-                         }
-                         $("#products").html(products);
-                         */
                         var numRecords = responseObj.recordList.length;
                         var numFields = Object.keys(responseObj.recordList[0]).length;
                         console.log("number of records: " + numRecords);
                         console.log("number of fields per object: " + numFields);
-                        makeTable(numRecords, numFields, responseObj.recordList);
+                        makeTable(numRecords, numFields-1, responseObj.recordList);
                     };
 
                     ajaxError = function () {

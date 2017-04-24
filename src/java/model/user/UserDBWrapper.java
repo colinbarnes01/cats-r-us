@@ -112,7 +112,7 @@ public class UserDBWrapper
                 return foundUser;
             } else
             {
-                foundUser.errorMsg = "No results found in logOn.find()";
+                foundUser.errorMsg = "Could not find user with those credentials";
                 return foundUser;
             }
         } catch (Exception e)

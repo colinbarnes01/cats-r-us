@@ -2,11 +2,11 @@
 
 <br><br>
 <div data-ng-show="isUpdateMode">Product ID: {{productId}}</div>
-Product Name: <input type="text" ng-model="product.productName">  {{response.productName}}<br>
-Price: <input type="text" ng-model="product.price">  {{response.price}}<br>
-Image Url: <input type="text" ng-model="product.imageUrl">  {{response.imageUrl}}<br>
-Description: <input type="text" ng-model="product.description"> {{response.description}}<br>
-Website Url : <input type="text" ng-model="product.websiteUrl"> {{response.websiteUrl}}<br>
+Product Name: <input type="text" ng-model="product.productName">  {{responseErrors.productName}}<br>
+Price: <input type="text" ng-model="product.price">  {{responseErrors.price}}<br>
+Image Url: <input type="text" ng-model="product.imageUrl">  {{responseErrors.imageUrl}}<br>
+Description: <input type="text" ng-model="product.description"> {{responseErrors.description}}<br>
+Website Url : <input type="text" ng-model="product.websiteUrl"> {{responseErrors.websiteUrl}}<br>
 <br>
 <br>
 <!--<button ng-click="insertProduct()">Insert Product</button>-->

@@ -1,32 +1,19 @@
-/*
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
-*/
-/* 
-    Created on : Feb 28, 2017, 5:59:26 PM
-    Author     : Colin
-*/
-
-
-
 html, body {
-    margin: 0;
+    margin: 0px;
+    padding: 0px;
     height: 100%;
+    bottom: 0px;
 }
-
 
 #titlenav {
     position: fixed;
     background-color: pink;
     top: 0px;
     width: 100%;
-    /*right: 0px;*/
     font-size: 18px;
     font-weight: bold;
     padding: 0px 10px 0px 10px;
     box-shadow: 2px 2px 2px grey;
-    /*border-radius: 0px 0px 0px 20px;*/
     z-index: 3px;
 }
 #title {
@@ -60,16 +47,10 @@ html, body {
 #navGroup {
     display: none; 
 }
-.single-page {
-    min-height: 100vh;
-}
-.single-page h1{
-    /*margin-top: 40px;*/
-}
-
 #title-page {
     background-color: #FDF8FE;
     min-width: 100%;
+    min-height: 100%;
 }
 #title-logo {
     display: block;
@@ -81,7 +62,6 @@ html, body {
 #info-page {
     background-color: lightblue;
 }
-
 #info-page img {
     max-width:75%;
     max-height:75%;
@@ -96,21 +76,14 @@ html, body {
 }
 #footer {
     background-color: lightblue;
-    /*position: fixed;
-    bottom: 0;
-    left: 0;*/
     width: 100%;
     text-align: center;
     font-size: 18px;
     font-weight: bold;
     padding-top: 12px;
     padding-bottom: 12px;
+    bottom: 0px;
 }
-/*#footer:hover {
-    opacity:0; 
-    filter:alpha(opacity=0);
-}*/
-
 #content {
     width: 90%;
     text-align: center;
@@ -166,5 +139,7 @@ html, body {
         padding: 1%;
         box-shadow: 10px 10px 5px #888888;
     }
-
+    #app {
+        height: 95%;
+    }
 }

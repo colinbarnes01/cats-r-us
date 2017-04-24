@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
+    Project   : Client Side Scripting Project - Cats R Us
+    Created on : February 01, 2017
+    Author     : Colin Barnes
 -->
 <html>
     <head>
@@ -15,7 +15,7 @@ and open the template in the editor.
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     </head>
     <body>
-        <div ng-app="">
+        <div id="app" ng-app="">
             <div id="titlenav">
                 <div id="title">
                     Cats-R-Us
@@ -32,7 +32,7 @@ and open the template in the editor.
             </div>
 
 
-            <div id="title-page" class="single-page">
+            <div id="title-page">
                 <img id="title-logo" src="pictures/logo.png">
 
                 <div id="content">
@@ -49,12 +49,10 @@ and open the template in the editor.
                         </a></p>
                 </div>
             </div>
-
-            <!--<div ng-include src="'footer.html'"></div>-->
+            <div ng-include src="'footer.html'"></div>
         </div><!-- ng-app -->
-        <!-- Jquery -->
-        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
         <script>
             $(document).ready(function () {
 
